@@ -1,0 +1,412 @@
+/**
+ * MAYAVERSE - Responsive Utilities
+ * 
+ * Utility classes for responsive design patterns
+ * Provides classes for responsive visibility, spacing, and layout
+ */
+
+/* ========================================
+   RESPONSIVE VISIBILITY UTILITIES
+   ======================================== */
+
+/* Hide on mobile */
+.hide-mobile {
+  display: block;
+}
+
+@media (max-width: 768px) {
+  .hide-mobile {
+    display: none !important;
+  }
+}
+
+/* Hide on tablet */
+.hide-tablet {
+  display: block;
+}
+
+@media (max-width: 1024px) {
+  .hide-tablet {
+    display: none !important;
+  }
+}
+
+/* Hide on desktop */
+.hide-desktop {
+  display: none;
+}
+
+@media (max-width: 1024px) {
+  .hide-desktop {
+    display: block;
+  }
+}
+
+/* Show only on mobile */
+.show-mobile {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .show-mobile {
+    display: block;
+  }
+}
+
+/* Show only on tablet */
+.show-tablet {
+  display: none;
+}
+
+@media (min-width: 768px) and (max-width: 1024px) {
+  .show-tablet {
+    display: block;
+  }
+}
+
+/* Show only on desktop */
+.show-desktop {
+  display: none;
+}
+
+@media (min-width: 1024px) {
+  .show-desktop {
+    display: block;
+  }
+}
+
+/* ========================================
+   RESPONSIVE PADDING UTILITIES
+   ======================================== */
+
+/* Responsive padding utilities */
+.px-responsive {
+  padding-left: 2rem;
+  padding-right: 2rem;
+}
+
+@media (max-width: 1024px) {
+  .px-responsive {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .px-responsive {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .px-responsive {
+    padding-left: 0.75rem;
+    padding-right: 0.75rem;
+  }
+}
+
+.py-responsive {
+  padding-top: 3rem;
+  padding-bottom: 3rem;
+}
+
+@media (max-width: 1024px) {
+  .py-responsive {
+    padding-top: 2.5rem;
+    padding-bottom: 2.5rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .py-responsive {
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .py-responsive {
+    padding-top: 1.5rem;
+    padding-bottom: 1.5rem;
+  }
+}
+
+/* ========================================
+   RESPONSIVE MARGIN UTILITIES
+   ======================================== */
+
+.mx-responsive {
+  margin-left: 2rem;
+  margin-right: 2rem;
+}
+
+@media (max-width: 1024px) {
+  .mx-responsive {
+    margin-left: 1.5rem;
+    margin-right: 1.5rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .mx-responsive {
+    margin-left: 1rem;
+    margin-right: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .mx-responsive {
+    margin-left: 0.75rem;
+    margin-right: 0.75rem;
+  }
+}
+
+.my-responsive {
+  margin-top: 3rem;
+  margin-bottom: 3rem;
+}
+
+@media (max-width: 1024px) {
+  .my-responsive {
+    margin-top: 2.5rem;
+    margin-bottom: 2.5rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .my-responsive {
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .my-responsive {
+    margin-top: 1.5rem;
+    margin-bottom: 1.5rem;
+  }
+}
+
+/* ========================================
+   RESPONSIVE FLEX UTILITIES
+   ======================================== */
+
+.flex-responsive {
+  display: flex;
+  flex-direction: row;
+  gap: 2rem;
+}
+
+@media (max-width: 768px) {
+  .flex-responsive {
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .flex-responsive {
+    gap: 1rem;
+  }
+}
+
+/* ========================================
+   RESPONSIVE TEXT UTILITIES
+   ======================================== */
+
+.text-responsive-lg {
+  font-size: 3rem;
+}
+
+@media (max-width: 1024px) {
+  .text-responsive-lg {
+    font-size: 2.5rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .text-responsive-lg {
+    font-size: 2rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .text-responsive-lg {
+    font-size: 1.5rem;
+  }
+}
+
+.text-responsive-md {
+  font-size: 2rem;
+}
+
+@media (max-width: 1024px) {
+  .text-responsive-md {
+    font-size: 1.75rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .text-responsive-md {
+    font-size: 1.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .text-responsive-md {
+    font-size: 1.15rem;
+  }
+}
+
+.text-responsive-sm {
+  font-size: 1rem;
+}
+
+@media (max-width: 768px) {
+  .text-responsive-sm {
+    font-size: 0.95rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .text-responsive-sm {
+    font-size: 0.85rem;
+  }
+}
+
+/* ========================================
+   RESPONSIVE SIZE UTILITIES
+   ======================================== */
+
+/* Responsive width utilities */
+.w-full-mobile {
+  width: 100%;
+}
+
+@media (min-width: 768px) {
+  .w-full-mobile {
+    width: auto;
+  }
+}
+
+/* Responsive height utilities */
+.min-h-viewport {
+  min-height: 100vh;
+}
+
+@media (max-width: 480px) {
+  .min-h-viewport {
+    min-height: 100%;
+  }
+}
+
+/* ========================================
+   RESPONSIVE BREAKPOINT HELPERS
+   ======================================== */
+
+/* Safe area padding for notched devices */
+.safe-area {
+  padding-top: max(0px, env(safe-area-inset-top));
+  padding-left: max(0px, env(safe-area-inset-left));
+  padding-right: max(0px, env(safe-area-inset-right));
+  padding-bottom: max(0px, env(safe-area-inset-bottom));
+}
+
+/* Responsive gap utilities */
+.gap-responsive {
+  gap: 2rem;
+}
+
+@media (max-width: 1024px) {
+  .gap-responsive {
+    gap: 1.5rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .gap-responsive {
+    gap: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .gap-responsive {
+    gap: 0.75rem;
+  }
+}
+
+/* ========================================
+   RESPONSIVE LAYOUT PATTERNS
+   ======================================== */
+
+/* Stacked layout on mobile */
+.stack-mobile {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 2rem;
+}
+
+@media (max-width: 480px) {
+  .stack-mobile {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+}
+
+/* Responsive aspect ratio utilities */
+.aspect-video {
+  position: relative;
+  padding-bottom: 56.25%;
+  overflow: hidden;
+}
+
+.aspect-video > * {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.aspect-square {
+  position: relative;
+  padding-bottom: 100%;
+  overflow: hidden;
+}
+
+.aspect-square > * {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+/* ========================================
+   RESPONSIVE OVERFLOW UTILITIES
+   ======================================== */
+
+.overflow-x-auto-mobile {
+  overflow-x: auto;
+}
+
+@media (min-width: 768px) {
+  .overflow-x-auto-mobile {
+    overflow-x: visible;
+  }
+}
+
+/* ========================================
+   PRINT UTILITIES
+   ======================================== */
+
+@media print {
+  .hide-print {
+    display: none !important;
+  }
+
+  .show-print {
+    display: block !important;
+  }
+}

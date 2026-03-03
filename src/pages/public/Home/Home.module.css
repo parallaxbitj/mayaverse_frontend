@@ -1,0 +1,647 @@
+/**
+ * MAYAVERSE - Complete Home Page Styles
+ * 
+ * All sections styled for cinematic fantasy-tech aesthetic
+ */
+
+/* ========================================
+   BASE PAGE
+   ======================================== */
+.homePage {
+  width: 100%;
+  background: #000020; /* Dark blue-black background */
+}
+
+/* ========================================
+   CINEMATIC HERO SECTION
+   ======================================== */
+.heroSection {
+  min-height: 100vh;
+  height: 100vh;
+  background: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  padding: 0 2rem;
+  z-index: 2;
+}
+
+/* ========================================
+   DARK OVERLAY - ANIMATED ENTRANCE
+   ======================================== */
+.heroOverlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  
+  /* Full coverage gradient overlay */
+  background: 
+    linear-gradient(
+      to bottom,
+      rgba(0, 0, 32, 0.5) 0%,     /* Top also covered */
+      rgba(0, 0, 32, 0.4) 20%,
+      rgba(0, 0, 32, 0.5) 50%,
+      rgba(0, 0, 32, 0.6) 80%,
+      rgba(0, 0, 32, 0.7) 100%
+    ),
+    radial-gradient(
+      ellipse at center,
+      rgba(0, 0, 32, 0.3) 0%,
+      rgba(0, 0, 32, 0.5) 50%,
+      rgba(0, 0, 32, 0.7) 100%
+    );
+  
+  z-index: -1;
+  
+  /* Start invisible, fade in */
+  opacity: 0;
+  animation: overlayFadeIn 2s ease-out 0.5s forwards;
+}
+
+@keyframes overlayFadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* ========================================
+   HERO CONTENT - ANIMATED ENTRANCE
+   ======================================== */
+.heroContent {
+  max-width: 1000px;
+  text-align: center;
+  position: relative;
+  z-index: 1;
+  
+  /* Start invisible, animate in */
+  opacity: 0;
+  transform: translateY(30px);
+  animation: contentFadeIn 1.5s ease-out 1s forwards;
+}
+
+@keyframes contentFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Rest of your existing styles... */
+.heroPresents {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 300;
+  font-size: 1rem;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  margin-bottom: 1.5rem;
+  color: rgba(207, 232, 255, 0.7);
+  text-shadow: 0 0 10px rgba(127, 214, 255, 0.3);
+}
+
+.heroTitle {
+  font-family: 'Cinzel', serif;
+  font-weight: 700;
+  font-size: 7rem;
+  line-height: 1.1;
+  letter-spacing: 8px;
+  margin-bottom: 1.5rem;
+  background: linear-gradient(135deg, #CFE8FF 0%, #B9A7FF 50%, #9EE6FF 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  filter: drop-shadow(0 0 10px rgba(155, 140, 255, 0.6))
+          drop-shadow(0 0 30px rgba(155, 140, 255, 0.3))
+          drop-shadow(0 0 50px rgba(155, 140, 255, 0.2));
+  user-select: text;
+}
+
+.heroTagline {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 400;
+  font-size: 1.4rem;
+  letter-spacing: 2px;
+  margin-bottom: 3rem;
+  color: rgba(255, 255, 255, 0.85);
+  text-shadow: 
+    0 2px 4px rgba(0, 0, 0, 0.5),
+    0 0 20px rgba(138, 124, 255, 0.2);
+  max-width: 700px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.heroButtons {
+  display: flex;
+  gap: 1.5rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.eventDate {
+  position: absolute;
+  top: 50%;
+  right: 5%;
+  transform: translateY(-50%);
+  background: rgba(0, 0, 32, 0.4);
+  backdrop-filter: blur(10px);
+  border: 2px solid rgba(138, 124, 255, 0.3);
+  border-radius: 12px;
+  padding: 2rem 2.5rem;
+  box-shadow: 
+    0 8px 32px rgba(0, 0, 0, 0.3),
+    inset 0 0 20px rgba(138, 124, 255, 0.05);
+  
+  /* Animate in with content */
+  opacity: 0;
+  animation: contentFadeIn 1.5s ease-out 1.2s forwards;
+}
+
+.dateText {
+  font-family: 'Cinzel', serif;
+  font-weight: 600;
+  font-size: 1.8rem;
+  letter-spacing: 3px;
+  background: linear-gradient(135deg, #CFE8FF 0%, #9EE6FF 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  filter: drop-shadow(0 0 10px rgba(127, 214, 255, 0.4));
+  margin: 0;
+}
+
+/* Continue with all your existing button and section styles... */
+
+/* ========================================
+   SHARED BUTTON STYLES
+   ======================================== */
+.primaryButton,
+.secondaryButton {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 500;
+  font-size: 1.1rem;
+  padding: 1.2rem 3rem;
+  letter-spacing: 1px;
+  border-radius: 8px;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  user-select: none;
+  display: inline-block;
+}
+
+.primaryButton {
+  background: linear-gradient(135deg, #8A7CFF 0%, #7FD6FF 100%);
+  color: var(--white);
+  border: 2px solid transparent;
+  box-shadow: 
+    0 4px 15px rgba(138, 124, 255, 0.4),
+    0 0 30px rgba(138, 124, 255, 0.2);
+}
+
+.primaryButton:hover {
+  background: linear-gradient(135deg, #9A8CFF 0%, #8FE6FF 100%);
+  box-shadow: 
+    0 6px 25px rgba(138, 124, 255, 0.6),
+    0 0 40px rgba(138, 124, 255, 0.4);
+  transform: translateY(-3px);
+}
+
+.secondaryButton {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+  color: var(--white);
+  border: 2px solid rgba(138, 124, 255, 0.5);
+}
+
+.secondaryButton:hover {
+  background: rgba(138, 124, 255, 0.15);
+  border-color: #8A7CFF;
+  box-shadow: 
+    0 4px 20px rgba(138, 124, 255, 0.3),
+    inset 0 0 20px rgba(138, 124, 255, 0.1);
+  transform: translateY(-3px);
+}
+
+/* ========================================
+   SHARED CONTAINER
+   ======================================== */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+/* ========================================
+   SHARED SECTION TITLES
+   ======================================== */
+.sectionTitle {
+  font-family: 'Cinzel', serif;
+  font-weight: 600;
+  font-size: 3rem;
+  text-align: center;
+  margin-bottom: 1rem;
+  background: linear-gradient(135deg, #CFE8FF 0%, #B9A7FF 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  filter: drop-shadow(0 0 20px rgba(155, 140, 255, 0.3));
+}
+
+.sectionSubtitle {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 300;
+  font-size: 1.2rem;
+  text-align: center;
+  color: rgba(255, 255, 255, 0.7);
+  margin-bottom: 4rem;
+  max-width: 700px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* ========================================
+   STATS SECTION
+   ======================================== */
+.statsSection {
+  padding: 6rem 0;
+  background: linear-gradient(180deg, #000020 0%, #001030 100%);
+}
+
+.statsGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2rem;
+}
+
+.statCard {
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(138, 124, 255, 0.2);
+  border-radius: 16px;
+  padding: 3rem 2rem;
+  text-align: center;
+  transition: all 0.3s ease;
+}
+
+.statCard:hover {
+  background: rgba(138, 124, 255, 0.05);
+  border-color: rgba(138, 124, 255, 0.4);
+  transform: translateY(-5px);
+  box-shadow: 0 10px 30px rgba(138, 124, 255, 0.2);
+}
+
+.statNumber {
+  font-family: 'Cinzel', serif;
+  font-weight: 700;
+  font-size: 3rem;
+  background: linear-gradient(135deg, #8A7CFF 0%, #7FD6FF 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 0.5rem;
+}
+
+.statLabel {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 400;
+  font-size: 1.1rem;
+  color: rgba(255, 255, 255, 0.8);
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+/* ========================================
+   EVENTS PREVIEW SECTION
+   ======================================== */
+.eventsPreview {
+  padding: 6rem 0;
+  background: #000020;
+}
+
+.eventsGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2rem;
+  margin-bottom: 3rem;
+}
+
+.eventCategoryCard {
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(138, 124, 255, 0.2);
+  border-radius: 16px;
+  padding: 2.5rem 2rem;
+  text-align: center;
+  transition: all 0.3s ease;
+}
+
+.eventCategoryCard:hover {
+  background: rgba(138, 124, 255, 0.08);
+  border-color: rgba(138, 124, 255, 0.5);
+  transform: translateY(-8px);
+  box-shadow: 0 15px 40px rgba(138, 124, 255, 0.3);
+}
+
+.categoryIcon {
+  font-size: 3rem;
+  margin-bottom: 1.5rem;
+  filter: drop-shadow(0 0 20px rgba(138, 124, 255, 0.4));
+}
+
+.categoryTitle {
+  font-family: 'Cinzel', serif;
+  font-weight: 600;
+  font-size: 1.5rem;
+  color: var(--white);
+  margin-bottom: 1rem;
+}
+
+.categoryDescription {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 300;
+  font-size: 0.95rem;
+  color: rgba(255, 255, 255, 0.7);
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
+}
+
+.categoryLink {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 500;
+  color: #8A7CFF;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.categoryLink:hover {
+  color: #9A8CFF;
+  text-shadow: 0 0 10px rgba(138, 124, 255, 0.6);
+}
+
+.viewAllButton {
+  text-align: center;
+}
+
+/* ========================================
+   SPONSORS PREVIEW SECTION
+   ======================================== */
+.sponsorsPreview {
+  padding: 6rem 0;
+  background: linear-gradient(180deg, #000020 0%, #001030 100%);
+}
+
+.sponsorLogos {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 3rem;
+  margin-bottom: 3rem;
+}
+
+.sponsorLogo {
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(138, 124, 255, 0.2);
+  border-radius: 16px;
+  padding: 3rem 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  min-height: 150px;
+}
+
+.sponsorLogo:hover {
+  background: rgba(138, 124, 255, 0.05);
+  border-color: rgba(138, 124, 255, 0.4);
+  transform: translateY(-5px);
+  box-shadow: 0 10px 30px rgba(138, 124, 255, 0.2);
+}
+
+.logoPlaceholder {
+  font-family: 'Cinzel', serif;
+  font-weight: 600;
+  font-size: 1.3rem;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+/* ========================================
+   FEATURES SECTION
+   ======================================== */
+.featuredSection {
+  padding: 6rem 0;
+  background: #000020;
+}
+
+.featuresGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2.5rem;
+}
+
+.featureCard {
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(138, 124, 255, 0.2);
+  border-radius: 16px;
+  padding: 3rem 2rem;
+  text-align: center;
+  transition: all 0.3s ease;
+}
+
+.featureCard:hover {
+  background: rgba(138, 124, 255, 0.08);
+  border-color: rgba(138, 124, 255, 0.5);
+  transform: translateY(-8px);
+  box-shadow: 0 15px 40px rgba(138, 124, 255, 0.3);
+}
+
+.featureIcon {
+  font-size: 4rem;
+  margin-bottom: 1.5rem;
+  filter: drop-shadow(0 0 20px rgba(138, 124, 255, 0.4));
+}
+
+.featureTitle {
+  font-family: 'Cinzel', serif;
+  font-weight: 600;
+  font-size: 1.8rem;
+  color: var(--white);
+  margin-bottom: 1rem;
+}
+
+.featureDescription {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 300;
+  font-size: 1rem;
+  color: rgba(255, 255, 255, 0.7);
+  line-height: 1.7;
+  margin-bottom: 2rem;
+}
+
+.featureLink {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 500;
+  color: #8A7CFF;
+  text-decoration: none;
+  font-size: 1.1rem;
+  transition: all 0.3s ease;
+}
+
+.featureLink:hover {
+  color: #9A8CFF;
+  text-shadow: 0 0 10px rgba(138, 124, 255, 0.6);
+}
+
+/* ========================================
+   CTA SECTION
+   ======================================== */
+.ctaSection {
+  padding: 8rem 0;
+  background: linear-gradient(135deg, #001030 0%, #000020 100%);
+  text-align: center;
+}
+
+.ctaTitle {
+  font-family: 'Cinzel', serif;
+  font-weight: 700;
+  font-size: 3.5rem;
+  background: linear-gradient(135deg, #CFE8FF 0%, #B9A7FF 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  filter: drop-shadow(0 0 30px rgba(155, 140, 255, 0.4));
+  margin-bottom: 1.5rem;
+}
+
+.ctaText {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 300;
+  font-size: 1.3rem;
+  color: rgba(255, 255, 255, 0.8);
+  margin-bottom: 3rem;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.ctaButton {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 600;
+  font-size: 1.2rem;
+  padding: 1.5rem 4rem;
+  letter-spacing: 1px;
+  border-radius: 8px;
+  text-decoration: none;
+  display: inline-block;
+  background: linear-gradient(135deg, #8A7CFF 0%, #7FD6FF 100%);
+  color: var(--white);
+  border: 2px solid transparent;
+  box-shadow: 
+    0 6px 25px rgba(138, 124, 255, 0.5),
+    0 0 50px rgba(138, 124, 255, 0.3);
+  transition: all 0.3s ease;
+}
+
+.ctaButton:hover {
+  background: linear-gradient(135deg, #9A8CFF 0%, #8FE6FF 100%);
+  box-shadow: 
+    0 8px 35px rgba(138, 124, 255, 0.7),
+    0 0 60px rgba(138, 124, 255, 0.5);
+  transform: translateY(-5px);
+}
+
+/* ========================================
+   RESPONSIVE DESIGN
+   ======================================== */
+
+/* Tablet (1024px and below) */
+@media (max-width: 1024px) {
+  .heroTitle {
+    font-size: 5rem;
+    letter-spacing: 6px;
+  }
+  
+  .statsGrid,
+  .eventsGrid,
+  .sponsorLogos {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .featuresGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Mobile (768px and below) */
+@media (max-width: 768px) {
+  .heroTitle {
+    font-size: 3.5rem;
+    letter-spacing: 4px;
+  }
+  
+  .heroPresents {
+    font-size: 0.85rem;
+    letter-spacing: 3px;
+  }
+  
+  .heroTagline {
+    font-size: 1rem;
+    letter-spacing: 1px;
+    margin-bottom: 2rem;
+  }
+  
+  .heroButtons {
+    flex-direction: column;
+    gap: 1rem;
+  }
+  
+  .eventDate {
+    position: static;
+    transform: none;
+    margin-top: 3rem;
+    margin-left: auto;
+    margin-right: auto;
+    width: fit-content;
+  }
+  
+  .sectionTitle {
+    font-size: 2rem;
+  }
+  
+  .statsGrid,
+  .eventsGrid,
+  .featuresGrid,
+  .sponsorLogos {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  
+  .ctaTitle {
+    font-size: 2.5rem;
+  }
+}
+
+/* Small mobile (480px and below) */
+@media (max-width: 480px) {
+  .heroSection {
+    padding: 0 1rem;
+  }
+  
+  .heroTitle {
+    font-size: 2.5rem;
+    letter-spacing: 2px;
+  }
+  
+  .container {
+    padding: 0 1rem;
+  }
+}

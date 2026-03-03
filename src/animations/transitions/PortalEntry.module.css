@@ -1,0 +1,524 @@
+/* MAYAVERSE - Portal Entry Page Styles */
+/* Mystical Cosmic Gateway to MAYAVERSE */
+
+.portalEntryContainer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background: radial-gradient(
+    circle at center,
+    rgba(10, 10, 25, 0.8) 0%,
+    rgba(5, 5, 20, 1) 100%
+  );
+  background-attachment: fixed;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  z-index: 10000;
+  cursor: pointer;
+  will-change: background-image;
+}
+
+/* Cosmic Background Stars */
+.starsContainer {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  z-index: 1;
+}
+
+.star {
+  position: absolute;
+  width: 2px;
+  height: 2px;
+  background: rgba(255, 255, 255, 0.8);
+  border-radius: 50%;
+  animation: twinkle var(--duration) ease-in-out var(--delay) infinite;
+  box-shadow: 0 0 3px rgba(255, 255, 255, 0.5);
+}
+
+@keyframes twinkle {
+  0%, 100% {
+    opacity: 0.2;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+/* Portal Wrapper - Container for Portal and Text */
+.portalWrapper {
+  position: relative;
+  z-index: 10;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 40px;
+}
+
+/* Title */
+.title {
+  font-size: clamp(2rem, 8vw, 4rem);
+  color: rgba(99, 102, 241, 0.9);
+  text-shadow: 
+    0 0 20px rgba(99, 102, 241, 0.8),
+    0 0 40px rgba(139, 92, 246, 0.6);
+  font-weight: 900;
+  letter-spacing: 4px;
+  margin: 0;
+  opacity: 0.9;
+  animation: titleGlow 4s ease-in-out infinite;
+}
+
+@keyframes titleGlow {
+  0%, 100% {
+    text-shadow: 
+      0 0 20px rgba(99, 102, 241, 0.8),
+      0 0 40px rgba(139, 92, 246, 0.6);
+  }
+  50% {
+    text-shadow: 
+      0 0 30px rgba(99, 102, 241, 1),
+      0 0 60px rgba(139, 92, 246, 0.8),
+      0 0 80px rgba(167, 139, 250, 0.6);
+  }
+}
+
+/* Portal Container */
+.portalContainer {
+  position: relative;
+  width: 350px;
+  height: 350px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.portalContainer:hover {
+  transform: scale(1.05);
+}
+
+/* Rune Container */
+.runeContainer {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  filter: drop-shadow(0 0 20px rgba(99, 102, 241, 0.5));
+  transition: all 0.3s ease;
+}
+
+.runeContainer.hovering {
+  filter: drop-shadow(0 0 40px rgba(99, 102, 241, 0.9)) drop-shadow(0 0 80px rgba(139, 92, 246, 0.6));
+}
+
+.runeContainer.clicking {
+  filter: drop-shadow(0 0 60px rgba(99, 102, 241, 1)) drop-shadow(0 0 100px rgba(139, 92, 246, 0.8));
+}
+
+/* Concentric Circle Borders */
+.circleBorder {
+  position: absolute;
+  border: 2px solid rgba(99, 102, 241, 0.6);
+  border-radius: 50%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  transition: all 0.3s ease;
+}
+
+.runeContainer.hovering .circleBorder {
+  border-color: rgba(99, 102, 241, 1);
+  box-shadow: 0 0 15px rgba(99, 102, 241, 0.8), inset 0 0 15px rgba(99, 102, 241, 0.4);
+}
+
+/* Outer Rune Circle - Slow Clockwise Rotation */
+.runeCircleOuter {
+  position: absolute;
+  width: 220px;
+  height: 220px;
+  animation: rotateSlow 30s linear infinite;
+  transform-origin: center;
+}
+
+@keyframes rotateSlow {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.runeContainer.clicking .runeCircleOuter {
+  animation: rotateFast 1.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+}
+
+@keyframes rotateFast {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(720deg);
+  }
+}
+
+/* Inner Rune Circle - Slow Counter-Clockwise Rotation */
+.runeCircleInner {
+  position: absolute;
+  width: 140px;
+  height: 140px;
+  animation: rotateSlowReverse 25s linear infinite;
+  transform-origin: center;
+}
+
+@keyframes rotateSlowReverse {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(-360deg);
+  }
+}
+
+.runeContainer.clicking .runeCircleInner {
+  animation: rotateFastReverse 1.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+}
+
+@keyframes rotateFastReverse {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(-720deg);
+  }
+}
+
+/* Individual Rune Styling */
+.rune {
+  position: absolute;
+  font-size: 1.1rem;
+  font-weight: bold;
+  color: rgba(99, 102, 241, 0.85);
+  text-shadow: 
+    0 0 8px rgba(99, 102, 241, 0.8),
+    0 0 16px rgba(139, 92, 246, 0.5);
+  opacity: 0.8;
+  transition: all 0.3s ease;
+  top: 50%;
+  left: 50%;
+  transform-origin: center;
+  margin: -0.55em 0 0 -0.55em;
+  will-change: opacity, text-shadow;
+}
+
+.runeContainer.hovering .rune {
+  text-shadow: 
+    0 0 12px rgba(99, 102, 241, 1),
+    0 0 24px rgba(139, 92, 246, 0.8),
+    0 0 40px rgba(167, 139, 250, 0.6);
+  opacity: 1;
+}
+
+.runeContainer.clicking .rune {
+  opacity: 0;
+}
+
+/* Central Portal Glow */
+.portalGlow {
+  position: absolute;
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle,
+    rgba(99, 102, 241, 0.4) 0%,
+    rgba(139, 92, 246, 0.2) 50%,
+    transparent 100%
+  );
+  filter: blur(20px);
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  animation: entrPulse 2.5s ease-in-out infinite;
+  will-change: transform, opacity;
+}
+
+@keyframes entrPulse {
+  0%, 100% {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 0.4;
+  }
+  50% {
+    transform: translate(-50%, -50%) scale(1.2);
+    opacity: 0.7;
+  }
+}
+
+.runeContainer.hovering .portalGlow {
+  animation: entryPulseHover 1.5s ease-in-out infinite;
+}
+
+@keyframes entryPulseHover {
+  0%, 100% {
+    transform: translate(-50%, -50%) scale(1.2);
+    opacity: 0.7;
+  }
+  50% {
+    transform: translate(-50%, -50%) scale(1.5);
+    opacity: 1;
+  }
+}
+
+/* Mystical Energy Particles */
+.energyParticles {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+}
+
+.particle {
+  position: absolute;
+  width: 3px;
+  height: 3px;
+  background: radial-gradient(circle, rgba(99, 102, 241, 1), transparent);
+  border-radius: 50%;
+  top: 50%;
+  left: 50%;
+  animation: floatParticle 8s ease-in-out var(--delay) infinite;
+  opacity: 0;
+}
+
+@keyframes floatParticle {
+  0% {
+    transform: translate(-50%, -50%) scale(1) opacity(0);
+    opacity: 0;
+  }
+  25% {
+    opacity: 0.6;
+  }
+  75% {
+    opacity: 0.6;
+  }
+  100% {
+    transform: translate(
+      calc(-50% + (var(--px, 150px) * cos(var(--angle, 0deg)))),
+      calc(-50% + (var(--px, 150px) * sin(var(--angle, 0deg))))
+    ) scale(0.3);
+    opacity: 0;
+  }
+}
+
+.particle:nth-child(1) {
+  --px: 150px;
+  --angle: 0deg;
+}
+.particle:nth-child(2) {
+  --px: 140px;
+  --angle: 60deg;
+}
+.particle:nth-child(3) {
+  --px: 145px;
+  --angle: 120deg;
+}
+.particle:nth-child(4) {
+  --px: 150px;
+  --angle: 180deg;
+}
+.particle:nth-child(5) {
+  --px: 140px;
+  --angle: 240deg;
+}
+.particle:nth-child(6) {
+  --px: 145px;
+  --angle: 300deg;
+}
+
+.runeContainer.hovering .particle {
+  --px: 200px;
+}
+
+/* Cosmic Rays */
+.cosmicRaysContainer {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+}
+
+.cosmicRay {
+  position: absolute;
+  width: 2px;
+  height: 400px;
+  background: linear-gradient(
+    to bottom,
+    transparent,
+    rgba(99, 102, 241, 0.3),
+    transparent
+  );
+  left: 50%;
+  bottom: -200px;
+  animation: raySlideUp 6s ease-in-out var(--ray-delay) infinite;
+  opacity: 0.3;
+}
+
+.cosmicRay:nth-child(1) {
+  left: 30%;
+}
+.cosmicRay:nth-child(2) {
+  left: 50%;
+}
+.cosmicRay:nth-child(3) {
+  left: 70%;
+}
+
+@keyframes raySlideUp {
+  0% {
+    transform: translateY(0);
+    opacity: 0;
+  }
+  30% {
+    opacity: 0.3;
+  }
+  70% {
+    opacity: 0.3;
+  }
+  100% {
+    transform: translateY(-600px);
+    opacity: 0;
+  }
+}
+
+/* Instruction Text */
+.instruction {
+  font-size: 1.1rem;
+  color: rgba(99, 102, 241, 0.7);
+  text-shadow: 0 0 10px rgba(99, 102, 241, 0.5);
+  font-weight: 300;
+  letter-spacing: 2px;
+  margin: 0;
+  animation: pulseInstructions 2s ease-in-out infinite;
+  transition: all 0.3s ease;
+}
+
+@keyframes pulseInstructions {
+  0%, 100% {
+    opacity: 0.6;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+.portalContainer:hover ~ .instruction,
+.portalContainer:hover + .instruction {
+  color: rgba(99, 102, 241, 1);
+  text-shadow: 0 0 15px rgba(99, 102, 241, 0.8);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .portalWrapper {
+    gap: 30px;
+  }
+
+  .portalContainer {
+    width: 280px;
+    height: 280px;
+  }
+
+  .runeCircleOuter {
+    width: 180px;
+    height: 180px;
+  }
+
+  .runeCircleInner {
+    width: 115px;
+    height: 115px;
+  }
+
+  .rune {
+    font-size: 1rem;
+  }
+
+  .title {
+    margin-bottom: 10px;
+  }
+}
+
+@media (max-width: 480px) {
+  .portalWrapper {
+    gap: 20px;
+  }
+
+  .portalContainer {
+    width: 220px;
+    height: 220px;
+  }
+
+  .runeCircleOuter {
+    width: 140px;
+    height: 140px;
+  }
+
+  .runeCircleInner {
+    width: 90px;
+    height: 90px;
+  }
+
+  .rune {
+    font-size: 0.85rem;
+  }
+
+  .title {
+    font-size: clamp(1.5rem, 6vw, 2.5rem);
+  }
+
+  .instruction {
+    font-size: 0.9rem;
+  }
+}
+
+/* Accessibility - Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+  .star,
+  .rune,
+  .portalGlow,
+  .particle,
+  .cosmicRay,
+  .instruction,
+  .title {
+    animation: none !important;
+  }
+
+  .runeCircleOuter,
+  .runeCircleInner {
+    animation: none !important;
+  }
+
+  .runeContainer.clicking .runeCircleOuter,
+  .runeContainer.clicking .runeCircleInner {
+    animation: none !important;
+  }
+
+  .portalContainer {
+    transition: none;
+  }
+}
+
+/* Performance Optimization */
+.runeContainer,
+.portalContainer,
+.portalEntryContainer {
+  transform: translateZ(0);
+  backface-visibility: hidden;
+}

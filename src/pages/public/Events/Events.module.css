@@ -1,0 +1,82 @@
+/* ============================================
+   EVENTS PAGE — Dark Cosmic Theme
+   ============================================ */
+
+.eventsPage {
+  width: 100%;
+  background: url('/event_page_background.png') center/cover no-repeat;
+  background-color: #06060e;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Hero */
+.heroSection {
+  padding: 8rem 0 2rem;
+  text-align: center;
+}
+
+.container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+.pageTitle {
+  font-family: 'Cinzel', serif;
+  font-size: 3.5rem;
+  font-weight: 500;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: #fff;
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+  margin-bottom: 1rem;
+}
+
+/* Events Section */
+.eventsSection {
+  padding: 1rem 0 6rem;
+  flex-grow: 1;
+}
+
+/* No Events */
+.noEvents {
+  text-align: center;
+  padding: 4rem 2rem;
+  color: rgba(180, 170, 210, 0.4);
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1.1rem;
+}
+
+/* Loading */
+.loading {
+  text-align: center;
+  padding: 4rem 2rem;
+  font-size: 1.2rem;
+  color: rgba(180, 170, 210, 0.5);
+  background: #06060e;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .heroSection {
+    padding: 6rem 0 1.5rem;
+  }
+
+  .pageTitle {
+    font-size: 2.2rem;
+    letter-spacing: 2px;
+  }
+}
+
+@media (max-width: 480px) {
+  .pageTitle {
+    font-size: 1.6rem;
+    letter-spacing: 1px;
+  }
+}

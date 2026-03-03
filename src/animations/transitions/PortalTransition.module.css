@@ -1,0 +1,17 @@
+/* MAYAVERSE - Portal Transition Styles (Simplified) */
+/* The mystical portal has moved to the entry page (PortalEntry.jsx) */
+
+.transitionWrapper {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+}
+
+.content {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  opacity: 1;
+}
+
+/* No animations - simple content wrapper only */

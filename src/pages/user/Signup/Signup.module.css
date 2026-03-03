@@ -1,0 +1,317 @@
+/* ============================================
+   SIGNUP PAGE — "The Illusion" Premium Theme
+   ============================================ */
+
+.signupPage {
+  min-height: 100vh;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #000;
+  /* Extra top padding for fixed Navbar */
+  padding: 120px 1.5rem 4rem;
+  position: relative;
+  overflow-x: hidden;
+  color: #fff;
+}
+
+/* Background Effects */
+.signupPage::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background:
+    radial-gradient(circle at 85% 15%, rgba(138, 124, 255, 0.1) 0%, transparent 40%),
+    radial-gradient(circle at 15% 85%, rgba(0, 242, 254, 0.1) 0%, transparent 40%),
+    radial-gradient(circle at 50% 50%, rgba(5, 5, 10, 1) 0%, #000 100%);
+  z-index: 0;
+}
+
+/* Animated Grid */
+.signupPage::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+  background-size: 60px 60px;
+  -webkit-mask-image: radial-gradient(circle at 50% 50%, black, transparent 90%);
+  mask-image: radial-gradient(circle at 50% 50%, black, transparent 90%);
+  opacity: 0.3;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.signupContainer {
+  width: 100%;
+  max-width: 650px;
+  position: relative;
+  z-index: 10;
+}
+
+.signupCard {
+  background: rgba(10, 10, 20, 0.75);
+  backdrop-filter: blur(30px);
+  -webkit-backdrop-filter: blur(30px);
+  padding: 3.5rem;
+  border-radius: 24px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 40px 100px rgba(0, 0, 0, 0.6);
+  max-height: 85vh;
+  overflow-y: auto;
+}
+
+/* Scrollbar Customization */
+.signupCard::-webkit-scrollbar {
+  width: 6px;
+}
+
+.signupCard::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.signupCard::-webkit-scrollbar-thumb {
+  background: rgba(138, 124, 255, 0.2);
+  border-radius: 10px;
+}
+
+.title {
+  font-family: 'Cinzel', serif;
+  font-size: 2.25rem;
+  font-weight: 800;
+  text-align: center;
+  margin-bottom: 0.75rem;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  background: linear-gradient(180deg, #fff 0%, rgba(138, 124, 255, 0.8) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  filter: drop-shadow(0 0 15px rgba(138, 124, 255, 0.4));
+}
+
+.subtitle {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.85rem;
+  color: rgba(180, 170, 210, 0.6);
+  text-align: center;
+  margin-bottom: 3rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+/* Form Grid */
+.form {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.75rem;
+}
+
+.formGroup {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Force some fields to span full width */
+.formGroup:nth-child(1),
+/* Name */
+.formGroup:nth-child(2) {
+  /* Email */
+  grid-column: span 2;
+}
+
+.formGroup label {
+  font-family: 'Syncopate', sans-serif;
+  font-size: 0.55rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 2.5px;
+  color: rgba(0, 242, 254, 0.8);
+  margin-bottom: 0.75rem;
+}
+
+.input {
+  width: 100%;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 0.9rem 1.15rem;
+  border-radius: 10px;
+  color: #fff;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.95rem;
+  transition: all 0.3s ease;
+  outline: none;
+}
+
+.input:focus {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: #ff00de;
+  box-shadow: 0 0 20px rgba(255, 0, 222, 0.2);
+}
+
+.successBadge {
+  grid-column: span 2;
+  background: rgba(34, 197, 94, 0.1);
+  border: 1px solid rgba(34, 197, 94, 0.2);
+  color: #4ade80;
+  padding: 0.75rem;
+  border-radius: 8px;
+  text-align: center;
+  font-family: 'Syncopate', sans-serif;
+  font-size: 0.6rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-bottom: 0.5rem;
+  box-shadow: 0 0 15px rgba(34, 197, 94, 0.1);
+}
+
+.otpInput {
+  letter-spacing: 0.5rem;
+  text-align: center;
+  font-family: 'Space Mono', monospace;
+  font-size: 1.25rem;
+  padding-left: 1.5rem;
+}
+
+.submitButton {
+  grid-column: span 2;
+  margin-top: 1rem;
+  padding: 1.15rem;
+  background: linear-gradient(135deg, #00f2fe 0%, #8a7cff 100%);
+  border: none;
+  border-radius: 10px;
+  color: #000;
+  font-family: 'Orbitron', sans-serif;
+  font-weight: 900;
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  cursor: pointer;
+  transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+  box-shadow: 0 8px 30px rgba(0, 242, 254, 0.3);
+}
+
+.submitButton:hover:not(:disabled) {
+  transform: translateY(-3px);
+  box-shadow: 0 15px 40px rgba(0, 242, 254, 0.5);
+}
+
+.submitButton:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.googleAuthSection {
+  grid-column: span 2;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  padding: 1rem 0;
+}
+
+.infoBox {
+  background: rgba(138, 124, 255, 0.1);
+  border: 1px solid rgba(138, 124, 255, 0.2);
+  padding: 1rem;
+  border-radius: 10px;
+  text-align: center;
+}
+
+.infoBox p {
+  color: #fff;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.85rem;
+  line-height: 1.5;
+  margin: 0;
+}
+
+.googleButton {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding: 1rem;
+  background: #fff;
+  border: none;
+  border-radius: 10px;
+  color: #000;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 700;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+  box-shadow: 0 4px 15px rgba(255, 255, 255, 0.1);
+}
+
+.googleButton:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(255, 255, 255, 0.2);
+  background: #f8f8f8;
+}
+
+.googleButton:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+.googleIcon {
+  width: 22px;
+  height: 22px;
+}
+
+.promptText {
+  grid-column: span 2;
+  text-align: center;
+  padding: 2rem 0;
+  color: rgba(180, 170, 210, 0.5);
+  font-family: 'Montserrat', sans-serif;
+  font-style: italic;
+  font-size: 0.9rem;
+}
+
+.links {
+  grid-column: span 2;
+  margin-top: 2rem;
+  text-align: center;
+}
+
+.links p {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.85rem;
+  color: rgba(180, 170, 210, 0.5);
+}
+
+.link {
+  color: #ff00de;
+  text-decoration: none;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.link:hover {
+  color: #00f2fe;
+}
+
+@media (max-width: 640px) {
+  .signupCard {
+    padding: 2.5rem 1.75rem;
+  }
+
+  .form {
+    grid-template-columns: 1fr;
+  }
+
+  .formGroup {
+    grid-column: span 1 !important;
+  }
+
+  .title {
+    font-size: 1.8rem;
+  }
+}

@@ -1,0 +1,176 @@
+/* ============================================
+   SPONSORS PAGE — Dark Cosmic Theme
+   ============================================ */
+
+.sponsorsPage {
+  width: 100%;
+  background: linear-gradient(180deg, #06060e 0%, #08060f 50%, #06060e 100%);
+  min-height: 100vh;
+  color: #fff;
+}
+
+/* Hero Section */
+.heroSection {
+  background: radial-gradient(ellipse at 50% 100%, rgba(138, 100, 255, 0.2) 0%, transparent 60%),
+    linear-gradient(180deg, #0a0818 0%, #06060e 100%);
+  color: #fff;
+  padding: 8rem 0 4rem;
+  text-align: center;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+.pageTitle {
+  font-family: 'Cinzel', serif;
+  font-size: clamp(2rem, 6vw, 3rem);
+  font-weight: 700;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: transparent;
+  background: linear-gradient(180deg, rgba(130, 180, 255, 0.95) 0%, rgba(180, 140, 255, 0.8) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  filter: drop-shadow(0 0 12px rgba(100, 140, 255, 0.4));
+  margin-bottom: 1rem;
+}
+
+.pageSubtitle {
+  font-family: 'Montserrat', sans-serif;
+  font-size: clamp(0.9rem, 2vw, 1.2rem);
+  color: rgba(200, 190, 230, 0.6);
+  letter-spacing: 1px;
+}
+
+/* Sponsors Section */
+.sponsorsSection {
+  padding: 3rem 0 6rem;
+}
+
+.tierSection {
+  margin-bottom: 4rem;
+}
+
+.tierTitle {
+  text-align: center;
+  margin-bottom: 2rem;
+  font-family: 'Cinzel', serif;
+  font-size: clamp(1.1rem, 3vw, 1.5rem);
+  color: #00f2fe;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+}
+
+.sponsorsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1.5rem;
+}
+
+.sponsorCard {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(138, 124, 255, 0.12);
+  padding: 2rem;
+  border-radius: 14px;
+  text-align: center;
+  transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+  backdrop-filter: blur(10px);
+}
+
+.sponsorCard:hover {
+  transform: translateY(-6px);
+  border-color: rgba(0, 242, 254, 0.3);
+  box-shadow: 0 0 30px rgba(0, 242, 254, 0.08);
+}
+
+.sponsorLogo {
+  margin-bottom: 1.5rem;
+}
+
+.logoPlaceholder {
+  width: 80px;
+  height: 80px;
+  margin: 0 auto;
+  background: linear-gradient(135deg, rgba(0, 242, 254, 0.2), rgba(138, 124, 255, 0.2));
+  border: 1px solid rgba(0, 242, 254, 0.3);
+  color: #00f2fe;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2.5rem;
+  font-weight: 700;
+  font-family: 'Cinzel', serif;
+}
+
+.sponsorName {
+  font-size: clamp(1rem, 2.5vw, 1.4rem);
+  margin-bottom: 0.75rem;
+  color: #fff;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 600;
+}
+
+.sponsorDescription {
+  color: rgba(200, 190, 230, 0.6);
+  margin-bottom: 1.25rem;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.9rem;
+  line-height: 1.6;
+}
+
+.sponsorLink {
+  color: #00f2fe;
+  font-weight: 600;
+  text-decoration: none;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.9rem;
+  letter-spacing: 1px;
+  transition: color 0.3s, text-shadow 0.3s;
+}
+
+.sponsorLink:hover {
+  color: #fff;
+  text-shadow: 0 0 8px #00f2fe;
+}
+
+/* Loading */
+.loading {
+  text-align: center;
+  padding: 4rem 2rem;
+  font-size: 1.2rem;
+  color: rgba(200, 190, 230, 0.5);
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Montserrat', sans-serif;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .heroSection {
+    padding: 6rem 0 3rem;
+  }
+
+  .sponsorsGrid {
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  }
+}
+
+@media (max-width: 480px) {
+  .heroSection {
+    padding: 5rem 0 2.5rem;
+  }
+
+  .sponsorsGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .sponsorCard {
+    padding: 1.5rem;
+  }
+}

@@ -1,0 +1,228 @@
+/* ============================================
+   FOOTER — Clean dark theme, no excessive glow
+   ============================================ */
+
+/* --- FOOTER CONTAINER --- */
+.mayaFooter {
+  background: linear-gradient(180deg, #06060e 0%, #050508 100%);
+  color: #c0c0d0;
+  padding: 4rem 2rem 2rem;
+  position: relative;
+  overflow: hidden;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+  margin-top: 4rem;
+  font-family: 'Montserrat', sans-serif;
+}
+
+@media (max-width: 768px) {
+  .mayaFooter {
+    padding: 2rem 1rem 1.5rem;
+    margin-top: 2rem;
+  }
+}
+
+/* Subtle top accent line — no animation */
+.borderGlow {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(90deg,
+      transparent 0%,
+      rgba(138, 124, 255, 0.4) 30%,
+      rgba(0, 242, 254, 0.3) 60%,
+      transparent 100%);
+  z-index: 2;
+}
+
+/* Content layout */
+.footerContent {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  max-width: 1200px;
+  margin: 0 auto;
+  gap: 3rem;
+  position: relative;
+  z-index: 5;
+  padding: 0 1rem;
+}
+
+@media (max-width: 768px) {
+  .footerContent {
+    flex-direction: column;
+    text-align: center;
+    gap: 2rem;
+  }
+}
+
+.footerCol {
+  flex: 1;
+  min-width: 220px;
+}
+
+@media (max-width: 768px) {
+  .footerCol {
+    min-width: auto;
+  }
+}
+
+/* --- Brand --- */
+.brandTitle {
+  font-family: 'Syncopate', sans-serif;
+  font-size: 1.6rem;
+  color: rgba(255, 255, 255, 0.9);
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  margin-bottom: 0.75rem;
+}
+
+.brandDesc {
+  color: rgba(180, 180, 200, 0.6);
+  line-height: 1.7;
+  font-size: 0.9rem;
+}
+
+/* --- Navigation --- */
+.navHeader {
+  font-family: 'Syncopate', sans-serif;
+  font-size: 0.65rem;
+  color: rgba(255, 255, 255, 0.5);
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  margin-bottom: 1.2rem;
+  display: block;
+}
+
+.linkList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.linkList li {
+  margin-bottom: 0.6rem;
+}
+
+.linkList a {
+  color: rgba(180, 180, 200, 0.55);
+  text-decoration: none;
+  font-size: 0.9rem;
+  font-weight: 500;
+  transition: color 0.2s ease, transform 0.2s ease;
+  display: inline-block;
+}
+
+.linkList a:hover {
+  color: rgba(255, 255, 255, 0.9);
+  transform: translateX(4px);
+}
+
+/* --- Contacts --- */
+.contactItem {
+  margin-bottom: 1.2rem;
+  padding-left: 12px;
+  border-left: 1px solid rgba(255, 255, 255, 0.08);
+  transition: border-color 0.2s;
+}
+
+@media (max-width: 768px) {
+  .contactItem {
+    border-left: none;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    padding-left: 0;
+    padding-bottom: 0.75rem;
+  }
+}
+
+.contactItem:hover {
+  border-left-color: rgba(138, 124, 255, 0.4);
+}
+
+.contactName {
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 0.9rem;
+  font-weight: 600;
+  display: block;
+}
+
+.contactNumber {
+  color: rgba(180, 180, 200, 0.5);
+  text-decoration: none;
+  font-size: 0.85rem;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 3px;
+  transition: color 0.2s;
+}
+
+@media (max-width: 768px) {
+  .contactNumber {
+    justify-content: center;
+  }
+}
+
+.contactNumber:hover {
+  color: rgba(138, 124, 255, 0.8);
+}
+
+/* Social buttons */
+.socialRow {
+  display: flex;
+  gap: 0.75rem;
+  margin-top: 1.25rem;
+}
+
+@media (max-width: 768px) {
+  .socialRow {
+    justify-content: center;
+  }
+}
+
+.socialBtn {
+  width: 40px;
+  height: 40px;
+  background: rgba(255, 255, 255, 0.04);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 1.1rem;
+  text-decoration: none;
+  transition: background 0.25s ease, color 0.25s ease;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  flex-shrink: 0;
+}
+
+.socialBtn:hover {
+  background: rgba(138, 124, 255, 0.15);
+  color: rgba(255, 255, 255, 0.9);
+  border-color: rgba(138, 124, 255, 0.3);
+}
+
+/* --- Bottom --- */
+.footerBottom {
+  margin-top: 2.5rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  text-align: center;
+  position: relative;
+  z-index: 5;
+}
+
+.mayaCta {
+  font-family: 'Syncopate', sans-serif;
+  font-size: 0.7rem;
+  color: rgba(138, 124, 255, 0.6);
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  margin-bottom: 0.75rem;
+}
+
+.copyrightText {
+  color: rgba(180, 180, 200, 0.3);
+  font-size: 0.8rem;
+}
