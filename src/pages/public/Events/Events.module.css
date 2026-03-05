@@ -4,11 +4,15 @@
 
 .eventsPage {
   width: 100%;
-  background: url('/event_page_background.png') center/cover no-repeat;
-  background-color: #06060e;
+  background: radial-gradient(ellipse at 50% 0%, rgba(80, 40, 140, 0.35) 0%, transparent 60%),
+              radial-gradient(ellipse at 80% 80%, rgba(0, 100, 180, 0.15) 0%, transparent 55%),
+              #06060e;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+  /* Fade bottom into the sponsors section seamlessly */
+  -webkit-mask-image: linear-gradient(to bottom, black 85%, transparent 100%);
+  mask-image: linear-gradient(to bottom, black 85%, transparent 100%);
 }
 
 /* Hero */
@@ -36,7 +40,7 @@
 
 /* Events Section */
 .eventsSection {
-  padding: 1rem 0 6rem;
+  padding: 5rem 0 6rem;
   flex-grow: 1;
 }
 

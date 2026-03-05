@@ -1,24 +1,28 @@
-import React, { useRef, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import styles from './SponsorMarquee.module.css';
 
 /**
- * SponsorMarquee — Single infinite seamless logo scroll.
- * Uses simple-icons CDN for brand-colored SVG logos.
- * Animation driven by CSS @keyframes declared in <style> tag
- * to avoid CSS Modules keyframe name mangling issues.
+ * SponsorMarquee — "Guardians of the Realm" redesign.
+ * Three tiers: Title, Allies, Supporters.
+ * Infinite marquee for Supporters tier.
  */
 
-const ALL_LOGOS = [
+const TITLE_SPONSORS = [
     { name: 'Google', slug: 'google' },
     { name: 'Microsoft', slug: 'microsoft' },
-    { name: 'Amazon', slug: 'amazon' },
     { name: 'NVIDIA', slug: 'nvidia' },
+];
+
+const ALLY_SPONSORS = [
+    { name: 'Amazon', slug: 'amazon' },
     { name: 'Intel', slug: 'intel' },
     { name: 'IBM', slug: 'ibm' },
     { name: 'Meta', slug: 'meta' },
     { name: 'Adobe', slug: 'adobe' },
-    { name: 'Samsung', slug: 'samsung' },
     { name: 'Oracle', slug: 'oracle' },
+];
+
+const SUPPORTER_LOGOS = [
     { name: 'GitHub', slug: 'github' },
     { name: 'Stripe', slug: 'stripe' },
     { name: 'Figma', slug: 'figma' },
@@ -29,49 +33,49 @@ const ALL_LOGOS = [
     { name: 'MongoDB', slug: 'mongodb' },
     { name: 'Docker', slug: 'docker' },
     { name: 'Vercel', slug: 'vercel' },
+    { name: 'Samsung', slug: 'samsung' },
 ];
 
-const ICON_CDN = (slug) => `https://cdn.simpleicons.org/${slug}`;
+const ICON_CDN = (slug) => `https://cdn.simpleicons.org/${slug}/ffffff`;
 
-// Inline keyframes injected once into the document to be immune to CSS module scope
 const KEYFRAMES = `
-@keyframes marqueeScroll {
+@keyframes guardianMarquee {
   0%   { transform: translateX(0); }
   100% { transform: translateX(-50%); }
 }
+@keyframes crestGlow {
+  0%, 100% { opacity: 0.25; transform: scaleX(1); }
+  50%       { opacity: 0.6;  transform: scaleX(1.04); }
+}
 `;
 
-const LogoItem = ({ name, slug }) => (
-    <div className={styles.logoItem} title={name}>
+const TierCard = ({ name, slug, large }) => (
+    <div className={`${styles.tierCard} ${large ? styles.tierCardLarge : ''}`} title={name}>
         <img
             src={ICON_CDN(slug)}
             alt={name}
-            className={styles.logoImg}
+            className={styles.tierImg}
             loading="lazy"
-            onError={(e) => {
-                e.currentTarget.style.display = 'none';
-                e.currentTarget.nextSibling.style.display = 'flex';
-            }}
+            onError={(e) => { e.currentTarget.style.display = 'none'; }}
         />
-        <span className={styles.fallback}>{name}</span>
+        <span className={styles.tierName}>{name}</span>
     </div>
 );
 
 const SponsorMarquee = () => {
-    // Inject global keyframes once
     useEffect(() => {
-        if (!document.getElementById('marquee-keyframes')) {
-            const style = document.createElement('style');
-            style.id = 'marquee-keyframes';
-            style.textContent = KEYFRAMES;
-            document.head.appendChild(style);
+        if (!document.getElementById('guardian-marquee-kf')) {
+            const el = document.createElement('style');
+            el.id = 'guardian-marquee-kf';
+            el.textContent = KEYFRAMES;
+            document.head.appendChild(el);
         }
     }, []);
 
     const trackStyle = {
-        animation: 'marqueeScroll 35s linear infinite',
+        animation: 'guardianMarquee 40s linear infinite',
         display: 'flex',
-        gap: '1.25rem',
+        gap: '1.5rem',
         width: 'max-content',
         flexShrink: 0,
         willChange: 'transform',
@@ -79,41 +83,73 @@ const SponsorMarquee = () => {
 
     return (
         <section className={styles.section}>
-            {/* Header */}
-            <div className={styles.header}>
-                <span className={styles.headerLine} />
-                <span className={styles.headerLabel}>POWERED BY</span>
-                <span className={styles.headerLine} />
+            {/* Ambient orbs */}
+            <div className={styles.orb1} />
+            <div className={styles.orb2} />
+
+            {/* ── Section heading ── */}
+            <div className={styles.headingWrap}>
+                <div className={styles.runeLineLeft} />
+                <h2 className={styles.sectionTitle}>GUARDIANS<br />OF THE REALM</h2>
+                <div className={styles.runeLineRight} />
+            </div>
+            <p className={styles.sectionSub}>The sovereign allies who forge the MAYAVERSE</p>
+
+            {/* ── Tier 1 : Title Sponsors ── */}
+            <div className={styles.tierBlock}>
+                <span className={styles.tierLabel}>✦ &nbsp;TITLE SPONSORS&nbsp; ✦</span>
+                <div className={styles.tierRow}>
+                    {TITLE_SPONSORS.map((s) => (
+                        <TierCard key={s.slug} {...s} large />
+                    ))}
+                </div>
             </div>
 
-            <h2 className={styles.title}>Pact Chamber </h2>
-            <p className={styles.subtitle}>The allies who power the MAYAVERSE</p>
+            {/* ── Divider ── */}
+            <div className={styles.divider} />
 
-            {/* Marquee */}
+            {/* ── Tier 2 : Allies ── */}
+            <div className={styles.tierBlock}>
+                <span className={styles.tierLabel}>⬡ &nbsp;ALLIES&nbsp; ⬡</span>
+                <div className={styles.tierRow}>
+                    {ALLY_SPONSORS.map((s) => (
+                        <TierCard key={s.slug} {...s} />
+                    ))}
+                </div>
+            </div>
+
+            {/* ── Divider ── */}
+            <div className={styles.divider} />
+
+            {/* ── Tier 3 : Supporters marquee ── */}
+            <div className={styles.tierBlock}>
+                <span className={styles.tierLabel}>◈ &nbsp;SUPPORTERS&nbsp; ◈</span>
+            </div>
+
             <div
                 className={styles.marquee}
                 onMouseEnter={(e) => {
-                    const track = e.currentTarget.querySelector('[data-track]');
-                    if (track) track.style.animationPlayState = 'paused';
+                    const t = e.currentTarget.querySelector('[data-track]');
+                    if (t) t.style.animationPlayState = 'paused';
                 }}
                 onMouseLeave={(e) => {
-                    const track = e.currentTarget.querySelector('[data-track]');
-                    if (track) track.style.animationPlayState = 'running';
+                    const t = e.currentTarget.querySelector('[data-track]');
+                    if (t) t.style.animationPlayState = 'running';
                 }}
             >
                 <div className={styles.rowOuter}>
                     <div data-track style={trackStyle}>
-                        {ALL_LOGOS.map((s) => <LogoItem key={`a-${s.slug}`} {...s} />)}
-                        {ALL_LOGOS.map((s) => <LogoItem key={`b-${s.slug}`} {...s} />)}
+                        {SUPPORTER_LOGOS.map((s) => <TierCard key={`a-${s.slug}`} {...s} />)}
+                        {SUPPORTER_LOGOS.map((s) => <TierCard key={`b-${s.slug}`} {...s} />)}
                     </div>
                 </div>
             </div>
 
-            {/* CTA */}
+            {/* ── CTA ── */}
             <div className={styles.cta}>
-                <span className={styles.ctaText}>Want to support MAYAVERSE?</span>
+                <span className={styles.ctaText}>Forge an alliance with MAYAVERSE</span>
                 <a href="mailto:parallax.tc@gmail.com" className={styles.ctaBtn}>
-                    Become a Sponsor →
+                    BECOME A GUARDIAN →
                 </a>
             </div>
         </section>

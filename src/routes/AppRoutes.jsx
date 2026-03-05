@@ -12,6 +12,7 @@ import Events from '../pages/public/Events/Events';
 import Sponsors from '../pages/public/Sponsors/Sponsors';
 import Merchandise from '../pages/public/Merchandise/Merchandise';
 import Gallery from '../pages/public/Gallery/Gallery';
+import Team from '../pages/public/Team/Team';
 
 // Auth Pages
 import Login from '../pages/user/Login/Login';
@@ -32,6 +33,7 @@ const AppRoutes = () => {
         <Route path={ROUTES.GALLERY} element={<Gallery />} />
         <Route path={ROUTES.SPONSORS} element={<Sponsors />} />
         <Route path={ROUTES.MERCHANDISE} element={<Merchandise />} />
+        <Route path={ROUTES.TEAM} element={<Team />} />
 
         {/* Auth Routes */}
         <Route path={ROUTES.LOGIN} element={<Login />} />

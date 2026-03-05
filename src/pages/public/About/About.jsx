@@ -2,6 +2,7 @@ import React, { useRef, useEffect } from 'react';
 import { APP_NAME } from '../../../constants/config';
 import { useGSAP } from '../../../animations/hooks/useGSAP';
 import styles from './About.module.css';
+import AboutSection from '../../../components/common/AboutSection/AboutSection';
 
 /**
  * MAYAVERSE - About Page
@@ -158,22 +159,8 @@ const About = () => {
       {/* Content Section */}
       <section className={styles.contentSection}>
         <div className={styles.container}>
-          <div ref={contentRef} className="max-w-4xl text-left flex flex-col gap-6 mb-16">
-            <p className="text-white/80 font-light text-lg md:text-xl leading-relaxed">
-              <strong className="text-white font-cinzel tracking-wider mr-2">PARALLAX 2026,</strong>
-              formerly known as TechVibes, is the annual technical fest of BIT Mesra, Jaipur Campus — celebrating innovation, creativity, and technological excellence.
-            </p>
-            <p className="text-white/60 font-light text-md md:text-lg leading-relaxed">
-              Inspired by <span className="text-[#ff00de] italic">parallax</span> — a shift in perspective that reveals new possibilities — the fest promotes bold thinking through competitions, workshops, exhibitions, and visionary sessions.
-            </p>
-            <div className="mt-4 p-8 rounded-2xl border border-white/10 bg-black/40 backdrop-blur-md shadow-[0_0_40px_rgba(0,242,254,0.15)] transition-all hover:shadow-[0_0_60px_rgba(0,242,254,0.3)] hover:border-[#00f2fe]/30">
-              <h3 className="text-[#00f2fe] font-cinzel text-xl md:text-2xl font-bold italic tracking-wide mb-4" style={{ textShadow: "0 0 15px rgba(0, 242, 254, 0.6)" }}>
-                “Mayaverse — Where Innovation Feels Like Magic”
-              </h3>
-              <p className="text-white/80 font-light text-md leading-relaxed">
-                This year’s theme imagines a space where imagination meets technology, and when innovation reaches its peak, it becomes more than technology — it becomes magic.
-              </p>
-            </div>
+          <div ref={contentRef} className="mb-16">
+            <AboutSection />
           </div>
 
           {/* Values Grid */}

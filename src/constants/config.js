@@ -28,6 +28,7 @@ export const ROUTES = {
   GALLERY: '/gallery',
   SPONSORS: '/sponsors',
   MERCHANDISE: '/merchandise',
+  TEAM: '/team',
 
   // Auth Routes
   LOGIN: '/login',

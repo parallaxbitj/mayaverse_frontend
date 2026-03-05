@@ -3,6 +3,7 @@ import { useLocation } from 'react-router-dom';
 import { getEvents, registerForEvent } from '../../../services/mockData';
 import { useAuth } from '../../../hooks/useAuth';
 import { EvervaultCard } from '../../../components/ui/evervault-card';
+import AboutSection from '../../../components/common/AboutSection/AboutSection';
 import styles from './Events.module.css';
 
 /**
@@ -51,39 +52,29 @@ const Events = () => {
 
   return (
     <div className={styles.eventsPage} style={isHomePage ? { backgroundImage: 'none', backgroundColor: 'transparent' } : {}}>
-      {/* Hero Section */}
-      {!isHomePage && (
-        <section className={styles.heroSection}>
-          <div className={styles.container}>
-            <h1 className={styles.pageTitle}>TRIALS OF THE REALM</h1>
-          </div>
-        </section>
-      )}
-
       {/* About Section */}
-      <section className={`px-4 relative z-10 w-full flex justify-center ${isHomePage ? 'py-20' : 'py-12'}`}>
-        <div className="max-w-4xl text-center flex flex-col items-center gap-6">
-          <p className="text-white/80 font-light text-lg md:text-xl leading-relaxed">
-            <strong className="text-white font-cinzel tracking-wider mr-2">PARALLAX 2026,</strong>
-            formerly known as TechVibes, is the annual technical fest of BIT Mesra, Jaipur Campus — celebrating innovation, creativity, and technological excellence.
-          </p>
-          <p className="text-white/60 font-light text-md md:text-lg leading-relaxed">
-            Inspired by <span className="text-[#ff00de] italic">parallax</span> — a shift in perspective that reveals new possibilities — the fest promotes bold thinking through competitions, workshops, exhibitions, and visionary sessions.
-          </p>
-          <div className="mt-4 p-8 rounded-2xl border border-white/10 bg-black/40 backdrop-blur-md shadow-[0_0_40px_rgba(0,242,254,0.15)] transition-all hover:shadow-[0_0_60px_rgba(0,242,254,0.3)] hover:border-[#00f2fe]/30">
-            <h3 className="text-[#00f2fe] font-cinzel text-xl md:text-2xl font-bold italic tracking-wide mb-4" style={{ textShadow: "0 0 15px rgba(0, 242, 254, 0.6)" }}>
-              “Mayaverse — Where Innovation Feels Like Magic”
-            </h3>
-            <p className="text-white/80 font-light text-md leading-relaxed">
-              This year’s theme imagines a space where imagination meets technology, and when innovation reaches its peak, it becomes more than technology — it becomes magic.
-            </p>
-          </div>
-        </div>
-      </section>
+      <AboutSection />
 
       {/* Events Section */}
       <section className={styles.eventsSection}>
         <div className={styles.container}>
+          {/* Section Heading — always visible */}
+          <div className="text-center mb-4">
+            <h2 className="font-cinzel text-4xl md:text-5xl font-bold tracking-[6px] uppercase"
+              style={{
+                background: 'linear-gradient(135deg, #CFE8FF 0%, #B9A7FF 50%, #9EE6FF 100%)',
+                WebkitBackgroundClip: 'text',
+                WebkitTextFillColor: 'transparent',
+                filter: 'drop-shadow(0 0 18px rgba(155,140,255,0.55))',
+              }}>
+              TRIALS OF THE REALM
+              <br></br>
+              <br></br>
+              <br></br>
+            </h2>
+            <div className="mx-auto mt-4 h-px w-32 bg-gradient-to-r from-transparent via-[#00f2fe] to-transparent opacity-60" />
+          </div>
+
           {/* Events Grid */}
           <div className="flex flex-wrap gap-8 justify-center mt-8">
             {filteredEvents.map(event => (

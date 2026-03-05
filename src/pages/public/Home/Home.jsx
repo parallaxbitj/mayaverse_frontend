@@ -3,6 +3,7 @@ import HeroScroll from '../../../components/home/HeroScroll';
 import Events from '../../public/Events/Events';
 import Sponsors from '../../public/Sponsors/Sponsors';
 import Merchandise from '../../public/Merchandise/Merchandise';
+import TeamSection from '../../../components/home/TeamSection/TeamSection';
 import ParallaxIntro from '../../../components/home/ParallaxIntro';
 
 // Module-level: resets on browser refresh, survives in-app navigation
@@ -92,10 +93,11 @@ const Home = () => {
 
       {/* Main content */}
       <HeroScroll />
-      <div className="content-sections" style={{ position: 'relative', zIndex: 10, backgroundColor: 'black' }}>
+      <div className="content-sections" style={{ position: 'relative', zIndex: 10, backgroundColor: '#06060e' }}>
         <Events />
         <Sponsors />
         <Merchandise />
+        <TeamSection />
       </div>
     </div>
   );

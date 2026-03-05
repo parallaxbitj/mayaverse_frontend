@@ -1,26 +1,8 @@
+/* All @imports must come first */
+@import './variables.css';
 @import "tailwindcss";
 
-/**
- * MAYAVERSE - Font Imports
- * 
- * Cinzel: Elegant serif for titles (fantasy feel)
- * Montserrat: Clean sans-serif for body text
- */
-
-/* Import Cinzel (Headings) */
-@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;800&display=swap');
-
-/* Import Montserrat (Body/Subtitle) */
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&display=swap');
-
-/* Import Orbitron (Timer) & Syncopate (Hero/Parallax) */
-@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;900&family=Syncopate:wght@400;700&display=swap');
-
-/* Existing global.css content continues below... */
-
-
-
-@import './variables.css';
+/* Fonts are loaded via <link> in index.html — no @import url() needed here */
 
 /* CSS Reset */
 * {

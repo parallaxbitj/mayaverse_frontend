@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom/client';
 import App from './App.jsx';
 import './styles/global.css';
 import './styles/responsive.css';
+import '@fortawesome/fontawesome-free/css/all.min.css';
 
 /**
  * MAYAVERSE - Main Entry Point
