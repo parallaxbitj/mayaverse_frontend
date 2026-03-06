@@ -1,6 +1,8 @@
 import React, { useState, useRef, useCallback, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import styles from './RunestoneCard.module.css';
 import { useAuth } from '../../hooks/useAuth';
+import { ROUTES } from '../../constants/config';
 
 /**
  * RunestoneCard — Video-driven event card with absolute frame synchronization.
@@ -14,14 +16,12 @@ const RunestoneCard = ({ event, onRegister }) => {
     const [state, setState] = useState('idle');
     const [locked, setLocked] = useState(false);
     const [showGoogleForm, setShowGoogleForm] = useState(false);
-    const { user } = useAuth();
+    const { user, isAuthenticated } = useAuth();
+    const navigate = useNavigate();
 
     // Determine which Google Form URL to use based on user's email domain
     const getFormUrl = () => {
-        if (user && user.email && user.email.endsWith('@bitmesra.ac.in')) {
-            return event.googleFormUrlForBIT || event.googleFormUrl;
-        }
-        return event.googleFormUrlForOthers || event.googleFormUrl;
+        return 'https://forms.gle/Rum61AswAjc58qzy8';
     };
 
     const cardRef = useRef(null);
@@ -215,6 +215,12 @@ const RunestoneCard = ({ event, onRegister }) => {
     // ─── Register ripple ───
     const handleRegisterClick = (e) => {
         e.stopPropagation();
+
+        if (!isAuthenticated()) {
+            navigate(ROUTES.LOGIN);
+            return;
+        }
+
         const btn = e.currentTarget;
         const rect = btn.getBoundingClientRect();
         const ripple = document.createElement('span');
