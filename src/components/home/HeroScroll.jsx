@@ -1,6 +1,8 @@
 import React, { useRef, useEffect, useState } from 'react';
 import Timer from './Timer';
 
+import styles from './HeroScroll.module.css';
+
 const HeroScroll = () => {
     const canvasRef = useRef(null);
     const containerRef = useRef(null);
@@ -160,23 +162,16 @@ const HeroScroll = () => {
     };
 
     return (
-        <div ref={containerRef} style={{ height: '280vh', position: 'relative', backgroundColor: 'black' }}>
-            <div style={{ position: 'sticky', top: 0, height: '100vh', overflow: 'hidden' }}>
-                <canvas ref={canvasRef} style={{ width: '100%', height: '100%', display: 'block' }} />
+        <div ref={containerRef} className={styles.heroContainer}>
+            <div className={styles.stickyWrapper}>
+                <canvas ref={canvasRef} className={styles.canvas} />
 
                 {/* === SEQUENCE 1: Date Teaser (Frames 10-30) === */}
-                <div
-                    ref={dateTeaserRef}
-                    style={{
-                        position: 'absolute', top: 0, left: 0, width: '100%', height: '100%',
-                        display: 'flex', alignItems: 'center', justifyContent: 'center',
-                        pointerEvents: 'none', zIndex: 6, opacity: 0
-                    }}
-                >
-                    <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '0.5rem', fontFamily: "'Montserrat', sans-serif", color: 'white' }}>
-                        <div style={{ fontSize: 'clamp(0.7rem, 2vw, 1.2rem)', letterSpacing: '4px', fontWeight: '500', opacity: 0.8 }}>THIS</div>
-                        <div style={{ fontSize: 'clamp(2.5rem, 9vw, 5rem)', fontWeight: '700', lineHeight: '0.9' }}>11–12</div>
-                        <div style={{ fontSize: 'clamp(1rem, 3.5vw, 2rem)', letterSpacing: 'clamp(3px, 1.5vw, 8px)', fontWeight: '600', color: '#00f2fe' }}>MARCH</div>
+                <div ref={dateTeaserRef} className={styles.teaserOverlay}>
+                    <div className={styles.teaserContent}>
+                        <div className={styles.teaserSmall}>THIS</div>
+                        <div className={styles.teaserLarge}>11–12</div>
+                        <div className={styles.teaserAccent}>MARCH</div>
                     </div>
                 </div>
 
@@ -204,52 +199,14 @@ const HeroScroll = () => {
                 </div> */}
 
                 {/* === SEQUENCE 3: Main Layout (Frames 95+) === */}
-                <div
-                    ref={mainContentRef}
-                    style={{
-                        position: 'absolute',
-                        top: 0,
-                        left: 0,
-                        width: '100%',
-                        height: '100%',
-                        display: 'flex',
-                        flexDirection: 'column',
-                        alignItems: 'center',
-                        justifyContent: 'center',
-                        opacity: 1,
-                        pointerEvents: 'none',
-                        zIndex: 5,
-                        textAlign: 'center',
-                        color: 'white',
-                        textShadow: '0 0 20px rgba(0,0,0,0.8)'
-                    }}
-                >
+                <div ref={mainContentRef} className={styles.mainOverlay}>
                     {/* Main Title */}
-                    <h1 style={{
-                        fontFamily: "'Cinzel', serif",
-                        fontSize: 'clamp(3rem, 8vw, 7rem)',
-                        fontWeight: '700',
-                        letterSpacing: '8px',
-                        background: 'linear-gradient(135deg, #CFE8FF 0%, #B9A7FF 50%, #9EE6FF 100%)',
-                        WebkitBackgroundClip: 'text',
-                        WebkitTextFillColor: 'transparent',
-                        filter: 'drop-shadow(0 0 10px rgba(155, 140, 255, 0.6))',
-                        marginBottom: '1.5rem',
-                        lineHeight: 1.1
-                    }}>
+                    <h1 className={styles.mainTitle}>
                         MAYAVERSE
                     </h1>
 
                     {/* Subtitle */}
-                    <p style={{
-                        fontFamily: "'Montserrat', sans-serif",
-                        fontSize: 'clamp(0.75rem, 2vw, 1.2rem)',
-                        letterSpacing: '3px',
-                        color: 'rgba(255, 255, 255, 0.8)',
-                        marginBottom: 'clamp(2rem, 5vh, 5rem)',
-                        padding: '0 1rem',
-                        textAlign: 'center'
-                    }}>
+                    <p className={styles.mainSubtitle}>
                         Decoding Reality – Where Code Meets Illusion
                     </p>
 
@@ -260,11 +217,7 @@ const HeroScroll = () => {
                 </div>
 
                 {loading && (
-                    <div style={{
-                        position: 'absolute', top: 0, left: 0, width: '100%', height: '100%',
-                        display: 'flex', alignItems: 'center', justifyContent: 'center',
-                        color: 'white', background: 'black', zIndex: 10
-                    }}>
+                    <div className={styles.loadingOverlay}>
                         Escorting you to the MAYAVERSE
                     </div>
                 )}

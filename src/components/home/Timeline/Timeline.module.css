@@ -40,9 +40,9 @@
 
 .header h1 {
     font-family: 'Cinzel', serif;
-    font-size: clamp(3rem, 9vw, 6.5rem);
+    font-size: clamp(2.2rem, 9vw, 6.5rem);
     font-weight: 900;
-    letter-spacing: 0.15em;
+    letter-spacing: 0.1em;
     line-height: 1;
     background: linear-gradient(135deg, #e8c97a 0%, #c084fc 50%, #818cf8 100%);
     -webkit-background-clip: text;
@@ -423,6 +423,10 @@
 }
 
 @media (max-width: 700px) {
+    .header h1 {
+        letter-spacing: 0.05em;
+    }
+
     .spine {
         left: 22px;
     }
@@ -476,8 +480,13 @@
 }
 
 @keyframes fadeInBackdrop {
-    from { opacity: 0; }
-    to   { opacity: 1; }
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
 }
 
 .formContainer {
@@ -495,8 +504,15 @@
 }
 
 @keyframes slideUp {
-    from { opacity: 0; transform: translateY(24px); }
-    to   { opacity: 1; transform: translateY(0); }
+    from {
+        opacity: 0;
+        transform: translateY(24px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 .formCloseBtn {

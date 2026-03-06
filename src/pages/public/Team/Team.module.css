@@ -1,153 +1,297 @@
+/* ============================================
+   TEAM PAGE — Glassmorphism & High-End Dark Theme
+   ============================================ */
+
 .teamPage {
     min-height: 100vh;
-    background-color: #06060e;
-    padding-top: 80px;
-    /* Account for navbar */
+    background: radial-gradient(circle at 20% 30%, rgba(138, 124, 255, 0.05) 0%, transparent 40%),
+        radial-gradient(circle at 80% 70%, rgba(0, 242, 254, 0.05) 0%, transparent 40%),
+        #06060e;
+    padding-top: 100px;
     color: #fff;
+    overflow-x: hidden;
+    position: relative;
+}
+
+/* Background Animated Blobs */
+.teamPage::before,
+.teamPage::after {
+    content: '';
+    position: fixed;
+    width: 50vw;
+    height: 50vw;
+    border-radius: 50%;
+    filter: blur(120px);
+    z-index: 0;
+    opacity: 0.3;
+    pointer-events: none;
+}
+
+.teamPage::before {
+    top: -10%;
+    left: -10%;
+    background: radial-gradient(circle, #6366f1 0%, transparent 70%);
+    animation: pulseBlob 15s infinite alternate ease-in-out;
+}
+
+.teamPage::after {
+    bottom: -10%;
+    right: -10%;
+    background: radial-gradient(circle, #a855f7 0%, transparent 70%);
+    animation: pulseBlob 12s infinite alternate-reverse ease-in-out;
+}
+
+@keyframes pulseBlob {
+    0% {
+        transform: scale(1) translate(0, 0);
+        opacity: 0.2;
+    }
+
+    50% {
+        transform: scale(1.2) translate(5%, 5%);
+        opacity: 0.4;
+    }
+
+    100% {
+        transform: scale(1) translate(0, 0);
+        opacity: 0.2;
+    }
 }
 
 .container {
-    max-width: 1200px;
+    max-width: 1400px;
     margin: 0 auto;
-    padding: 0 2rem;
+    padding: 0 4rem;
+    position: relative;
+    z-index: 1;
 }
 
+/* Hero Section */
 .heroSection {
-    padding: 4rem 0;
+    padding: 6rem 0 4rem;
     text-align: center;
-    position: relative;
-    background: radial-gradient(circle at center point, rgba(77, 166, 255, 0.1) 0%, transparent 60%);
 }
 
 .pageTitle {
     font-family: 'Cinzel', serif;
-    font-size: clamp(2.5rem, 5vw, 4.5rem);
-    font-weight: 700;
-    color: #4da6ff;
-    text-shadow: 0 0 10px rgba(77, 166, 255, 0.4), 0 0 20px rgba(77, 166, 255, 0.2);
-    margin-bottom: 1rem;
-    letter-spacing: 3px;
+    font-size: clamp(2.2rem, 8vw, 6rem);
+    font-weight: 800;
+    letter-spacing: 6px;
+    text-transform: uppercase;
+    background: linear-gradient(135deg, #fff 0%, rgba(255, 255, 255, 0.7) 50%, #fff 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 0.5rem;
+    filter: drop-shadow(0 0 30px rgba(255, 255, 255, 0.1));
 }
 
 .pageSubtitle {
-    font-family: 'Montserrat', sans-serif;
-    font-size: 1.2rem;
-    color: #a0a0a0;
+    font-family: 'Syncopate', sans-serif;
+    font-size: 0.9rem;
+    color: #00f2fe;
+    letter-spacing: 5px;
     text-transform: uppercase;
-    letter-spacing: 2px;
+    font-weight: 700;
+    opacity: 0.8;
 }
 
+/* Content Sections */
 .contentSection {
-    padding: 2rem 0 6rem;
+    padding-bottom: 10rem;
 }
 
 .categorySection {
-    margin-bottom: 5rem;
-    scroll-margin-top: 100px;
-    /* Offset for sticky navbar when scrolling to hash */
+    margin-bottom: 8rem;
+    scroll-margin-top: 120px;
 }
 
 .categoryHeader {
     display: flex;
+    flex-direction: column;
     align-items: center;
-    margin-bottom: 3rem;
-    gap: 2rem;
+    margin-bottom: 4rem;
+    position: relative;
 }
 
 .categoryTitle {
     font-family: 'Cinzel', serif;
-    font-size: 2rem;
+    font-size: clamp(1.8rem, 5vw, 2.5rem);
+    font-weight: 700;
     color: #fff;
-    white-space: nowrap;
+    letter-spacing: 4px;
+    margin-bottom: 1rem;
+    text-transform: uppercase;
 }
 
 .line {
-    height: 1px;
-    flex-grow: 1;
-    background: linear-gradient(90deg, rgba(255, 255, 255, 0.3) 0%, transparent 100%);
+    width: 60px;
+    height: 3px;
+    background: linear-gradient(90deg, #6366f1, #00f2fe);
+    border-radius: 2px;
 }
 
+/* Members Grid */
 .membersGrid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-    gap: 2rem;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 3rem;
+    justify-items: center;
 }
 
+/* Member Card - The high-end factor */
 .memberCard {
+    position: relative;
+    width: 100%;
+    max-width: 350px;
     background: rgba(255, 255, 255, 0.03);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 24px;
+    padding: 1rem;
+    transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+    backdrop-filter: blur(15px);
     overflow: hidden;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    backdrop-filter: blur(10px);
+    cursor: default;
+}
+
+.memberCard::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(800px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
+            rgba(255, 255, 255, 0.06), transparent 40%);
+    opacity: 0;
+    transition: opacity 0.5s;
+    pointer-events: none;
 }
 
 .memberCard:hover {
-    transform: translateY(-5px);
-    border-color: rgba(77, 166, 255, 0.5);
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3), inset 0 0 15px rgba(77, 166, 255, 0.1);
+    transform: translateY(-10px);
+    background: rgba(255, 255, 255, 0.05);
+    border-color: rgba(99, 102, 241, 0.3);
+    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4),
+        0 0 20px rgba(99, 102, 241, 0.1);
+}
+
+.memberCard:hover::before {
+    opacity: 1;
 }
 
 .imageWrapper {
-    position: relative;
     width: 100%;
-    aspect-ratio: 1 / 1;
+    aspect-ratio: 1;
+    border-radius: 18px;
     overflow: hidden;
+    position: relative;
+    background: #0a0a14;
 }
 
 .memberImage {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    transition: transform 0.5s ease;
+    mix-blend-mode: luminosity;
+    transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
 }
 
 .memberCard:hover .memberImage {
-    transform: scale(1.05);
+    transform: scale(1.1);
+    mix-blend-mode: normal;
 }
 
 .imageOverlay {
     position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(to top, rgba(6, 6, 14, 1) 0%, transparent 50%);
+    inset: 0;
+    background: linear-gradient(to bottom, transparent 60%, rgba(6, 6, 14, 0.8) 100%);
+    opacity: 0.6;
 }
 
+/* Member Info */
 .memberInfo {
-    padding: 1.5rem;
+    padding: 2.5rem 1rem 1.5rem;
     text-align: center;
-    position: relative;
-    z-index: 2;
-    margin-top: -20px;
 }
 
 .memberName {
-    font-family: 'Montserrat', sans-serif;
-    font-size: 1.2rem;
+    font-family: 'Cinzel', serif;
+    font-size: 1.5rem;
     font-weight: 700;
     color: #fff;
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.6rem;
+    letter-spacing: 1px;
+    transition: color 0.3s;
+}
+
+.memberCard:hover .memberName {
+    color: #00f2fe;
 }
 
 .memberRole {
-    font-family: 'Montserrat', sans-serif;
-    font-size: 0.9rem;
-    color: #4da6ff;
-    font-weight: 500;
+    font-family: 'Syncopate', sans-serif;
+    font-size: 0.7rem;
+    color: rgba(255, 255, 255, 0.5);
+    font-weight: 700;
     text-transform: uppercase;
-    letter-spacing: 1px;
+    letter-spacing: 3px;
+    margin-bottom: 1rem;
+}
+
+/* Decorative Card Accents */
+.cardAccent {
+    position: absolute;
+    top: 1.5rem;
+    right: 1.5rem;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: #6366f1;
+    box-shadow: 0 0 15px #6366f1;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.memberCard:hover .cardAccent {
+    opacity: 1;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+    .container {
+        padding: 0 2rem;
+    }
+
+    .pageTitle {
+        letter-spacing: 4px;
+        font-size: 2rem;
+    }
 }
 
 @media (max-width: 768px) {
-    .categoryHeader {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 1rem;
+    .categoryTitle {
+        font-size: 1.8rem;
     }
 
-    .line {
-        width: 100%;
+    .membersGrid {
+        grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+        gap: 2rem;
+    }
+
+    .heroSection {
+        padding: 4rem 0 2rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .pageTitle {
+        font-size: 2.2rem;
+    }
+
+    .pageSubtitle {
+        font-size: 0.7rem;
+        letter-spacing: 3px;
+    }
+
+    .categoryTitle {
+        font-size: 1.5rem;
     }
 }

@@ -4,13 +4,13 @@ import { ROUTES } from '../../../constants/config';
 import styles from './TeamSection.module.css';
 
 const teamCategories = [
-    { id: 'festhead', title: 'Festhead', className: styles.festhead },
-    { id: 'tech-council', title: 'Tech Council', className: styles.techCouncil },
-    { id: 'developer', title: 'Developer', className: styles.developer },
-    { id: 'sponsorship', title: 'Sponsorship', className: styles.sponsorship },
-    { id: 'events-logistics', title: 'Events & Logistics', className: styles.eventsLogistics },
-    { id: 'public-relations', title: 'Public Relations', className: styles.publicRelations },
-    { id: 'creative', title: 'Creative', className: styles.creative },
+    { id: 'management', title: 'Management', className: styles.festhead },
+    { id: 'technical', title: 'Technical', className: styles.techCouncil },
+    { id: 'creative-graphics', title: 'Graphics & Creative', className: styles.creative },
+    { id: 'social-content', title: 'Socials & Content', className: styles.publicRelations },
+    { id: 'promotions-pr', title: 'Promotions & PR', className: styles.sponsorship },
+    { id: 'sponsorship-finance', title: 'Sponsorship & Finance', className: styles.developer },
+    { id: 'operations-logistics', title: 'Operations & Production', className: styles.eventsLogistics },
 ];
 
 const TeamSection = () => {

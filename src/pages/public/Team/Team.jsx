@@ -1,58 +1,64 @@
 import React, { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
+import { motion } from 'framer-motion';
 import styles from './Team.module.css';
 
 const teamData = [
     {
-        id: 'festhead',
-        title: 'Festhead',
+        id: 'management',
+        title: 'Management',
         members: [
-            { name: 'John Doe', role: 'Head Coordinator', image: 'https://ui-avatars.com/api/?name=John+Doe&background=0D8ABC&color=fff' }
+            { name: 'Aditya Agarwal', role: 'Management Head', image: 'https://ui-avatars.com/api/?name=Aditya+Agarwal&background=0D8ABC&color=fff' }
         ]
     },
     {
-        id: 'tech-council',
-        title: 'Tech Council',
+        id: 'technical',
+        title: 'Technical Team',
         members: [
-            { name: 'Jane Smith', role: 'President', image: 'https://ui-avatars.com/api/?name=Jane+Smith&background=8A2BE2&color=fff' },
-            { name: 'Alice Johnson', role: 'Vice President', image: 'https://ui-avatars.com/api/?name=Alice+Johnson&background=8A2BE2&color=fff' }
+            { name: 'Vansh Arora', role: 'Technical Head', image: 'https://ui-avatars.com/api/?name=Vansh+Arora&background=8A2BE2&color=fff' },
+            { name: 'Vansh Sardana', role: 'Technical Lead', image: 'https://ui-avatars.com/api/?name=Vansh+Sardana&background=8A2BE2&color=fff' }
         ]
     },
     {
-        id: 'developer',
-        title: 'Developer Team',
+        id: 'creative-graphics',
+        title: 'Graphics & Creative',
         members: [
-            { name: 'Bob Williams', role: 'Lead Frontend', image: 'https://ui-avatars.com/api/?name=Bob+Williams&background=2E8B57&color=fff' },
-            { name: 'Charlie Brown', role: 'Lead Backend', image: 'https://ui-avatars.com/api/?name=Charlie+Brown&background=2E8B57&color=fff' },
-            { name: 'David Lee', role: 'UI/UX Designer', image: 'https://ui-avatars.com/api/?name=David+Lee&background=2E8B57&color=fff' }
+            { name: 'Manika Singh', role: 'Graphics Head', image: 'https://ui-avatars.com/api/?name=Manika+Singh&background=FF1493&color=fff' },
+            { name: 'Sanchit Pawa', role: 'Graphics Lead', image: 'https://ui-avatars.com/api/?name=Sanchit+Pawa&background=FF1493&color=fff' },
+            { name: 'Abhishek', role: 'Graphics Designer', image: 'https://ui-avatars.com/api/?name=Abhishek&background=FF1493&color=fff' }
         ]
     },
     {
-        id: 'sponsorship',
-        title: 'Sponsorship',
+        id: 'social-content',
+        title: 'Socials & Content',
         members: [
-            { name: 'Eva Davis', role: 'Sponsorship Head', image: 'https://ui-avatars.com/api/?name=Eva+Davis&background=FF8C00&color=fff' }
+            { name: 'Charu Jethwani', role: 'Socials Head', image: 'https://ui-avatars.com/api/?name=Charu+Jethwani&background=4682B4&color=fff' },
+            { name: 'Navya Khandelwal', role: 'Content Head', image: 'https://ui-avatars.com/api/?name=Navya+Khandelwal&background=4682B4&color=fff' }
         ]
     },
     {
-        id: 'events-logistics',
-        title: 'Events & Logistics',
+        id: 'promotions-pr',
+        title: 'Promotions & PR',
         members: [
-            { name: 'Frank Miller', role: 'Events Head', image: 'https://ui-avatars.com/api/?name=Frank+Miller&background=DC143C&color=fff' }
+            { name: 'Vansh Jain', role: 'Promotions Head', image: 'https://ui-avatars.com/api/?name=Vansh+Jain&background=FF8C00&color=fff' }
         ]
     },
     {
-        id: 'public-relations',
-        title: 'Public Relations',
+        id: 'sponsorship-finance',
+        title: 'Sponsorship & Finance',
         members: [
-            { name: 'Grace Wilson', role: 'PR Head', image: 'https://ui-avatars.com/api/?name=Grace+Wilson&background=4682B4&color=fff' }
+            { name: 'Jai Mishra', role: 'Sponsorship Head', image: 'https://ui-avatars.com/api/?name=Jai+Mishra&background=2E8B57&color=fff' },
+            { name: 'Mouli Sharma', role: 'Finance Head', image: 'https://ui-avatars.com/api/?name=Mouli+Sharma&background=2E8B57&color=fff' }
         ]
     },
     {
-        id: 'creative',
-        title: 'Creative',
+        id: 'operations-logistics',
+        title: 'Operations & Production',
         members: [
-            { name: 'Henry Moore', role: 'Creative Head', image: 'https://ui-avatars.com/api/?name=Henry+Moore&background=FF1493&color=fff' }
+            { name: 'Meahul Gupta', role: 'Operations Head', image: 'https://ui-avatars.com/api/?name=Meahul+Gupta&background=DC143C&color=fff' },
+            { name: 'Kabeer', role: 'Productions Head', image: 'https://ui-avatars.com/api/?name=Kabeer&background=DC143C&color=fff' },
+            { name: 'Varun Tyagi', role: 'Documentation Lead', image: 'https://ui-avatars.com/api/?name=Varun+Tyagi&background=DC143C&color=fff' },
+            { name: 'Pratibha Soni', role: 'Decoration Head', image: 'https://ui-avatars.com/api/?name=Pratibha+Soni&background=DC143C&color=fff' }
         ]
     }
 ];
@@ -75,12 +81,61 @@ const Team = () => {
         }
     }, [location.hash]);
 
+    // Handle mouse movement for dynamic card glow
+    const handleMouseMove = (e) => {
+        const cards = document.getElementsByClassName(styles.memberCard);
+        for (const card of cards) {
+            const rect = card.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+
+            card.style.setProperty('--mouse-x', `${x}px`);
+            card.style.setProperty('--mouse-y', `${y}px`);
+        }
+    };
+
+    const containerVariants = {
+        hidden: { opacity: 0 },
+        visible: {
+            opacity: 1,
+            transition: {
+                staggerChildren: 0.1
+            }
+        }
+    };
+
+    const itemVariants = {
+        hidden: { y: 20, opacity: 0 },
+        visible: {
+            y: 0,
+            opacity: 1,
+            transition: {
+                type: 'spring',
+                stiffness: 100
+            }
+        }
+    };
+
     return (
-        <div className={styles.teamPage}>
+        <div className={styles.teamPage} onMouseMove={handleMouseMove}>
             <div className={styles.heroSection}>
                 <div className={styles.container}>
-                    <h1 className={styles.pageTitle}>MEET THE CREATORS</h1>
-                    <p className={styles.pageSubtitle}>The driving force behind Mayaverse</p>
+                    <motion.h1
+                        className={styles.pageTitle}
+                        initial={{ opacity: 0, scale: 0.9 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        transition={{ duration: 0.8, ease: "easeOut" }}
+                    >
+                        THE ARCHITECTS
+                    </motion.h1>
+                    <motion.p
+                        className={styles.pageSubtitle}
+                        initial={{ opacity: 0, y: 10 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ delay: 0.4, duration: 0.8 }}
+                    >
+                        The Masterminds Behind Mayaverse
+                    </motion.p>
                 </div>
             </div>
 
@@ -88,25 +143,41 @@ const Team = () => {
                 <div className={styles.container}>
                     {teamData.map((category) => (
                         <div key={category.id} id={category.id} className={styles.categorySection}>
-                            <div className={styles.categoryHeader}>
+                            <motion.div
+                                className={styles.categoryHeader}
+                                initial={{ opacity: 0, x: -20 }}
+                                whileInView={{ opacity: 1, x: 0 }}
+                                viewport={{ once: true }}
+                            >
                                 <h2 className={styles.categoryTitle}>{category.title}</h2>
                                 <div className={styles.line}></div>
-                            </div>
+                            </motion.div>
 
-                            <div className={styles.membersGrid}>
+                            <motion.div
+                                className={styles.membersGrid}
+                                variants={containerVariants}
+                                initial="hidden"
+                                whileInView="visible"
+                                viewport={{ once: true, margin: "-100px" }}
+                            >
                                 {category.members.map((member, index) => (
-                                    <div key={index} className={styles.memberCard}>
+                                    <motion.div
+                                        key={index}
+                                        className={styles.memberCard}
+                                        variants={itemVariants}
+                                    >
+                                        <div className={styles.cardAccent}></div>
                                         <div className={styles.imageWrapper}>
                                             <img src={member.image} alt={member.name} className={styles.memberImage} />
                                             <div className={styles.imageOverlay}></div>
                                         </div>
                                         <div className={styles.memberInfo}>
-                                            <h3 className={styles.memberName}>{member.name}</h3>
                                             <p className={styles.memberRole}>{member.role}</p>
+                                            <h3 className={styles.memberName}>{member.name}</h3>
                                         </div>
-                                    </div>
+                                    </motion.div>
                                 ))}
-                            </div>
+                            </motion.div>
                         </div>
                     ))}
                 </div>
