@@ -8,16 +8,16 @@ import { AuthContext } from '../contexts/AuthContext';
  * This hook provides easy access to auth state and functions.
  * 
  * Usage:
- * const { user, login, logout, isAuthenticated, isAdmin } = useAuth();
+ * const { user, login, logout, isAuthenticated } = useAuth();
  */
 
 export const useAuth = () => {
   const context = useContext(AuthContext);
-  
+
   if (!context) {
     throw new Error('useAuth must be used within an AuthProvider');
   }
-  
+
   return context;
 };
 

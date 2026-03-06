@@ -16,18 +16,6 @@ import { EVENT_CATEGORIES, EVENT_STATUS, MERCH_CATEGORIES, ORDER_STATUS, USER_RO
 // Mock Users
 export const mockUsers = [
   {
-    id: '1',
-    name: 'Admin User',
-    email: 'admin@mayaverse.com',
-    password: 'admin123', // In production, passwords should be hashed
-    role: USER_ROLES.ADMIN,
-    phone: '+1234567890',
-    college: 'Admin College',
-    registeredEvents: [],
-    orders: [],
-    createdAt: '2024-01-01',
-  },
-  {
     id: '2',
     name: 'John Doe',
     email: 'user@mayaverse.com',
@@ -45,140 +33,366 @@ export const mockUsers = [
 export const mockEvents = [
   {
     id: '1',
-    title: 'Code Combat',
-    description: 'Competitive programming competition where teams solve algorithmic challenges.',
+    title: 'Tech Escape',
+    description: 'Tech Escape Room is an immersive challenge where teams solve technical, logical, and programming puzzles to "escape" within a limited time. Participants must decode clues, unlock passwords, and progress through multiple stages to reach the final solution.',
     category: EVENT_CATEGORIES.TECHNICAL,
     status: EVENT_STATUS.UPCOMING,
     date: '2026-03-15',
     time: '10:00 AM',
-    venue: 'Main Auditorium',
-    registrationFee: 500,
+    venue: 'TBD',
+    registrationFee: 0,
     maxParticipants: 100,
-    currentParticipants: 45,
-    image: '/assets/images/events/code-combat.jpg',
-    organizer: 'Tech Club',
-    prizes: ['₹50,000', '₹30,000', '₹20,000'],
-    rules: [
-      'Team size: 2-3 members',
-      'Laptops required',
-      'Duration: 3 hours',
-    ],
+    currentParticipants: 0,
+    image: new URL('../assets/images/events/techx.png', import.meta.url).href,
+    organizer: 'Tech Committee',
+    prizes: ['Certificates', 'Goodies'],
+    rules: ['Team based event', 'Solve puzzles to progress'],
     googleFormUrl: 'https://forms.gle/Rum61AswAjc58qzy8',
-
   },
   {
     id: '2',
-    title: 'Robo Wars',
-    description: 'Battle of the bots! Build and compete with your custom robot.',
+    title: 'Circuit Debugging',
+    description: 'The Circuit Debugging Challenge tests participants\' ability to analyze and troubleshoot electrical and electronic circuits. It focuses on applying practical knowledge and logical thinking to identify issues in circuit designs.',
+    category: EVENT_CATEGORIES.TECHNICAL,
+    status: EVENT_STATUS.UPCOMING,
+    date: '2026-03-15',
+    time: '11:00 AM',
+    venue: 'TBD',
+    registrationFee: 0,
+    maxParticipants: 100,
+    currentParticipants: 0,
+    image: new URL('../assets/images/events/debugging .jpeg', import.meta.url).href,
+    organizer: 'Electronics Club',
+    prizes: ['Certificates', 'Goodies'],
+    rules: ['Individual participation', 'Identify faults in circuits'],
+    googleFormUrl: 'https://forms.gle/Rum61AswAjc58qzy8',
+  },
+  {
+    id: '3',
+    title: 'Rapid Keys',
+    description: 'Rapid Keys is a fast-paced typing competition that tests participants\' speed, accuracy, and concentration. It challenges students to showcase their keyboard proficiency by typing given passages within a limited time.',
+    category: EVENT_CATEGORIES.COMPETITION,
+    status: EVENT_STATUS.UPCOMING,
+    date: '2026-03-15',
+    time: '12:00 PM',
+    venue: 'TBD',
+    registrationFee: 0,
+    maxParticipants: 100,
+    currentParticipants: 0,
+    image: new URL('../assets/images/events/rapidkeys.png', import.meta.url).href,
+    organizer: 'Computing Society',
+    prizes: ['Certificates', 'Goodies'],
+    rules: ['Solo event', 'Highest WPM wins'],
+    googleFormUrl: 'https://forms.gle/Rum61AswAjc58qzy8',
+  },
+  {
+    id: '4',
+    title: 'Robo Soccer',
+    description: 'RoboSoccer is a robotics competition where participants control manually operated robots in a fast-paced 1 vs 1 football-style match. The goal is to maneuver the robot, control the ball, and score against the opponent.',
+    category: EVENT_CATEGORIES.TECHNICAL,
+    status: EVENT_STATUS.UPCOMING,
+    date: '2026-03-16',
+    time: '10:00 AM',
+    venue: 'Arena',
+    registrationFee: 0,
+    maxParticipants: 50,
+    currentParticipants: 0,
+    image: new URL('../assets/images/events/robosoc.jpeg', import.meta.url).href,
+    organizer: 'Robotics Club',
+    prizes: ['Certificates', 'Goodies'],
+    rules: ['1 vs 1 format', 'Manual control only'],
+    googleFormUrl: 'https://forms.gle/Rum61AswAjc58qzy8',
+  },
+  {
+    id: '5',
+    title: 'Brand Wars',
+    description: 'Brand Wars is a dynamic marketing competition where teams create and promote a brand in real time. Participants must use creativity, strategy, and communication skills to present a strong brand identity.',
+    category: EVENT_CATEGORIES.COMPETITION,
+    status: EVENT_STATUS.UPCOMING,
+    date: '2026-03-16',
+    time: '11:00 AM',
+    venue: 'TBD',
+    registrationFee: 0,
+    maxParticipants: 80,
+    currentParticipants: 0,
+    image: new URL('../assets/images/events/brandwars.png', import.meta.url).href,
+    organizer: 'Marketing Club',
+    prizes: ['Certificates', 'Goodies'],
+    rules: ['Team event', 'Pitch and defend your brand'],
+    googleFormUrl: 'https://forms.gle/Rum61AswAjc58qzy8',
+  },
+  {
+    id: '6',
+    title: 'Panel Discussion',
+    description: 'This panel discussion explores the gap between the growing hype around Artificial Intelligence and its real-world implementation in the industry. Experts will share insights on how AI is actually being used.',
     category: EVENT_CATEGORIES.TECHNICAL,
     status: EVENT_STATUS.UPCOMING,
     date: '2026-03-16',
     time: '02:00 PM',
-    venue: 'Sports Ground',
-    registrationFee: 1000,
-    maxParticipants: 50,
-    currentParticipants: 30,
-    image: '/assets/images/events/robo-wars.jpg',
-    organizer: 'Robotics Club',
-    prizes: ['₹75,000', '₹45,000', '₹30,000'],
-    rules: [
-      'Weight limit: 50kg',
-      'No projectile weapons',
-      'Safety gear mandatory',
-    ],
+    venue: 'Auditorium',
+    registrationFee: 0,
+    maxParticipants: 200,
+    currentParticipants: 0,
+    image: 'https://images.unsplash.com/photo-1475721027785-f74eccf877e2?auto=format&fit=crop&q=80&w=800',
+    organizer: 'Tech Committee',
+    prizes: ['Participation Certificates'],
+    rules: ['Open for all', 'Q&A session included'],
     googleFormUrl: 'https://forms.gle/Rum61AswAjc58qzy8',
-
   },
   {
-    id: '3',
-    title: 'Web Design Workshop',
-    description: 'Learn modern web design techniques from industry experts.',
-    category: EVENT_CATEGORIES.WORKSHOP,
+    id: '7',
+    title: 'Techno Quiz',
+    description: 'Techno Quiz – Myth or Fact in Tech is an interactive live quiz that tests participants\' awareness of common myths and facts related to technology. Conducted through the Kahoot platform.',
+    category: EVENT_CATEGORIES.COMPETITION,
     status: EVENT_STATUS.UPCOMING,
-    date: '2026-03-14',
-    time: '11:00 AM',
-    venue: 'Workshop Hall',
-    registrationFee: 300,
-    maxParticipants: 80,
-    currentParticipants: 60,
-    image: '/assets/images/events/workshop.jpg',
-    organizer: 'Design Team',
-    prizes: [],
-    rules: [
-      'Bring your laptop',
-      'Basic HTML/CSS knowledge required',
-    ],
+    date: '2026-03-17',
+    time: '10:00 AM',
+    venue: 'Online/Hall',
+    registrationFee: 0,
+    maxParticipants: 100,
+    currentParticipants: 0,
+    image: new URL('../assets/images/events/technoquiz.png', import.meta.url).href,
+    organizer: 'Quiz Club',
+    prizes: ['Certificates', 'Goodies'],
+    rules: ['Real-time leaderboard', 'Fastest finger first'],
     googleFormUrl: 'https://forms.gle/Rum61AswAjc58qzy8',
-
   },
   {
-    id: '4',
-    title: 'Cultural Night',
-    description: 'Showcase your talent in music, dance, and drama!',
+    id: '8',
+    title: 'AD Making',
+    description: 'Ad Making is a creative competition where teams design innovative advertisements for a given brand or product. Participants must use storytelling, creativity, and marketing ideas.',
     category: EVENT_CATEGORIES.CULTURAL,
     status: EVENT_STATUS.UPCOMING,
     date: '2026-03-17',
-    time: '06:00 PM',
-    venue: 'Open Air Theatre',
-    registrationFee: 200,
-    maxParticipants: 200,
-    currentParticipants: 120,
-    image: '/assets/images/events/cultural.jpg',
-    organizer: 'Cultural Committee',
-    prizes: ['₹25,000', '₹15,000', '₹10,000'],
-    rules: [
-      'Solo or group performance',
-      'Max duration: 10 minutes',
-    ],
+    time: '11:00 AM',
+    venue: 'TBD',
+    registrationFee: 0,
+    maxParticipants: 80,
+    currentParticipants: 0,
+    image: new URL('../assets/images/events/admaking.png', import.meta.url).href,
+    organizer: 'Creative Society',
+    prizes: ['Certificates', 'Goodies'],
+    rules: ['Team event', 'Original concepts only'],
     googleFormUrl: 'https://forms.gle/Rum61AswAjc58qzy8',
-
   },
   {
-    id: '5',
-    title: 'Gaming Tournament',
-    description: 'E-sports tournament featuring popular games.',
-    category: EVENT_CATEGORIES.GAMING,
+    id: '9',
+    title: 'Filmaura',
+    description: 'Filmaura is a creative filmmaking event where participants produce short films based on a given theme. The event encourages storytelling, imagination, and cinematic expression.',
+    category: EVENT_CATEGORIES.CULTURAL,
+    status: EVENT_STATUS.UPCOMING,
+    date: '2026-03-17',
+    time: '02:00 PM',
+    venue: 'Screening Room',
+    registrationFee: 0,
+    maxParticipants: 50,
+    currentParticipants: 0,
+    image: new URL('../assets/images/events/filmaura.jpeg', import.meta.url).href,
+    organizer: 'Movie Club',
+    prizes: ['Certificates', 'Goodies'],
+    rules: ['Theme based', 'Minimum 3 minutes long'],
+    googleFormUrl: 'https://forms.gle/Rum61AswAjc58qzy8',
+  },
+  {
+    id: '10',
+    title: 'Research Paper Presentation',
+    description: 'Research Paper & Poster Presentation is an academic event where participants showcase innovative ideas, research findings, and technical studies.',
+    category: EVENT_CATEGORIES.TECHNICAL,
     status: EVENT_STATUS.UPCOMING,
     date: '2026-03-18',
-    time: '12:00 PM',
-    venue: 'Gaming Arena',
-    registrationFee: 400,
-    maxParticipants: 64,
-    currentParticipants: 50,
-    image: '/assets/images/events/gaming.jpg',
-    organizer: 'Gaming Club',
-    prizes: ['₹40,000', '₹25,000', '₹15,000'],
-    rules: [
-      'Games: CS:GO, Valorant',
-      'Team size: 5 members',
-    ],
+    time: '10:00 AM',
+    venue: 'Exhibition Hall',
+    registrationFee: 0,
+    maxParticipants: 50,
+    currentParticipants: 0,
+    image: 'https://images.unsplash.com/photo-1532094349884-543bc11b234d?auto=format&fit=crop&q=80&w=800',
+    organizer: 'Academic Society',
+    prizes: ['Certificates', 'Goodies'],
+    rules: ['Original research', 'Posters and presentations required'],
     googleFormUrl: 'https://forms.gle/Rum61AswAjc58qzy8',
-
   },
   {
-    id: '6',
-    title: 'Hackathon 2026',
-    description: '24-hour coding marathon to build innovative solutions.',
+    id: '11',
+    title: 'HACKATHON',
+    description: 'Kurukshetra is a high-intensity battleground for rapid innovation where teams compete to design and build functional solutions within a strict time limit.',
+    category: EVENT_CATEGORIES.COMPETITION,
+    status: EVENT_STATUS.UPCOMING,
+    date: '2026-03-18',
+    time: '09:00 AM',
+    venue: 'Innovation Lab',
+    registrationFee: 0,
+    maxParticipants: 150,
+    currentParticipants: 0,
+    image: new URL('../assets/images/events/gdghackathon.jpeg', import.meta.url).href,
+    organizer: 'Tech Committee',
+    prizes: ['Grand Prize', 'Certificates'],
+    rules: ['Team event', '24 hours sprint'],
+    googleFormUrl: 'https://forms.gle/Rum61AswAjc58qzy8',
+  },
+  {
+    id: '12',
+    title: 'CODE WARS',
+    description: 'Unleash your inner innovator as you debug circuits, solve challenging puzzles, and track down hidden errors to restore the power. This high-voltage tech challenge pushes participants to sharpen their problem-solving skills.',
+    category: EVENT_CATEGORIES.TECHNICAL,
+    status: EVENT_STATUS.UPCOMING,
+    date: '2026-03-19',
+    time: '10:00 AM',
+    venue: 'TBD',
+    registrationFee: 0,
+    maxParticipants: 100,
+    currentParticipants: 0,
+    image: new URL('../assets/images/events/codewars.png', import.meta.url).href,
+    organizer: 'Computing Society',
+    prizes: ['Certificates', 'Goodies'],
+    rules: ['Problem solving', 'Logical thinking'],
+    googleFormUrl: 'https://forms.gle/Rum61AswAjc58qzy8',
+  },
+  {
+    id: '13',
+    title: 'AI PROMPT BATTLE',
+    description: 'PromptCraft is a high-intensity AI Sprint Hackathon where participants build a meaningful AI-powered MVP using a single, well-crafted prompt on the sponsor\'s platform.',
+    category: EVENT_CATEGORIES.TECHNICAL,
+    status: EVENT_STATUS.UPCOMING,
+    date: '2026-03-19',
+    time: '11:00 AM',
+    venue: 'TBD',
+    registrationFee: 0,
+    maxParticipants: 80,
+    currentParticipants: 0,
+    image: new URL('../assets/images/events/aipromptbattle.png', import.meta.url).href,
+    organizer: 'AI Club',
+    prizes: ['Certificates', 'Goodies'],
+    rules: ['Single prompt challenge', 'MVP generation'],
+    googleFormUrl: 'https://forms.gle/Rum61AswAjc58qzy8',
+  },
+  {
+    id: '14',
+    title: 'STOCK STORM',
+    description: 'StockStorm is a fast-paced stock market simulation where participants step into the role of investors and compete in a dynamic virtual trading environment.',
     category: EVENT_CATEGORIES.COMPETITION,
     status: EVENT_STATUS.UPCOMING,
     date: '2026-03-19',
-    time: '09:00 AM',
-    venue: 'Innovation Center',
-    registrationFee: 800,
-    maxParticipants: 120,
-    currentParticipants: 95,
-    image: '/assets/images/events/hackathon.jpg',
-    organizer: 'Tech Committee',
-    prizes: ['₹100,000', '₹60,000', '₹40,000'],
-    rules: [
-      'Team size: 3-5 members',
-      'Theme will be announced',
-      '24 hours duration',
-    ],
+    time: '02:00 PM',
+    venue: 'Finance Lab',
+    registrationFee: 0,
+    maxParticipants: 100,
+    currentParticipants: 0,
+    image: new URL('../assets/images/events/stockstrom.jpeg', import.meta.url).href,
+    organizer: 'Finance Club',
+    prizes: ['Certificates', 'Goodies'],
+    rules: ['Virtual trading', 'Market news response'],
     googleFormUrl: 'https://forms.gle/Rum61AswAjc58qzy8',
-
+  },
+  {
+    id: '15',
+    title: 'AUCTION LEAGUE',
+    description: 'Auction League is a strategy-based event inspired by the IPL auction where teams act as franchise owners and bid for players to build the strongest squad.',
+    category: EVENT_CATEGORIES.COMPETITION,
+    status: EVENT_STATUS.UPCOMING,
+    date: '2026-03-20',
+    time: '10:00 AM',
+    venue: 'Main Hall',
+    registrationFee: 0,
+    maxParticipants: 50,
+    currentParticipants: 0,
+    image: new URL('../assets/images/events/auctionleague.png', import.meta.url).href,
+    organizer: 'Sports Committee',
+    prizes: ['Certificates', 'Goodies'],
+    rules: ['Budget management', 'Squad rating evaluation'],
+    googleFormUrl: 'https://forms.gle/Rum61AswAjc58qzy8',
+  },
+  {
+    id: '16',
+    title: 'MOCK PARLIAMENT',
+    description: 'Mock Parliament is a platform for critical thinking, collaboration, and persuasive debate where participants engage with real-world issues.',
+    category: EVENT_CATEGORIES.CULTURAL,
+    status: EVENT_STATUS.UPCOMING,
+    date: '2026-03-20',
+    time: '11:00 AM',
+    venue: 'Council Chamber',
+    registrationFee: 0,
+    maxParticipants: 100,
+    currentParticipants: 0,
+    image: new URL('../assets/images/events/mockparliament.jpeg', import.meta.url).href,
+    organizer: 'Debate Society',
+    prizes: ['Certificates', 'Goodies'],
+    rules: ['Parliamentary format', 'Structured debates'],
+    googleFormUrl: 'https://forms.gle/Rum61AswAjc58qzy8',
+  },
+  {
+    id: '17',
+    title: 'TREASURE HUNT',
+    description: 'Enter a magical world where logic meets adventure in this Hogwarts-themed Treasure Hunt. Teams explore the campus while solving technical puzzles.',
+    category: EVENT_CATEGORIES.COMPETITION,
+    status: EVENT_STATUS.UPCOMING,
+    date: '2026-03-20',
+    time: '02:00 PM',
+    venue: 'Campus-wide',
+    registrationFee: 0,
+    maxParticipants: 200,
+    currentParticipants: 0,
+    image: new URL('../assets/images/events/t hunt.jpeg', import.meta.url).href,
+    organizer: 'Entertainment Club',
+    prizes: ['Certificates', 'Goodies'],
+    rules: ['Team based', 'Decode clues'],
+    googleFormUrl: 'https://forms.gle/Rum61AswAjc58qzy8',
+  },
+  {
+    id: '18',
+    title: 'ALUMNI HOUR',
+    description: 'Alumni Hour is a lively entertainment event where music, quick thinking, and fun performances come together. Teams take part in exciting DJ-based games.',
+    category: EVENT_CATEGORIES.CULTURAL,
+    status: EVENT_STATUS.UPCOMING,
+    date: '2026-03-21',
+    time: '10:00 AM',
+    venue: 'Open Theatre',
+    registrationFee: 0,
+    maxParticipants: 300,
+    currentParticipants: 0,
+    image: 'https://images.unsplash.com/photo-1492684223066-81342ee5ff30?auto=format&fit=crop&q=80&w=800',
+    organizer: 'Alumni Association',
+    prizes: ['Participation Goodies'],
+    rules: ['Fun games', 'Spontaneity'],
+    googleFormUrl: 'https://forms.gle/Rum61AswAjc58qzy8',
+  },
+  {
+    id: '19',
+    title: 'DECODE THE SCAM',
+    description: 'Step into Decode the Scam, a fast-paced mystery challenge where teams investigate clues, financial trails, and hidden twists to uncover a high-stakes corporate fraud.',
+    category: EVENT_CATEGORIES.TECHNICAL,
+    status: EVENT_STATUS.UPCOMING,
+    date: '2026-03-21',
+    time: '11:00 AM',
+    venue: 'TBD',
+    registrationFee: 0,
+    maxParticipants: 80,
+    currentParticipants: 0,
+    image: new URL('../assets/images/events/decodethescam.png', import.meta.url).href,
+    organizer: 'Cyber Security Club',
+    prizes: ['Certificates', 'Goodies'],
+    rules: ['Investigation skills', 'Evidence analysis'],
+    googleFormUrl: 'https://forms.gle/Rum61AswAjc58qzy8',
+  },
+  {
+    id: '20',
+    title: 'GAMING ARENA',
+    description: 'Gaming Arena is a competitive e-sports event where players compete in popular titles such as Valorant, BGMI, and FIFA through a structured tournament format.',
+    category: EVENT_CATEGORIES.GAMING,
+    status: EVENT_STATUS.UPCOMING,
+    date: '2026-03-21',
+    time: '02:00 PM',
+    venue: 'E-Sports Lab',
+    registrationFee: 0,
+    maxParticipants: 128,
+    currentParticipants: 0,
+    image: new URL('../assets/images/events/gamingevent.jpeg', import.meta.url).href,
+    organizer: 'Gaming Club',
+    prizes: ['Cash Prizes', 'Certificates'],
+    rules: ['Tournament format', 'Fair play rules'],
+    googleFormUrl: 'https://forms.gle/Rum61AswAjc58qzy8',
   },
 ];
+
 
 // Mock Sponsors
 export const mockSponsors = [
@@ -221,13 +435,32 @@ export const mockMerchandise = [
   {
     id: '1',
     name: 'MAYAVERSE T-Shirt',
+    tagline: 'Official PARALLAX Limited Edition',
     description: 'Official PARALLAX tech-fest tee. Limited edition design, premium quality 100% cotton.',
     category: MERCH_CATEGORIES.CLOTHING,
     price: 599,
     stock: 150,
-    image: '/assets/images/merch/tshirt.jpg',
-    sizes: ['S', 'M', 'L', 'XL', 'XXL'],
-    colors: ['Black', 'White', 'Navy'],
+    image: 'https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&q=80&w=800',
+  },
+  {
+    id: '2',
+    name: 'PARALLAX Hoodie',
+    tagline: 'Cyber-Comfort for the Rift',
+    description: 'High-quality oversized hoodie with neon PARALLAX branding. Perfect for long coding sessions.',
+    category: MERCH_CATEGORIES.CLOTHING,
+    price: 1299,
+    stock: 75,
+    image: 'https://images.unsplash.com/photo-1556821840-3a63f95609a7?auto=format&fit=crop&q=80&w=800',
+  },
+  {
+    id: '3',
+    name: 'Tech Cap',
+    tagline: 'Minimalist Stealth Design',
+    description: 'Premium adjustable cap with embroidered MAYAVERSE logo. A must-have for every tech enthusiast.',
+    category: MERCH_CATEGORIES.ACCESSORIES,
+    price: 399,
+    stock: 100,
+    image: 'https://images.unsplash.com/photo-1588850561407-ed78c282e89b?auto=format&fit=crop&q=80&w=800',
   },
 ];
 
@@ -585,129 +818,4 @@ export const getUserOrders = async (userId) => {
   });
 };
 
-/**
- * Admin Functions
- */
-export const getAllUsers = async () => {
-  return new Promise((resolve) => {
-    setTimeout(() => {
-      const usersWithoutPasswords = mockUsers.map(({ password, ...user }) => user);
-      resolve({ success: true, users: usersWithoutPasswords });
-    }, 300);
-  });
-};
-
-export const createEvent = async (eventData) => {
-  return new Promise((resolve) => {
-    setTimeout(() => {
-      const newEvent = {
-        id: generateId(),
-        ...eventData,
-        currentParticipants: 0,
-      };
-
-      mockEvents.push(newEvent);
-      resolve({ success: true, event: newEvent });
-    }, 500);
-  });
-};
-
-export const updateEvent = async (eventId, updates) => {
-  return new Promise((resolve, reject) => {
-    setTimeout(() => {
-      const event = mockEvents.find(e => e.id === eventId);
-
-      if (event) {
-        Object.assign(event, updates);
-        resolve({ success: true, event });
-      } else {
-        reject({ success: false, message: 'Event not found' });
-      }
-    }, 500);
-  });
-};
-
-export const deleteEvent = async (eventId) => {
-  return new Promise((resolve) => {
-    setTimeout(() => {
-      const index = mockEvents.findIndex(e => e.id === eventId);
-      if (index > -1) {
-        mockEvents.splice(index, 1);
-      }
-      resolve({ success: true });
-    }, 500);
-  });
-};
-
-// Similar CRUD operations for sponsors and merchandise
-export const createSponsor = async (sponsorData) => {
-  return new Promise((resolve) => {
-    setTimeout(() => {
-      const newSponsor = { id: generateId(), ...sponsorData };
-      mockSponsors.push(newSponsor);
-      resolve({ success: true, sponsor: newSponsor });
-    }, 500);
-  });
-};
-
-export const updateSponsor = async (sponsorId, updates) => {
-  return new Promise((resolve, reject) => {
-    setTimeout(() => {
-      const sponsor = mockSponsors.find(s => s.id === sponsorId);
-      if (sponsor) {
-        Object.assign(sponsor, updates);
-        resolve({ success: true, sponsor });
-      } else {
-        reject({ success: false, message: 'Sponsor not found' });
-      }
-    }, 500);
-  });
-};
-
-export const deleteSponsor = async (sponsorId) => {
-  return new Promise((resolve) => {
-    setTimeout(() => {
-      const index = mockSponsors.findIndex(s => s.id === sponsorId);
-      if (index > -1) {
-        mockSponsors.splice(index, 1);
-      }
-      resolve({ success: true });
-    }, 500);
-  });
-};
-
-export const createMerchandise = async (merchData) => {
-  return new Promise((resolve) => {
-    setTimeout(() => {
-      const newMerch = { id: generateId(), ...merchData };
-      mockMerchandise.push(newMerch);
-      resolve({ success: true, item: newMerch });
-    }, 500);
-  });
-};
-
-export const updateMerchandise = async (merchId, updates) => {
-  return new Promise((resolve, reject) => {
-    setTimeout(() => {
-      const merch = mockMerchandise.find(m => m.id === merchId);
-      if (merch) {
-        Object.assign(merch, updates);
-        resolve({ success: true, item: merch });
-      } else {
-        reject({ success: false, message: 'Merchandise not found' });
-      }
-    }, 500);
-  });
-};
-
-export const deleteMerchandise = async (merchId) => {
-  return new Promise((resolve) => {
-    setTimeout(() => {
-      const index = mockMerchandise.findIndex(m => m.id === merchId);
-      if (index > -1) {
-        mockMerchandise.splice(index, 1);
-      }
-      resolve({ success: true });
-    }, 500);
-  });
-};
+// Admin functions removed as per user request

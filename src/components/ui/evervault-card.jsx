@@ -3,7 +3,7 @@ import React, { useState, useEffect } from "react";
 import { useMotionTemplate, motion } from "framer-motion";
 import { cn } from "../../lib/utils";
 
-export const EvervaultCard = ({ text, className }) => {
+export const EvervaultCard = ({ text, imageUrl, className }) => {
     let mouseX = useMotionValue(0);
     let mouseY = useMotionValue(0);
 
@@ -26,24 +26,33 @@ export const EvervaultCard = ({ text, className }) => {
     return (
         <div
             className={cn(
-                "p-0.5 bg-transparent flex items-center justify-center w-full relative",
+                "p-0.5 bg-transparent w-full relative h-full",
                 className
             )}
         >
             <div
                 onMouseMove={onMouseMove}
-                className="group/card rounded-3xl w-full relative overflow-hidden bg-transparent flex flex-col justify-center items-center aspect-square"
+                className="group/card w-full relative overflow-hidden bg-transparent flex flex-col justify-center items-center h-full"
             >
+                {/* Background Image — Full Coverage */}
+                {imageUrl && (
+                    <div className="absolute inset-0 z-0">
+                        <img
+                            src={imageUrl}
+                            alt={text}
+                            className="w-full h-full object-cover transition-transform duration-700 group-hover/card:scale-110"
+                        />
+                        <div className="absolute inset-0 bg-black/30 group-hover/card:bg-black/10 transition-colors duration-500" />
+                    </div>
+                )}
+
                 <CardPattern
                     mouseX={mouseX}
                     mouseY={mouseY}
                     randomString={randomString}
                 />
 
-                {/* The main text that reveals on hover inside the encrypted pattern */}
-                <div className="absolute inset-0 z-10 w-full flex items-center justify-center p-6 text-center">
-                    <span className="text-white z-20 font-semibold text-sm tracking-widest uppercase transition-opacity duration-300 opacity-0 group-hover/card:opacity-100" style={{ textShadow: "0 0 10px rgba(0,0,0,0.8)", fontFamily: 'var(--font-primary)' }}>HOVER</span>
-                </div>
+                {/* Removed hover text as per user request */}
             </div>
         </div>
     );
@@ -55,9 +64,10 @@ export function CardPattern({ mouseX, mouseY, randomString }) {
 
     return (
         <div className="pointer-events-none w-full h-full absolute inset-0 rounded-3xl z-0">
-            <div className="absolute inset-0 rounded-3xl [mask-image:linear-gradient(white,transparent)] group-hover/card:opacity-50"></div>
+            {/* Removed the fading mask to ensure full-card hover effect */}
+            <div className="absolute inset-0 rounded-3xl group-hover/card:opacity-50"></div>
             <motion.div
-                className="absolute inset-0 rounded-3xl bg-gradient-to-r from-purple-500/30 to-blue-700/30 opacity-0 group-hover/card:opacity-100 backdrop-blur-md transition duration-500"
+                className="absolute inset-0 rounded-3xl bg-[#00f2fe]/10 opacity-0 group-hover/card:opacity-100 backdrop-blur-[2px] transition duration-500"
                 style={style}
             />
             <motion.div

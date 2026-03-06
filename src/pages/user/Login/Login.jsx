@@ -91,9 +91,7 @@ const Login = () => {
       );
       login(response.user);
 
-      if (response.user.role === 'admin') {
-        navigate(ROUTES.ADMIN_DASHBOARD);
-      } else if (isBIT) {
+      if (isBIT) {
         navigate(ROUTES.USER_PROFILE);
       } else {
         navigate('/');
