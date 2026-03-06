@@ -124,6 +124,7 @@ const SponsorMarquee = () => {
             {/* ── Tier 3 : Supporters marquee ── */}
             <div className={styles.tierBlock}>
                 <span className={styles.tierLabel}>◈ &nbsp;SUPPORTERS&nbsp; ◈</span>
+                <br></br>
             </div>
 
             <div

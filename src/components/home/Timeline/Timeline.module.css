@@ -1,0 +1,481 @@
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;900&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&family=Share+Tech+Mono&display=swap');
+
+.container {
+    position: relative;
+    background: #050508;
+    color: #d4cde8;
+    font-family: 'Cormorant Garamond', serif;
+    overflow: hidden;
+    /* Contains background elements */
+}
+
+/* Tiled background image with dark overlay */
+.bgLayer {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    background-image: url('data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/4gHYSUNDX1BST0ZJTEUAAQEAAAHIAAAAAAQwAABtbnRyUkdCIFhZWiAH4AABAAEAAAAAAABhY3NwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAA9tYAAQAAAADTLQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAlkZXNjAAAA8AAAACRyWFlaAAABFAAAABRnWFlaAAABKAAAABRiWFlaAAABPAAAABR3dHB0AAABUAAAABRyVFJDAAABZAAAAChnVFJDAAABZAAAAChiVFJDAAABZAAAAChjcHJ0AAABjAAAADxtbHVjAAAAAAAAAAEAAAAMZW5VUwAAAAgAAAAcAHMAUgBHAEJYWVogAAAAAAAAb6IAADj1AAADkFhZWiAAAAAAAABimQAAt4UAABjaWFlaIAAAAAAAACSgAAAPhAAAts9YWVogAAAAAAAA9tYAAQAAAADTLXBhcmEAAAAAAAQAAAACZmYAAPKnAAANWQAAE9AAAApbAAAAAAAAAABtbHVjAAAAAAAAAAEAAAAMZW5VUwAAACAAAAAcAEcAbwBvAGcAbABlACAASQBuAGMALgAgADIAMAAxADb/2wBDAAUDBAQEAwUEBAQFBQUGBwwIBwcHBw8LCwkMEQ8SEhEPERETFhwXExQaFRERGCEYGh0dHx8fExciJCIeJBweHx7/2wBDAQUFBQcGBw4ICA4eFBEUHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh7/wAARCAJABTsDASIAAhEBAxEB/8QAHQABAAEFAQEBAAAAAAAAAAAAAAECAwUGBwQICf/EAEcQAQABAwMCBAQDAwkECAcAAAABAgMEBQYREiEHEzFBFDNRYSIygRVxsQgWIzZCUnSRoTdyc7IkNDVDU2KCwRclOHWDkrP/xAAXAQEBAQEAAAAAAAAAAAAAAAAAAQIE/8QAGxEBAQEBAQEBAQAAAAAAAAAAAAECMRESAyH/2gAMAwEAAhEDEQA/APkUBpkAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAJkQQOUoTHoAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAhKCKJhCYWlAEQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQlBFEwifVMLSgCIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAISgik+qYRPqmFpQBEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEJQsUn1TCJ9UwUoAiAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACEoWKmr1IRPqmClAEQAAAAAAAA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');
+    background-size: cover;
+    background-position: center top;
+    background-repeat: no-repeat;
+    opacity: 0.22;
+    filter: saturate(1.4) hue-rotate(10deg);
+}
+
+.bgOverlay {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    background:
+        radial-gradient(ellipse 80% 40% at 50% 0%, rgba(5, 5, 8, 0.3) 0%, rgba(5, 5, 8, 0.85) 70%),
+        linear-gradient(180deg, rgba(5, 5, 8, 0.7) 0%, rgba(5, 5, 8, 0.55) 50%, rgba(5, 5, 8, 0.85) 100%);
+    pointer-events: none;
+}
+
+.bgRadials {
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    background:
+        radial-gradient(ellipse 60% 50% at 50% -10%, rgba(108, 63, 168, 0.2) 0%, transparent 70%),
+        radial-gradient(ellipse 40% 30% at 80% 80%, rgba(80, 30, 130, 0.12) 0%, transparent 60%);
+    pointer-events: none;
+}
+
+.header {
+    position: relative;
+    z-index: 10;
+    text-align: center;
+    padding: 100px 20px 60px;
+}
+
+.festLabel {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 6px;
+    color: #6b6480;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+}
+
+.header h1 {
+    font-family: 'Cinzel', serif;
+    font-size: clamp(3rem, 9vw, 6.5rem);
+    font-weight: 900;
+    letter-spacing: 0.15em;
+    line-height: 1;
+    background: linear-gradient(135deg, #e8c97a 0%, #c084fc 50%, #818cf8 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    position: relative;
+    animation: glitch 8s infinite;
+}
+
+.header h1::after {
+    content: 'PARALLAX';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, #e8c97a 0%, #c084fc 50%, #818cf8 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    filter: blur(18px);
+    opacity: 0.3;
+    z-index: -1;
+}
+
+.festYear {
+    font-family: 'Cinzel', serif;
+    font-size: clamp(1rem, 2.5vw, 1.4rem);
+    letter-spacing: 0.5em;
+    color: #e8c97a;
+    margin-top: 8px;
+    font-weight: 400;
+}
+
+.headerSub {
+    margin-top: 20px;
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 1.15rem;
+    color: rgba(212, 205, 232, 0.65);
+    letter-spacing: 0.07em;
+}
+
+.headerLine {
+    width: 120px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, #9d5ce5, transparent);
+    margin: 28px auto 0;
+}
+
+/* DAY LABELS */
+.dayHeading {
+    position: relative;
+    z-index: 5;
+    text-align: center;
+    margin: 50px 0 10px;
+}
+
+.dayHeading span {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 7px;
+    color: #e8c97a;
+    text-transform: uppercase;
+    border: 1px solid rgba(232, 201, 122, 0.2);
+    padding: 6px 20px;
+    background: rgba(10, 5, 22, 0.6);
+    backdrop-filter: blur(8px);
+}
+
+/* TIMELINE CONTAINER */
+.timelineSection {
+    position: relative;
+    z-index: 5;
+    padding: 20px 0 100px;
+    max-width: 1050px;
+    margin: 0 auto;
+}
+
+.timelineLabel {
+    text-align: center;
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 8px;
+    color: #6b6480;
+    text-transform: uppercase;
+    margin-bottom: 50px;
+}
+
+/* Vertical spine */
+.spine {
+    position: absolute;
+    left: 50%;
+    top: 80px;
+    bottom: 0;
+    width: 1px;
+    background: linear-gradient(180deg, transparent 0%, #6c3fa8 8%, #6c3fa8 92%, transparent 100%);
+    transform: translateX(-50%);
+}
+
+.spine::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -1px;
+    width: 3px;
+    height: 100%;
+    background: inherit;
+    filter: blur(5px);
+    opacity: 0.45;
+}
+
+/* PHASE ITEMS */
+.phase {
+    position: relative;
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 56px;
+    padding: 0 20px;
+}
+
+.phase:nth-child(odd) {
+    flex-direction: row-reverse;
+}
+
+.phase:nth-child(even) {
+    flex-direction: row;
+}
+
+/* Connector dot */
+.phaseDot {
+    position: absolute;
+    left: 50%;
+    top: 24px;
+    transform: translate(-50%, -50%);
+    width: 16px;
+    height: 16px;
+    background: #050508;
+    border: 2px solid #9d5ce5;
+    border-radius: 3px;
+    rotate: 45deg;
+    z-index: 2;
+    transition: all 0.3s ease;
+    box-shadow: 0 0 10px rgba(156, 92, 229, 0.5);
+}
+
+.phase:hover .phaseDot {
+    background: #9d5ce5;
+    box-shadow: 0 0 22px rgba(156, 92, 229, 0.95), 0 0 44px rgba(156, 92, 229, 0.4);
+    scale: 1.3;
+}
+
+/* Phase number label */
+.phaseNum {
+    position: absolute;
+    left: 50%;
+    top: 52px;
+    transform: translateX(-50%);
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 8px;
+    color: #6b6480;
+    letter-spacing: 1px;
+    white-space: nowrap;
+}
+
+/* Card */
+.phaseCard {
+    width: calc(50% - 55px);
+    background: rgba(10, 5, 22, 0.75);
+    border: 1px solid rgba(156, 84, 230, 0.25);
+    border-radius: 2px;
+    padding: 26px 30px;
+    position: relative;
+    cursor: pointer;
+    text-decoration: none;
+    color: inherit;
+    display: block;
+    transition: all 0.35s cubic-bezier(0.23, 1, 0.32, 1);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    overflow: hidden;
+
+    opacity: 0;
+    transform: translateY(28px);
+}
+
+.visible {
+    animation: fadeUp 0.65s cubic-bezier(0.23, 1, 0.32, 1) forwards !important;
+    animation-delay: 0.05s;
+}
+
+/* Keep the simple 'visible' class for observer in React */
+
+.phase:nth-child(odd) .phaseCard {
+    margin-right: auto;
+}
+
+.phase:nth-child(even) .phaseCard {
+    margin-left: auto;
+}
+
+.phaseCard::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(156, 84, 230, 0.08) 0%, rgba(129, 140, 248, 0.05) 100%);
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.phaseCard:hover::before {
+    opacity: 1;
+}
+
+.phaseCard::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, #c084fc, transparent);
+    transform: scaleX(0);
+    transition: transform 0.4s ease;
+    transform-origin: center;
+}
+
+.phaseCard:hover::after {
+    transform: scaleX(1);
+}
+
+.phaseCard:hover {
+    border-color: rgba(156, 84, 230, 0.55);
+    box-shadow: 0 0 40px rgba(108, 63, 168, 0.28), 0 0 80px rgba(108, 63, 168, 0.1);
+    transform: translateY(-4px);
+}
+
+/* Phase tag */
+.phaseTag {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 4px;
+    color: #c084fc;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.phaseTag::before {
+    content: '';
+    display: inline-block;
+    width: 18px;
+    height: 1px;
+    background: #c084fc;
+}
+
+.phaseTitle {
+    font-family: 'Cinzel', serif;
+    font-size: clamp(1.15rem, 2.2vw, 1.55rem);
+    font-weight: 600;
+    letter-spacing: 0.07em;
+    color: #ede8f8;
+    margin-bottom: 8px;
+    line-height: 1.25;
+    text-transform: uppercase;
+}
+
+.phaseTime {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 2.5px;
+    color: #e8c97a;
+    margin-bottom: 18px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.phaseTime::before {
+    content: '◈';
+    font-size: 8px;
+    color: rgba(232, 201, 122, 0.5);
+}
+
+.phaseCta {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: #c084fc;
+    border: 1px solid rgba(156, 84, 230, 0.3);
+    padding: 8px 16px;
+    border-radius: 1px;
+    transition: all 0.25s;
+    position: relative;
+    overflow: hidden;
+}
+
+.phaseCta::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: #9d5ce5;
+    transform: translateX(-102%);
+    transition: transform 0.3s ease;
+    z-index: -1;
+}
+
+.phaseCard:hover .phaseCta {
+    color: #fff;
+    border-color: #9d5ce5;
+}
+
+.phaseCard:hover .phaseCta::before {
+    transform: translateX(0);
+}
+
+.arrow {
+    display: inline-block;
+    transition: transform 0.25s;
+}
+
+.phaseCard:hover .arrow {
+    transform: translateX(5px);
+}
+
+/* Horizontal connector dash */
+.phaseConnector {
+    position: absolute;
+    top: 24px;
+    width: 35px;
+    height: 1px;
+}
+
+.phase:nth-child(odd) .phaseConnector {
+    right: calc(50% + 8px);
+    background: linear-gradient(90deg, transparent, #6c3fa8);
+}
+
+.phase:nth-child(even) .phaseConnector {
+    left: calc(50% + 8px);
+    background: linear-gradient(90deg, #6c3fa8, transparent);
+}
+
+/* Animations */
+@keyframes fadeUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes glitch {
+
+    0%,
+    95%,
+    100% {
+        clip-path: none;
+        transform: none;
+    }
+
+    96% {
+        clip-path: polygon(0 20%, 100% 20%, 100% 40%, 0 40%);
+        transform: translateX(-3px);
+    }
+
+    97% {
+        clip-path: polygon(0 60%, 100% 60%, 100% 80%, 0 80%);
+        transform: translateX(3px);
+    }
+
+    98% {
+        clip-path: none;
+        transform: none;
+    }
+}
+
+@media (max-width: 700px) {
+    .spine {
+        left: 22px;
+    }
+
+    .phase,
+    .phase:nth-child(odd) {
+        flex-direction: column !important;
+        padding-left: 56px;
+    }
+
+    .phaseCard,
+    .phase:nth-child(odd) .phaseCard,
+    .phase:nth-child(even) .phaseCard {
+        width: 100%;
+        margin: 0;
+    }
+
+    .phaseDot {
+        left: 22px;
+    }
+
+    .phaseNum {
+        left: 22px;
+        transform: translateX(-50%);
+        font-size: 7px;
+    }
+
+    .phaseConnector {
+        display: none;
+    }
+
+    .dayHeading span {
+        font-size: 8px;
+        letter-spacing: 4px;
+    }
+}

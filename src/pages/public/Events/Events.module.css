@@ -5,8 +5,8 @@
 .eventsPage {
   width: 100%;
   background: radial-gradient(ellipse at 50% 0%, rgba(80, 40, 140, 0.35) 0%, transparent 60%),
-              radial-gradient(ellipse at 80% 80%, rgba(0, 100, 180, 0.15) 0%, transparent 55%),
-              #06060e;
+    radial-gradient(ellipse at 80% 80%, rgba(0, 100, 180, 0.15) 0%, transparent 55%),
+    #06060e;
   min-height: 100vh;
   display: flex;
   flex-direction: column;

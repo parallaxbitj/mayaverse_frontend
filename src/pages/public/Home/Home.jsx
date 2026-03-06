@@ -2,7 +2,7 @@ import React, { useEffect, useLayoutEffect, useState, useRef } from 'react';
 import HeroScroll from '../../../components/home/HeroScroll';
 import Events from '../../public/Events/Events';
 import Sponsors from '../../public/Sponsors/Sponsors';
-import FlagshipEvents from '../../../components/home/FlagshipEvents/FlagshipEvents';
+import Timeline from '../../../components/home/Timeline/Timeline';
 import Merchandise from '../../public/Merchandise/Merchandise';
 import TeamSection from '../../../components/home/TeamSection/TeamSection';
 import ParallaxIntro from '../../../components/home/ParallaxIntro';
@@ -97,7 +97,7 @@ const Home = () => {
       <div className="content-sections" style={{ position: 'relative', zIndex: 10, backgroundColor: '#06060e' }}>
         <Events />
         <Sponsors />
-        <FlagshipEvents />
+        <Timeline />
         <Merchandise />
         <TeamSection />
       </div>
