@@ -7,33 +7,21 @@ import styles from './SponsorMarquee.module.css';
  * Infinite marquee for Supporters tier.
  */
 
-const TITLE_SPONSORS = [
-    { name: 'Google', slug: 'google' },
-    { name: 'Microsoft', slug: 'microsoft' },
-    { name: 'NVIDIA', slug: 'nvidia' },
+const PREMIUM_ALLY_SPONSORS = [
+    { name: 'Bank of Baroda', slug: 'bankofbaroda' },
 ];
 
 const ALLY_SPONSORS = [
-    { name: 'Amazon', slug: 'amazon' },
-    { name: 'Intel', slug: 'intel' },
-    { name: 'IBM', slug: 'ibm' },
-    { name: 'Meta', slug: 'meta' },
-    { name: 'Adobe', slug: 'adobe' },
-    { name: 'Oracle', slug: 'oracle' },
+    { name: 'GFG', slug: 'geeksforgeeks' },
+    { name: 'Unstop', slug: 'unstop' },
+    { name: 'StockGro', slug: 'stockgro' },
+    { name: 'Devnovate', slug: 'devnovate' },
 ];
 
 const SUPPORTER_LOGOS = [
-    { name: 'GitHub', slug: 'github' },
-    { name: 'Stripe', slug: 'stripe' },
-    { name: 'Figma', slug: 'figma' },
-    { name: 'Notion', slug: 'notion' },
-    { name: 'Slack', slug: 'slack' },
-    { name: 'Spotify', slug: 'spotify' },
-    { name: 'Cloudflare', slug: 'cloudflare' },
-    { name: 'MongoDB', slug: 'mongodb' },
-    { name: 'Docker', slug: 'docker' },
-    { name: 'Vercel', slug: 'vercel' },
-    { name: 'Samsung', slug: 'samsung' },
+    { name: 'Bake Away', slug: 'cakey' },
+    { name: 'Belgian Waffle', slug: 'waffle' },
+    { name: 'Chai Zindagi', slug: 'tea' },
 ];
 
 const ICON_CDN = (slug) => `https://cdn.simpleicons.org/${slug}/ffffff`;
@@ -95,11 +83,11 @@ const SponsorMarquee = () => {
             </div>
             <p className={styles.sectionSub}>The sovereign allies who forge the MAYAVERSE</p>
 
-            {/* ── Tier 1 : Title Sponsors ── */}
+            {/* ── Tier 1.5 : Premium Allies ── */}
             <div className={styles.tierBlock}>
-                <span className={styles.tierLabel}>✦ &nbsp;TITLE SPONSORS&nbsp; ✦</span>
+                <span className={styles.tierLabel}>✧ &nbsp;PREMIUM ALLY&nbsp; ✧</span>
                 <div className={styles.tierRow}>
-                    {TITLE_SPONSORS.map((s) => (
+                    {PREMIUM_ALLY_SPONSORS.map((s) => (
                         <TierCard key={s.slug} {...s} large />
                     ))}
                 </div>
@@ -121,38 +109,16 @@ const SponsorMarquee = () => {
             {/* ── Divider ── */}
             <div className={styles.divider} />
 
-            {/* ── Tier 3 : Supporters marquee ── */}
+            {/* ── Tier 3 : Supporters (Static & Centered) ── */}
             <div className={styles.tierBlock}>
                 <span className={styles.tierLabel}>◈ &nbsp;SUPPORTERS&nbsp; ◈</span>
-                <br></br>
-            </div>
-
-            <div
-                className={styles.marquee}
-                onMouseEnter={(e) => {
-                    const t = e.currentTarget.querySelector('[data-track]');
-                    if (t) t.style.animationPlayState = 'paused';
-                }}
-                onMouseLeave={(e) => {
-                    const t = e.currentTarget.querySelector('[data-track]');
-                    if (t) t.style.animationPlayState = 'running';
-                }}
-            >
-                <div className={styles.rowOuter}>
-                    <div data-track style={trackStyle}>
-                        {SUPPORTER_LOGOS.map((s) => <TierCard key={`a-${s.slug}`} {...s} />)}
-                        {SUPPORTER_LOGOS.map((s) => <TierCard key={`b-${s.slug}`} {...s} />)}
-                    </div>
+                <div className={styles.tierRow} style={{ justifyContent: 'center', marginTop: '1.5rem' }}>
+                    {SUPPORTER_LOGOS.map((s) => (
+                        <TierCard key={s.slug} {...s} />
+                    ))}
                 </div>
             </div>
 
-            {/* ── CTA ── */}
-            <div className={styles.cta}>
-                <span className={styles.ctaText}>Forge an alliance with MAYAVERSE</span>
-                <a href="mailto:parallax.tc@gmail.com" className={styles.ctaBtn}>
-                    BECOME A GUARDIAN →
-                </a>
-            </div>
         </section>
     );
 };
