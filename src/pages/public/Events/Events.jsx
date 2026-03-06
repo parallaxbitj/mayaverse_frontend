@@ -3,7 +3,6 @@ import { useLocation } from 'react-router-dom';
 import { getEvents, registerForEvent } from '../../../services/mockData';
 import { useAuth } from '../../../hooks/useAuth';
 import { EvervaultCard } from '../../../components/ui/evervault-card';
-import AboutSection from '../../../components/common/AboutSection/AboutSection';
 import styles from './Events.module.css';
 
 /**
@@ -52,9 +51,6 @@ const Events = () => {
 
   return (
     <div className={styles.eventsPage} style={isHomePage ? { backgroundImage: 'none', backgroundColor: 'transparent' } : {}}>
-      {/* About Section */}
-      <AboutSection />
-
       {/* Events Section */}
       <section className={styles.eventsSection}>
         <div className={styles.container}>

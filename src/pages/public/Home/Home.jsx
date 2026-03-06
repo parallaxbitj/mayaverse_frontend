@@ -6,6 +6,7 @@ import Timeline from '../../../components/home/Timeline/Timeline';
 import Merchandise from '../../public/Merchandise/Merchandise';
 import TeamSection from '../../../components/home/TeamSection/TeamSection';
 import ParallaxIntro from '../../../components/home/ParallaxIntro';
+import AboutSection from '../../../components/common/AboutSection/AboutSection';
 
 // Module-level: resets on browser refresh, survives in-app navigation
 let _introHasPlayed = false;
@@ -95,6 +96,7 @@ const Home = () => {
       {/* Main content */}
       <HeroScroll />
       <div className="content-sections" style={{ position: 'relative', zIndex: 10, backgroundColor: '#06060e' }}>
+        <AboutSection />
         <Events />
         <Sponsors />
         <Timeline />
