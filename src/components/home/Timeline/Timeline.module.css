@@ -459,3 +459,84 @@
         letter-spacing: 4px;
     }
 }
+
+/* ─── GOOGLE FORM MODAL ─────────────────────────────────────── */
+.formBackdrop {
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+    background: rgba(5, 5, 8, 0.82);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    animation: fadeInBackdrop 0.25s ease forwards;
+}
+
+@keyframes fadeInBackdrop {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
+.formContainer {
+    position: relative;
+    width: 100%;
+    max-width: 680px;
+    background: rgba(10, 5, 22, 0.95);
+    border: 1px solid rgba(156, 84, 230, 0.4);
+    border-radius: 4px;
+    padding: 36px 32px 28px;
+    box-shadow: 0 0 60px rgba(108, 63, 168, 0.35), 0 0 120px rgba(108, 63, 168, 0.12);
+    animation: slideUp 0.3s cubic-bezier(0.23, 1, 0.32, 1) forwards;
+    max-height: 92vh;
+    overflow-y: auto;
+}
+
+@keyframes slideUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+.formCloseBtn {
+    position: absolute;
+    top: 14px;
+    right: 18px;
+    background: transparent;
+    border: 1px solid rgba(156, 84, 230, 0.3);
+    color: #c084fc;
+    font-size: 14px;
+    width: 32px;
+    height: 32px;
+    border-radius: 2px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s;
+}
+
+.formCloseBtn:hover {
+    background: rgba(156, 84, 230, 0.2);
+    border-color: #c084fc;
+    color: #fff;
+}
+
+.formTitle {
+    font-family: 'Cinzel', serif;
+    font-size: clamp(1rem, 2.5vw, 1.25rem);
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    color: #ede8f8;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+    padding-right: 36px;
+}
+
+.googleForm {
+    border: none;
+    border-radius: 2px;
+    background: #fff;
+    display: block;
+}

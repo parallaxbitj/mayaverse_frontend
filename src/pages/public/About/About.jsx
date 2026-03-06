@@ -147,14 +147,14 @@ const About = () => {
       <div ref={glyphContainerRef} className={styles.glyphContainer} />
 
       {/* Hero Section */}
-      <section className={styles.heroSection}>
+      {/* <section className={styles.heroSection}>
         <div className={styles.container}>
           <h1 ref={heroTitleRef} className={styles.pageTitle}>About {APP_NAME}</h1>
           <p ref={heroSubtitleRef} className={styles.pageSubtitle}>
             India's premier technical festival bringing together innovation, technology, and talent
           </p>
         </div>
-      </section>
+      </section> */}
 
       {/* Content Section */}
       <section className={styles.contentSection}>

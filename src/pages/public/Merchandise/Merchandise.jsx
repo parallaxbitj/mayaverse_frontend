@@ -1,6 +1,9 @@
 import React, { useState, useRef } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { formatCurrency } from '../../../utils/helpers';
 import { useGSAP } from '../../../animations/hooks/useGSAP';
+import { useAuth } from '../../../hooks/useAuth';
+import { ROUTES } from '../../../constants/config';
 import styles from './Merchandise.module.css';
 
 /**
@@ -10,8 +13,7 @@ import styles from './Merchandise.module.css';
  */
 
 // ← Replace this URL with your actual Google Form link
-const GOOGLE_FORM_URL =
-  'https://docs.google.com/forms/d/e/1FAIpQLSeXFYXlb69IQnGDV15Ylny0oiY3KV_v0lNXdU5x4mnavMoh_A/viewform?embedded=true';
+const GOOGLE_FORM_URL = 'https://forms.gle/Rum61AswAjc58qzy8';
 
 const TSHIRT = {
   id: '1',
@@ -35,6 +37,8 @@ const Merchandise = () => {
   const [selectedSize, setSelectedSize] = useState('');
   const [selectedColor, setSelectedColor] = useState('');
   const [showForm, setShowForm] = useState(false);
+  const { isAuthenticated } = useAuth();
+  const navigate = useNavigate();
 
   const heroTitleRef = useRef(null);
   const heroSubtitleRef = useRef(null);
@@ -55,6 +59,12 @@ const Merchandise = () => {
 
   const handleBuyNow = () => {
     if (!canBuy) return;
+
+    if (!isAuthenticated()) {
+      navigate(ROUTES.LOGIN);
+      return;
+    }
+
     setShowForm(true);
   };
 

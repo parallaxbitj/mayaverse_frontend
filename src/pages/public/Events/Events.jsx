@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { getEvents, registerForEvent } from '../../../services/mockData';
 import { useAuth } from '../../../hooks/useAuth';
 import { EvervaultCard } from '../../../components/ui/evervault-card';
-import AboutSection from '../../../components/common/AboutSection/AboutSection';
+import { ROUTES } from '../../../constants/config';
 import styles from './Events.module.css';
 
 /**
@@ -16,6 +16,18 @@ const Events = () => {
   const [events, setEvents] = useState([]);
   const [loading, setLoading] = useState(true);
   const [selectedEvent, setSelectedEvent] = useState(null);
+  const [showGoogleForm, setShowGoogleForm] = useState(false);
+  const { user, isAuthenticated } = useAuth();
+  const navigate = useNavigate();
+
+  const getFormUrl = () => {
+    return 'https://forms.gle/Rum61AswAjc58qzy8';
+  };
+
+  const closeModals = () => {
+    setSelectedEvent(null);
+    setShowGoogleForm(false);
+  };
 
   const location = useLocation();
   const isHomePage = location.pathname === '/';
@@ -44,6 +56,15 @@ const Events = () => {
     return details[Math.floor(Math.random() * details.length)];
   };
 
+  const handleRegisterClick = () => {
+    if (!isAuthenticated()) {
+      navigate(ROUTES.LOGIN);
+      return;
+    }
+
+    setShowGoogleForm(true);
+  };
+
   if (loading) {
     return <div className={styles.loading}>Loading events...</div>;
   }
@@ -52,9 +73,6 @@ const Events = () => {
 
   return (
     <div className={styles.eventsPage} style={isHomePage ? { backgroundImage: 'none', backgroundColor: 'transparent' } : {}}>
-      {/* About Section */}
-      <AboutSection />
-
       {/* Events Section */}
       <section className={styles.eventsSection}>
         <div className={styles.container}>
@@ -104,10 +122,10 @@ const Events = () => {
       {/* Event Detail Modal */}
       {selectedEvent && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm">
-          <div className="bg-[#0a0a0f] border border-white/20 p-8 rounded-2xl max-w-lg w-full relative">
+          <div className={`bg-[#0a0a0f] border border-white/20 p-8 rounded-2xl ${showGoogleForm ? 'max-w-4xl' : 'max-w-lg'} w-full relative transition-all duration-300 overflow-hidden`}>
             <button
-              onClick={() => setSelectedEvent(null)}
-              className="absolute top-4 right-4 text-white/50 hover:text-white transition-colors cursor-pointer"
+              onClick={closeModals}
+              className="absolute top-4 right-4 text-white/50 hover:text-white transition-colors cursor-pointer z-10"
               title="Close"
             >
               <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="2" stroke="currentColor" className="w-6 h-6">
@@ -115,19 +133,43 @@ const Events = () => {
               </svg>
             </button>
 
-            <h2 className="text-2xl font-cinzel text-[#00f2fe] uppercase tracking-wider mb-2 font-bold">{selectedEvent.title}</h2>
-            <p className="text-sm text-white/50 mb-6 font-mono border-b border-white/10 pb-4">Date: {selectedEvent.date || "TBD"}</p>
+            {showGoogleForm ? (
+              <div className="w-full">
+                <h2 className="text-2xl font-cinzel text-[#00f2fe] uppercase tracking-wider mb-6 font-bold text-center">
+                  Register for {selectedEvent.title}
+                </h2>
+                <div className="w-full bg-white/5 rounded-xl overflow-hidden h-[60vh] md:h-[70vh]">
+                  <iframe
+                    src={getFormUrl()}
+                    width="100%"
+                    height="100%"
+                    frameBorder="0"
+                    marginHeight="0"
+                    marginWidth="0"
+                    title="Event Registration Form"
+                    className="w-full h-full"
+                  >
+                    Loading…
+                  </iframe>
+                </div>
+              </div>
+            ) : (
+              <>
+                <h2 className="text-2xl font-cinzel text-[#00f2fe] uppercase tracking-wider mb-2 font-bold">{selectedEvent.title}</h2>
+                <p className="text-sm text-white/50 mb-6 font-mono border-b border-white/10 pb-4">Date: {selectedEvent.date || "TBD"}</p>
 
-            <div className="text-white/80 font-light text-sm leading-relaxed mb-8">
-              <p>{selectedEvent.detailedDescription}</p>
-            </div>
+                <div className="text-white/80 font-light text-sm leading-relaxed mb-8">
+                  <p>{selectedEvent.detailedDescription}</p>
+                </div>
 
-            <button
-              onClick={() => alert(`Registered for ${selectedEvent.title}!`)}
-              className="w-full py-3 bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-500 hover:to-blue-500 text-white font-bold rounded-lg shadow-lg hover:shadow-purple-500/25 transition-all text-sm uppercase tracking-wider cursor-pointer"
-            >
-              Register Now
-            </button>
+                <button
+                  onClick={handleRegisterClick}
+                  className="w-full py-3 bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-500 hover:to-blue-500 text-white font-bold rounded-lg shadow-lg hover:shadow-purple-500/25 transition-all text-sm uppercase tracking-wider cursor-pointer"
+                >
+                  Register Now
+                </button>
+              </>
+            )}
           </div>
         </div>
       )}

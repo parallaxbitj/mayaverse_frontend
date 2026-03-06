@@ -63,9 +63,8 @@ export const mockEvents = [
       'Laptops required',
       'Duration: 3 hours',
     ],
-    googleFormUrl: 'https://docs.google.com/forms/d/e/1FAIpQLSeXFYXlb69IQnGDV15Ylny0oiY3KV_v0lNXdU5x4mnavMoh_A/viewform?usp=dialog',
-    googleFormUrlForBIT: 'https://docs.google.com/forms/d/e/1FAIpQLSfBITFormForCodeCombat/viewform',
-    googleFormUrlForOthers: 'https://docs.google.com/forms/d/e/1FAIpQLSfOtherFormForCodeCombat/viewform',
+    googleFormUrl: 'https://forms.gle/Rum61AswAjc58qzy8',
+
   },
   {
     id: '2',
@@ -87,9 +86,8 @@ export const mockEvents = [
       'No projectile weapons',
       'Safety gear mandatory',
     ],
-    // googleFormUrl: 'https://docs.google.com/forms/d/e/1FAIpQLSfVcMjWIknUvhnk8GMxodbGlYrY1yT8Yg_8KVtJSonmCrOGKA/viewform?usp=dialog',
-    googleFormUrlForBIT: 'https://docs.google.com/forms/d/e/1FAIpQLSfBITFormForRoboWars/viewform',
-    googleFormUrlForOthers: 'https://docs.google.com/forms/d/e/1FAIpQLSfOtherFormForRoboWars/viewform',
+    googleFormUrl: 'https://forms.gle/Rum61AswAjc58qzy8',
+
   },
   {
     id: '3',
@@ -110,9 +108,8 @@ export const mockEvents = [
       'Bring your laptop',
       'Basic HTML/CSS knowledge required',
     ],
-    // googleFormUrl: 'https://docs.google.com/forms/d/e/1FAIpQLSdWebDesignForm/viewform',
-    googleFormUrlForBIT: 'https://docs.google.com/forms/d/e/1FAIpQLSfBITFormForWebDesignWorkshop/viewform',
-    googleFormUrlForOthers: 'https://docs.google.com/forms/d/e/1FAIpQLSfOtherFormForWebDesignWorkshop/viewform',
+    googleFormUrl: 'https://forms.gle/Rum61AswAjc58qzy8',
+
   },
   {
     id: '4',
@@ -133,9 +130,8 @@ export const mockEvents = [
       'Solo or group performance',
       'Max duration: 10 minutes',
     ],
-    // googleFormUrl: 'https://docs.google.com/forms/d/e/1FAIpQLSdCulturalNightForm/viewform',
-    googleFormUrlForBIT: 'https://docs.google.com/forms/d/e/1FAIpQLSfBITFormForCulturalNight/viewform',
-    googleFormUrlForOthers: 'https://docs.google.com/forms/d/e/1FAIpQLSfOtherFormForCulturalNight/viewform',
+    googleFormUrl: 'https://forms.gle/Rum61AswAjc58qzy8',
+
   },
   {
     id: '5',
@@ -156,9 +152,8 @@ export const mockEvents = [
       'Games: CS:GO, Valorant',
       'Team size: 5 members',
     ],
-    // googleFormUrl: 'https://docs.google.com/forms/d/e/1FAIpQLSdGamingTournamentForm/viewform',
-    googleFormUrlForBIT: 'https://docs.google.com/forms/d/e/1FAIpQLSfBITFormForGamingTournament/viewform',
-    googleFormUrlForOthers: 'https://docs.google.com/forms/d/e/1FAIpQLSfOtherFormForGamingTournament/viewform',
+    googleFormUrl: 'https://forms.gle/Rum61AswAjc58qzy8',
+
   },
   {
     id: '6',
@@ -180,9 +175,8 @@ export const mockEvents = [
       'Theme will be announced',
       '24 hours duration',
     ],
-    //googleFormUrl: 'https://docs.google.com/forms/d/e/1FAIpQLSdHackathon2026Form/viewform',
-    googleFormUrlForBIT: 'https://docs.google.com/forms/d/e/1FAIpQLSfBITFormForHackathon2026/viewform',
-    googleFormUrlForOthers: 'https://docs.google.com/forms/d/e/1FAIpQLSfOtherFormForHackathon2026/viewform',
+    googleFormUrl: 'https://forms.gle/Rum61AswAjc58qzy8',
+
   },
 ];
 
