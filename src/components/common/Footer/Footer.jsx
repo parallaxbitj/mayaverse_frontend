@@ -30,10 +30,12 @@ const Footer = () => {
         <div className={styles.footerCol}>
           <div className={styles.navHeader}>SYSTEM LINKS</div>
           <ul className={styles.linkList}>
-            <li><Link to={ROUTES.HOME}>Gateway</Link></li>
-            <li><Link to={ROUTES.ABOUT}>The Lore</Link></li>
-            <li><Link to={ROUTES.EVENTS}>Chronicles</Link></li>
+            <li><Link to={ROUTES.HOME}>Home</Link></li>
+            <li><Link to={ROUTES.ABOUT}>About</Link></li>
+            <li><Link to={ROUTES.EVENTS}>Events</Link></li>
             <li><Link to={ROUTES.GALLERY || '/'}>Gallery</Link></li>
+            <li><Link to={ROUTES.SPONSORS || '/'}>Sponsors</Link></li>
+            <li><Link to={ROUTES.MERCHANDISE || '/'}>Merchandise</Link></li>
             <li><Link to={ROUTES.TEAM || '/'}>The Architects</Link></li>
           </ul>
         </div>

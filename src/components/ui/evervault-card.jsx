@@ -14,13 +14,19 @@ export const EvervaultCard = ({ text, imageUrl, className }) => {
         setRandomString(str);
     }, []);
 
+    const [lastUpdate, setLastUpdate] = useState(0);
+
     function onMouseMove({ currentTarget, clientX, clientY }) {
         let { left, top } = currentTarget.getBoundingClientRect();
         mouseX.set(clientX - left);
         mouseY.set(clientY - top);
 
-        const str = generateRandomString(1500);
-        setRandomString(str);
+        const now = Date.now();
+        if (now - lastUpdate > 50) { // Update string only every 50ms
+            const str = generateRandomString(1500);
+            setRandomString(str);
+            setLastUpdate(now);
+        }
     }
 
     return (

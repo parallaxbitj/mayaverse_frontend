@@ -82,23 +82,24 @@
 .eventDetailCard {
   position: relative;
   width: 100%;
-  max-width: 1000px;
-  background: rgba(15, 15, 25, 0.85);
+  max-width: 1100px;
+  max-height: calc(100vh - 4rem);
+  background: rgba(10, 10, 15, 0.9);
   border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 24px;
+  border-radius: 30px;
   display: flex;
   flex-direction: row;
   overflow: hidden;
-  box-shadow: 0 40px 100px rgba(0, 0, 0, 0.8),
-    0 0 30px rgba(138, 124, 255, 0.1);
+  box-shadow: 0 40px 100px rgba(0, 0, 0, 0.9),
+    0 0 40px rgba(138, 124, 255, 0.05);
   cursor: default;
-  animation: modalIn 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
+  animation: modalIn 0.6s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 @keyframes modalIn {
   from {
     opacity: 0;
-    transform: scale(0.95) translateY(30px);
+    transform: scale(0.9) translateY(40px);
   }
 
   to {
@@ -109,55 +110,74 @@
 
 /* Left Side: Image Content */
 .detailImageSection {
-  flex: 1.2;
+  flex: 1.3;
   position: relative;
-  min-height: 400px;
   overflow: hidden;
+  background: #000;
 }
 
 .detailImage {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: transform 0.7s ease;
+  transition: transform 1s cubic-bezier(0.2, 0, 0.3, 1);
 }
 
 .detailImageSection:hover .detailImage {
-  transform: scale(1.05);
+  transform: scale(1.08);
+}
+
+/* --- Gradient Overlay on Image for Mobile --- */
+.detailImageSection::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom, transparent 60%, rgba(10, 10, 15, 0.8) 100%);
+  opacity: 0;
+  transition: opacity 0.5s ease;
 }
 
 /* Right Side: Information Content */
 .detailInfoSection {
   flex: 1;
-  padding: 3.5rem;
+  padding: 4rem;
   display: flex;
   flex-direction: column;
-  background: linear-gradient(135deg, rgba(20, 20, 35, 0.4) 0%, rgba(10, 10, 20, 0.8) 100%);
-  border-left: 1px solid rgba(255, 255, 255, 0.05);
+  background: rgba(20, 20, 35, 0.2);
+  backdrop-filter: blur(5px);
+  overflow-y: auto;
+  scrollbar-width: none;
+  /* Firefox */
+}
+
+.detailInfoSection::-webkit-scrollbar {
+  display: none;
+  /* Chrome/Safari */
 }
 
 .headerWrap {
-  margin-bottom: 2rem;
+  margin-bottom: 2.5rem;
 }
 
 .categoryTag {
   font-family: 'Syncopate', sans-serif;
-  font-size: 0.7rem;
+  font-size: 0.75rem;
   color: #00f2fe;
-  letter-spacing: 3px;
+  font-weight: 700;
+  letter-spacing: 4px;
   text-transform: uppercase;
-  margin-bottom: 0.8rem;
+  margin-bottom: 1rem;
   display: block;
 }
 
 .detailTitle {
   font-family: 'Cinzel', serif;
-  font-size: 2.2rem;
+  font-size: clamp(2rem, 3.5vw, 3rem);
   font-weight: 800;
   color: #fff;
-  letter-spacing: 2px;
-  line-height: 1.2;
-  background: linear-gradient(to right, #fff, rgba(255, 255, 255, 0.7));
+  letter-spacing: 3px;
+  line-height: 1.1;
+  background: linear-gradient(to right, #fff 0%, rgba(255, 255, 255, 0.6) 100%);
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -257,44 +277,35 @@
 /* ─── Responsive ─── */
 @media (max-width: 1200px) {
   .eventDetailCard {
-    max-width: 85vw;
-  }
-}
-
-@media (max-width: 1024px) {
-  .detailInfoSection {
-    padding: 2.5rem;
-  }
-
-  .detailTitle {
-    font-size: 1.8rem;
+    max-width: 90vw;
   }
 }
 
 @media (max-width: 900px) {
   .eventDetailCard {
     flex-direction: column;
-    max-width: 90vw;
-    max-height: 85vh;
-    overflow-y: auto;
-    border-radius: 20px;
+    max-height: 90vh;
+    border-radius: 24px;
   }
 
   .detailImageSection {
     flex: none;
-    height: 250px;
+    height: 300px;
     width: 100%;
   }
 
+  .detailImageSection::after {
+    opacity: 1;
+  }
+
   .detailInfoSection {
-    padding: 2rem;
-    border-left: none;
-    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    padding: 2.5rem;
+    background: rgba(10, 10, 15, 1);
   }
 
   .infoGrid {
-    grid-template-columns: 1fr 1fr;
-    gap: 1.5rem;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
   }
 
   .descriptionBox {
@@ -308,7 +319,7 @@
   }
 
   .pageTitle {
-    font-size: 2.2rem;
+    font-size: 2.5rem;
     letter-spacing: 2px;
   }
 
@@ -318,8 +329,17 @@
 }
 
 @media (max-width: 600px) {
+  .detailImageSection {
+    height: 220px;
+  }
+
+  .detailInfoSection {
+    padding: 2rem;
+  }
+
   .infoGrid {
     grid-template-columns: 1fr;
+    gap: 1.5rem;
   }
 
   .descriptionBox {
@@ -327,41 +347,41 @@
   }
 
   .detailTitle {
-    font-size: 1.6rem;
-  }
-
-  .detailInfoSection {
-    padding: 1.5rem;
+    font-size: 1.8rem;
   }
 }
 
 @media (max-width: 480px) {
   .pageTitle {
-    font-size: 1.6rem;
-    letter-spacing: 1px;
+    font-size: 2rem;
   }
 
-  .detailImageSection {
-    height: 200px;
+  .detailInfoSection {
+    padding: 1.5rem;
   }
 
-  .eventDetailCard {
-    border-radius: 16px;
+  .categoryTag {
+    font-size: 0.65rem;
+    letter-spacing: 2px;
   }
 
   .registerBtn {
     padding: 1rem;
-    font-size: 0.8rem;
+    font-size: 0.85rem;
   }
 }
 
 /* Extreme Small Screens */
 @media (max-width: 350px) {
   .detailTitle {
-    font-size: 1.3rem;
+    font-size: 1.5rem;
   }
 
   .detailInfoSection {
     padding: 1.25rem;
+  }
+
+  .detailImageSection {
+    height: 180px;
   }
 }

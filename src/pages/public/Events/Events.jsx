@@ -97,7 +97,7 @@ const Events = () => {
                 </div>
 
                 {/* Content Overlay */}
-                <div className="absolute inset-x-0 bottom-0 z-20 p-4 bg-gradient-to-t from-[#0a0a0f] via-[#0a0a0f]/60 to-transparent">
+                <div className="absolute inset-x-0 bottom-0 z-20 p-5 bg-gradient-to-t from-[#0a0a14] via-[#0a0a14]/80 to-transparent">
                   <h2 className="text-white text-base font-bold font-cinzel tracking-[1.5px] uppercase group-hover:text-[#00f2fe] transition-colors duration-300">
                     {event.title}
                   </h2>

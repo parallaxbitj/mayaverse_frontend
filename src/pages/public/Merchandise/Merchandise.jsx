@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { formatCurrency } from '../../../utils/helpers';
 import { useGSAP } from '../../../animations/hooks/useGSAP';
@@ -22,13 +22,20 @@ const Merchandise = () => {
   const [merchandise, setMerchandise] = useState([]);
   const [loading, setLoading] = useState(true);
   const [showForm, setShowForm] = useState(false);
-  const [selectedItem, setSelectedItem] = useState(null);
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const { isAuthenticated } = useAuth();
   const navigate = useNavigate();
 
   const heroTitleRef = useRef(null);
   const heroSubtitleRef = useRef(null);
   const containerRef = useRef(null);
+
+  // Images for the slider (Using premium tech-themed images)
+  const sliderImages = [
+    'https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&q=80&w=800',
+    'https://images.unsplash.com/photo-1556821840-3a63f95609a7?auto=format&fit=crop&q=80&w=800',
+    'https://images.unsplash.com/photo-1588850561407-ed78c282e89b?auto=format&fit=crop&q=80&w=800'
+  ];
 
   // Fetch logic
   React.useEffect(() => {
@@ -47,6 +54,15 @@ const Merchandise = () => {
     fetchMerch();
   }, []);
 
+  // Automatic Slider Logic
+  useEffect(() => {
+    if (loading) return;
+    const interval = setInterval(() => {
+      setCurrentImageIndex((prev) => (prev + 1) % sliderImages.length);
+    }, 4000); // 4 seconds interval
+    return () => clearInterval(interval);
+  }, [loading, sliderImages.length]);
+
   // Entry animation
   useGSAP(() => {
     if (!heroTitleRef.current) return;
@@ -58,16 +74,18 @@ const Merchandise = () => {
     return () => tl.kill();
   }, [loading]);
 
-  const handleBuyNow = (item) => {
+  const handleBuyNow = () => {
     if (!isAuthenticated()) {
       navigate(ROUTES.LOGIN);
       return;
     }
-    setSelectedItem(item);
     setShowForm(true);
   };
 
   if (loading) return <div className={styles.loading}>Entering the Rift Market...</div>;
+
+  // Use the T-Shirt as the featured item
+  const featuredItem = merchandise.find(item => item.id === '1') || merchandise[0];
 
   return (
     <div className={styles.merchPage} ref={containerRef}>
@@ -82,38 +100,66 @@ const Merchandise = () => {
         </div>
       </section>
 
-      {/* Merch Grid */}
+      {/* Featured Item Section */}
       <section className={styles.featuredSection}>
         <div className={styles.container}>
-          <div className={styles.merchGrid}>
-            {merchandise.map((item) => (
-              <div key={item.id} className={styles.merchCard}>
-                <div className={styles.imageFrame}>
-                  <img src={item.image} alt={item.name} className={styles.productImage} />
-                  <span className={styles.limitedBadge}>LIMITED EDITION</span>
-                </div>
+          <div className={styles.featuredLayout}>
 
-                <div className={styles.cardInfo}>
-                  <span className={styles.productTagline}>{item.tagline}</span>
-                  <h2 className={styles.productName}>{item.name}</h2>
-                  <p className={styles.productDesc}>{item.description}</p>
+            {/* Left Column: Image Slider */}
+            <div className={styles.sliderContainer}>
+              <div className={styles.slider}>
+                {sliderImages.map((img, idx) => (
+                  <div
+                    key={idx}
+                    className={`${styles.slide} ${idx === currentImageIndex ? styles.activeSlide : ''}`}
+                  >
+                    <img src={img} alt={`Mayaverse Merch ${idx + 1}`} className={styles.productImage} />
+                  </div>
+                ))}
+              </div>
 
-                  <div className={styles.priceRow}>
-                    <span className={styles.price}>{formatCurrency(item.price, 'INR')}</span>
-                    <button
-                      className={styles.buyButton}
-                      onClick={() => handleBuyNow(item)}
-                    >
-                      Buy Now
-                    </button>
+              <div className={styles.sliderDots}>
+                {sliderImages.map((_, idx) => (
+                  <button
+                    key={idx}
+                    className={`${styles.dot} ${idx === currentImageIndex ? styles.activeDot : ''}`}
+                    onClick={() => setCurrentImageIndex(idx)}
+                    aria-label={`Go to slide ${idx + 1}`}
+                  />
+                ))}
+              </div>
+
+              <span className={styles.limitedBadge}>LIMITED EDITION</span>
+            </div>
+
+            {/* Right Column: Info */}
+            <div className={styles.featuredInfo}>
+              <div className={styles.infoContent}>
+                <span className={styles.productTagline}>{featuredItem?.tagline}</span>
+                <h2 className={styles.productName}>{featuredItem?.name}</h2>
+                <p className={styles.productDesc}>{featuredItem?.description}</p>
+
+                <div className={styles.priceRow}>
+                  <div className={styles.priceContainer}>
+                    <span className={styles.priceLabel}>PRICE</span>
+                    <span className={styles.price}>{formatCurrency(featuredItem?.price || 599, 'INR')}</span>
                   </div>
                 </div>
+
+                <button
+                  className={styles.buyNowButton}
+                  onClick={handleBuyNow}
+                >
+                  Buy Now
+                </button>
+
+                <p className={styles.disclaimer}>
+                  Orders fulfilled on-site at PARALLAX · Payment at event
+                </p>
               </div>
-            ))}
+            </div>
+
           </div>
-          <p className={styles.disclaimer}>
-            Orders fulfilled on-site at PARALLAX · Payment at event
-          </p>
         </div>
       </section>
 
@@ -125,12 +171,12 @@ const Merchandise = () => {
               ✕
             </button>
             <p className={styles.formNote}>
-              Item: <strong>{selectedItem?.name}</strong>
+              Item: <strong>{featuredItem?.name}</strong>
             </p>
             <iframe
               src={GOOGLE_FORM_URL}
               className={styles.formIframe}
-              title="MAYAVERSE T-Shirt Order Form"
+              title="MAYAVERSE Merch Order Form"
               frameBorder="0"
               marginHeight="0"
               marginWidth="0"

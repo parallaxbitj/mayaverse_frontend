@@ -148,72 +148,102 @@
     position: fixed;
     inset: 0;
     z-index: 5000;
-    background: rgba(0, 0, 0, 0.95);
-    backdrop-filter: blur(10px);
+    background: rgba(4, 4, 12, 0.98);
+    backdrop-filter: blur(20px);
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 2rem;
+    padding: 1rem;
+    animation: fadeIn 0.4s ease;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
 }
 
 .closeButton {
     position: absolute;
     top: 2rem;
     right: 2rem;
-    background: rgba(255, 255, 255, 0.05);
+    background: rgba(255, 255, 255, 0.03);
     border: 1px solid rgba(255, 255, 255, 0.1);
     color: #fff;
-    width: 45px;
-    height: 45px;
+    width: 50px;
+    height: 50px;
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
     cursor: pointer;
-    font-size: 1.2rem;
-    transition: all 0.3s ease;
+    font-size: 1.5rem;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 5010;
 }
 
 .closeButton:hover {
-    background: rgba(255, 255, 255, 0.15);
-    transform: rotate(90deg);
+    background: rgba(255, 0, 222, 0.2);
+    border-color: #ff00de;
+    transform: rotate(90deg) scale(1.1);
+    box-shadow: 0 0 20px rgba(255, 0, 222, 0.3);
 }
 
 .lightboxContent {
-    max-width: 90vw;
-    max-height: 85vh;
+    width: 100%;
+    height: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 1.5rem;
+    justify-content: center;
+    position: relative;
+    padding: 4rem 2rem;
 }
 
 .fullImage {
     max-width: 100%;
-    max-height: calc(85vh - 80px);
+    max-height: 80vh;
     object-fit: contain;
-    border-radius: 12px;
-    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
+    /* CRITICAL: Show the WHOLE image */
+    border-radius: 8px;
+    box-shadow: 0 0 50px rgba(0, 0, 0, 0.8), 0 0 20px rgba(138, 124, 255, 0.1);
+    scale: 1;
+    transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .lightboxInfo {
+    margin-top: 2rem;
     text-align: center;
+    background: linear-gradient(to top, rgba(10, 10, 20, 0.8), transparent);
+    padding: 2rem;
+    border-radius: 20px;
+    width: 100%;
+    max-width: 600px;
 }
 
 .lightboxTitle {
     font-family: 'Cinzel', serif;
-    font-size: 1.5rem;
+    font-size: 1.8rem;
     font-weight: 700;
-    letter-spacing: 2px;
-    margin-bottom: 0.4rem;
+    letter-spacing: 3px;
+    margin-bottom: 0.5rem;
     color: #fff;
+    background: linear-gradient(to bottom, #fff, #b4aad2);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
 }
 
 .lightboxTag {
     font-family: 'Syncopate', sans-serif;
-    font-size: 0.7rem;
-    letter-spacing: 4px;
-    color: rgba(138, 124, 255, 0.6);
+    font-size: 0.8rem;
+    letter-spacing: 5px;
+    color: #00f2fe;
+    text-transform: uppercase;
 }
 
 /* ─── Responsive ─── */

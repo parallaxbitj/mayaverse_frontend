@@ -37,10 +37,11 @@ const Navbar = () => {
     return () => window.removeEventListener('scroll', controlNavbar);
   }, [lastScrollY, isHomePage]);
 
-  // Close drawer/dropdown on route change
+  // Close drawer/dropdown and reset visibility on route change
   useEffect(() => {
     setIsOpen(false);
     setIsProfileOpen(false);
+    setIsVisible(true);
   }, [location]);
 
   return (

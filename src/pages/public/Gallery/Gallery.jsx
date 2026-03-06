@@ -3,37 +3,36 @@ import { motion, AnimatePresence } from 'framer-motion';
 import styles from './Gallery.module.css';
 
 const GALLERY_IMAGES = [
-    { id: 1, url: new URL('../../../assets/images/events/techx.png', import.meta.url).href, title: 'Tech X', size: 'large' },
-    { id: 2, url: new URL('../../../assets/images/events/filmaura.jpeg', import.meta.url).href, title: 'Filmaura', size: 'medium' },
-    { id: 3, url: new URL('../../../assets/images/events/gdghackathon.jpeg', import.meta.url).href, title: 'GDG Hackathon', size: 'small' },
-    { id: 4, url: new URL('../../../assets/images/events/codewars.png', import.meta.url).href, title: 'Code Wars', size: 'medium' },
-    { id: 5, url: new URL('../../../assets/images/events/robosoc.jpeg', import.meta.url).href, title: 'Robosoc', size: 'small' },
-    { id: 6, url: new URL('../../../assets/images/events/gamingevent.jpeg', import.meta.url).href, title: 'Gaming Arena', size: 'wide' },
-    { id: 7, url: new URL('../../../assets/images/events/mockparliament.jpeg', import.meta.url).href, title: 'Mock Parliament', size: 'small' },
-    { id: 8, url: new URL('../../../assets/images/events/stockstrom.jpeg', import.meta.url).href, title: 'Stock Strom', size: 'medium' },
-    { id: 9, url: new URL('../../../assets/images/events/t hunt.jpeg', import.meta.url).href, title: 'Treasure Hunt', size: 'large' },
-    { id: 10, url: new URL('../../../assets/images/events/admaking.png', import.meta.url).href, title: 'AD Making', size: 'wide' },
-    { id: 11, url: new URL('../../../assets/images/events/aipromptbattle.png', import.meta.url).href, title: 'AI Prompt Battle', size: 'medium' },
-    { id: 12, url: new URL('../../../assets/images/events/auctionleague.png', import.meta.url).href, title: 'Auction League', size: 'small' },
-    { id: 13, url: new URL('../../../assets/images/events/brandwars.png', import.meta.url).href, title: 'Brand Wars', size: 'large' },
-    { id: 14, url: new URL('../../../assets/images/events/debugging .jpeg', import.meta.url).href, title: 'Circuit Debugging', size: 'medium' },
-    { id: 15, url: new URL('../../../assets/images/events/decodethescam.png', import.meta.url).href, title: 'Decode The Scam', size: 'wide' },
-    { id: 16, url: new URL('../../../assets/images/events/rapidkeys.png', import.meta.url).href, title: 'Rapid Keys', size: 'small' },
-    { id: 17, url: new URL('../../../assets/images/events/technoquiz.png', import.meta.url).href, title: 'Techno Quiz', size: 'medium' },
-    // Unsplash High-Quality Stock
-    { id: 18, url: 'https://images.unsplash.com/photo-1540575861501-7c0011738242?auto=format&fit=crop&q=80&w=800', title: 'Grand Stage', size: 'large' },
-    { id: 19, url: 'https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&q=80&w=800', title: 'Innovation Workshop', size: 'medium' },
-    { id: 20, url: 'https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&q=80&w=800', title: 'Cyber Security', size: 'small' },
-    { id: 21, url: 'https://images.unsplash.com/photo-1504384308090-c89e120c8d1c?auto=format&fit=crop&q=80&w=800', title: 'Developer Meetup', size: 'wide' },
-    { id: 22, url: 'https://images.unsplash.com/photo-1511512578047-dfb367046420?auto=format&fit=crop&q=80&w=800', title: 'Esports Finals', size: 'medium' },
-    { id: 23, url: 'https://images.unsplash.com/photo-1558591710-4b4a1ae0f04d?auto=format&fit=crop&q=80&w=800', title: 'Digital Art', size: 'small' },
-    { id: 24, url: 'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&q=80&w=800', title: 'Robotics Demo', size: 'large' },
-    { id: 25, url: 'https://images.unsplash.com/photo-1531297484001-80022131f5a1?auto=format&fit=crop&q=80&w=800', title: 'Future Tech', size: 'small' },
-    { id: 26, url: 'https://images.unsplash.com/photo-1506399558188-daf6f8f2b3b0?auto=format&fit=crop&q=80&w=800', title: 'Networking Hub', size: 'medium' },
-    { id: 27, url: 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&q=80&w=800', title: 'Global Sync', size: 'wide' },
-    { id: 28, url: 'https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&q=80&w=800', title: 'Collaborative Coding', size: 'medium' },
-    { id: 29, url: 'https://images.unsplash.com/photo-1550745165-9bc0b252726f?auto=format&fit=crop&q=80&w=800', title: 'Tech Rack', size: 'small' },
-    { id: 30, url: 'https://images.unsplash.com/photo-1485827404703-89b55fcc595e?auto=format&fit=crop&q=80&w=800', title: 'AI Research', size: 'large' },
+    { id: 1, url: new URL('../../../assets/gallery/1.jpeg', import.meta.url).href, title: 'Inaugural Ceremony', size: 'large' },
+    { id: 2, url: new URL('../../../assets/gallery/2.JPG', import.meta.url).href, title: 'Tech Showcase', size: 'medium' },
+    { id: 3, url: new URL('../../../assets/gallery/3.jpeg', import.meta.url).href, title: 'Innovator Workshop', size: 'small' },
+    { id: 4, url: new URL('../../../assets/gallery/4.JPG', import.meta.url).href, title: 'Hackathon Focus', size: 'medium' },
+    { id: 5, url: new URL('../../../assets/gallery/5.JPEG', import.meta.url).href, title: 'Robot Arena', size: 'small' },
+    { id: 6, url: new URL('../../../assets/gallery/6.JPG', import.meta.url).href, title: 'Grand Audience', size: 'wide' },
+    { id: 7, url: new URL('../../../assets/gallery/7.JPEG', import.meta.url).href, title: 'Main Stage Reveal', size: 'large' },
+    { id: 8, url: new URL('../../../assets/gallery/8.JPG', import.meta.url).href, title: 'Networking Hub', size: 'small' },
+    { id: 9, url: new URL('../../../assets/gallery/9.jpeg', import.meta.url).href, title: 'Critical Thinking', size: 'medium' },
+    { id: 10, url: new URL('../../../assets/gallery/10.JPG', import.meta.url).href, title: 'Future Architects', size: 'wide' },
+    { id: 11, url: new URL('../../../assets/gallery/11.jpeg', import.meta.url).href, title: 'Team Synergy', size: 'medium' },
+    { id: 12, url: new URL('../../../assets/gallery/12.JPG', import.meta.url).href, title: 'Victory Moment', size: 'small' },
+    { id: 13, url: new URL('../../../assets/gallery/13.JPG', import.meta.url).href, title: 'Project Pitch', size: 'large' },
+    { id: 14, url: new URL('../../../assets/gallery/14.JPG', import.meta.url).href, title: 'Deep Work', size: 'medium' },
+    { id: 15, url: new URL('../../../assets/gallery/15.JPG', import.meta.url).href, title: 'The Crowd', size: 'wide' },
+    { id: 16, url: new URL('../../../assets/gallery/16.JPG', import.meta.url).href, title: 'Tech Talk', size: 'small' },
+    { id: 17, url: new URL('../../../assets/gallery/17.JPG', import.meta.url).href, title: 'Award Ceremony', size: 'medium' },
+    { id: 18, url: new URL('../../../assets/gallery/18.JPG', import.meta.url).href, title: 'Innovators Circle', size: 'large' },
+    { id: 19, url: new URL('../../../assets/gallery/19.jpeg', import.meta.url).href, title: 'Code Review', size: 'medium' },
+    { id: 20, url: new URL('../../../assets/gallery/20.jpeg', import.meta.url).href, title: 'Hardware Lab', size: 'small' },
+    { id: 21, url: new URL('../../../assets/gallery/21.JPG', import.meta.url).href, title: 'Gaming Arena', size: 'wide' },
+    { id: 22, url: new URL('../../../assets/gallery/22.jpeg', import.meta.url).href, title: 'Digital Design', size: 'medium' },
+    { id: 23, url: new URL('../../../assets/gallery/23.JPG', import.meta.url).href, title: 'Mentor Session', size: 'small' },
+    { id: 24, url: new URL('../../../assets/gallery/24.JPG', import.meta.url).href, title: 'Project Demo', size: 'large' },
+    { id: 25, url: new URL('../../../assets/gallery/25.jpeg', import.meta.url).href, title: 'Peer Discussion', size: 'small' },
+    { id: 26, url: new URL('../../../assets/gallery/26.JPG', import.meta.url).href, title: 'Event Planning', size: 'medium' },
+    { id: 27, url: new URL('../../../assets/gallery/27.JPG', import.meta.url).href, title: 'Stage Prep', size: 'wide' },
+    { id: 28, url: new URL('../../../assets/gallery/28.JPG', import.meta.url).href, title: 'Grand Finale', size: 'large' },
+    { id: 29, url: new URL('../../../assets/gallery/29.JPG', import.meta.url).href, title: 'Mayaverse Core', size: 'medium' },
+    { id: 30, url: new URL('../../../assets/gallery/30.JPG', import.meta.url).href, title: 'The Legacy', size: 'small' },
 ];
 
 const Gallery = () => {
@@ -69,9 +68,10 @@ const Gallery = () => {
                     {GALLERY_IMAGES.map((image, index) => (
                         <motion.div
                             key={image.id}
-                            initial={{ opacity: 0, scale: 0.9 }}
-                            animate={{ opacity: 1, scale: 1 }}
-                            transition={{ delay: index * 0.1, duration: 0.5 }}
+                            initial={{ opacity: 0, y: 20 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true, margin: "-50px" }}
+                            transition={{ duration: 0.4, delay: (index % 10) * 0.05 }}
                             whileHover={{ y: -5 }}
                             className={`${styles.galleryItem} ${styles[image.size]}`}
                             onClick={() => setSelectedImage(image)}

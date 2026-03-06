@@ -45,172 +45,304 @@
   letter-spacing: 0.5px;
 }
 
-/* ─── Merch Grid Section ─── */
+/* ─── Featured Item Section ─── */
 .featuredSection {
-  padding: 3rem 0 7rem;
+  padding: 3rem 0 8rem;
 }
 
-.merchGrid {
+.featuredLayout {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 2.5rem;
-  align-items: stretch;
-}
-
-/* ─── Merch Card ─── */
-.merchCard {
-  background: rgba(255, 255, 255, 0.03);
-  border: 1px solid rgba(200, 80, 120, 0.15);
-  border-radius: 20px;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 5rem;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 40px;
+  padding: 4rem;
+  backdrop-filter: blur(20px);
+  box-shadow: 0 50px 100px rgba(0, 0, 0, 0.6);
+  position: relative;
   overflow: hidden;
-  display: flex;
-  flex-direction: column;
-  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-  height: 100%;
 }
 
-.merchCard:hover {
-  transform: translateY(-10px);
-  border-color: rgba(200, 80, 120, 0.4);
-  box-shadow: 0 15px 40px rgba(200, 60, 100, 0.15);
-  background: rgba(255, 255, 255, 0.05);
+.featuredLayout::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle at center, rgba(138, 124, 255, 0.05) 0%, transparent 70%);
+  pointer-events: none;
 }
 
-.imageFrame {
+/* --- Image Slider --- */
+.sliderContainer {
   position: relative;
   width: 100%;
-  aspect-ratio: 4 / 5;
+  aspect-ratio: 1 / 1;
+  border-radius: 24px;
   overflow: hidden;
+  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.8);
   background: #000;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.slider {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+.slide {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition: opacity 1.2s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: 1;
+  transform: scale(1.05);
+  transition: opacity 1.2s ease-in-out, transform 1.2s ease-out;
+}
+
+.activeSlide {
+  opacity: 1;
+  z-index: 2;
+  transform: scale(1);
 }
 
 .productImage {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: transform 0.6s ease;
 }
 
-.merchCard:hover .productImage {
-  transform: scale(1.1);
+.sliderDots {
+  position: absolute;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 0.75rem;
+  z-index: 20;
+}
+
+.dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.2);
+  border: none;
+  cursor: pointer;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  padding: 0;
+}
+
+.activeDot {
+  background: #ff00de;
+  width: 30px;
+  border-radius: 5px;
+  box-shadow: 0 0 15px rgba(255, 0, 222, 0.6);
 }
 
 .limitedBadge {
   position: absolute;
-  top: 1rem;
-  left: 1rem;
-  background: linear-gradient(135deg, rgba(200, 60, 100, 0.9), rgba(140, 30, 70, 0.9));
+  top: 2rem;
+  left: 2rem;
+  background: linear-gradient(135deg, #ff00de, #8a7cff);
   color: #fff;
   font-family: 'Syncopate', sans-serif;
-  font-size: 0.5rem;
+  font-size: 0.65rem;
+  font-weight: 700;
   letter-spacing: 2px;
-  padding: 0.35rem 0.7rem;
-  border-radius: 9999px;
+  padding: 0.6rem 1.2rem;
+  border-radius: 999px;
   text-transform: uppercase;
-  z-index: 2;
+  z-index: 20;
+  box-shadow: 0 10px 20px rgba(255, 0, 222, 0.3);
 }
 
-/* ─── Card Info ─── */
-.cardInfo {
-  padding: 1.5rem;
+/* --- Info Section --- */
+.featuredInfo {
+  position: relative;
+  z-index: 5;
+}
+
+.infoContent {
   display: flex;
   flex-direction: column;
-  flex-grow: 1;
-  gap: 0.75rem;
-}
-
-.productName {
-  font-family: 'Cinzel', serif;
-  font-size: 1.4rem;
-  font-weight: 700;
-  color: #fff;
-  letter-spacing: 1px;
-  line-height: 1.2;
+  gap: 1.5rem;
 }
 
 .productTagline {
   font-family: 'Montserrat', sans-serif;
-  font-size: 0.75rem;
-  color: rgba(200, 80, 120, 0.8);
-  font-weight: 500;
+  font-size: 0.9rem;
+  color: #00f2fe;
+  font-weight: 600;
+  letter-spacing: 4px;
   text-transform: uppercase;
-  letter-spacing: 1px;
+  margin-bottom: -0.5rem;
+}
+
+.productName {
+  font-family: 'Cinzel', serif;
+  font-size: clamp(2.5rem, 5vw, 4.2rem);
+  font-weight: 800;
+  line-height: 1.1;
+  background: linear-gradient(to bottom, #fff 0%, rgba(255, 255, 255, 0.6) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin: 0;
 }
 
 .productDesc {
   font-family: 'Montserrat', sans-serif;
-  font-size: 0.85rem;
-  color: rgba(200, 190, 230, 0.5);
-  line-height: 1.6;
-  margin-bottom: 0.5rem;
+  font-size: 1.15rem;
+  line-height: 1.8;
+  color: rgba(255, 255, 255, 0.6);
+  max-width: 550px;
+  margin: 0;
 }
 
 .priceRow {
+  margin-top: 1rem;
+}
+
+.priceContainer {
   display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-top: auto;
-  padding-top: 1rem;
-  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.priceLabel {
+  font-family: 'Syncopate', sans-serif;
+  font-size: 0.7rem;
+  color: rgba(255, 255, 255, 0.3);
+  letter-spacing: 3px;
 }
 
 .price {
   font-family: 'Orbitron', sans-serif;
-  font-size: 1.25rem;
+  font-size: 2.5rem;
   font-weight: 700;
-  color: rgba(255, 160, 180, 0.95);
+  color: #fff;
+  text-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
 }
 
-.buyButton {
-  width: 100%;
-  padding: 0.5rem;
-  background: linear-gradient(135deg, rgba(200, 60, 100, 0.6), rgba(140, 40, 80, 0.6));
-  border: 1px solid rgba(200, 80, 120, 0.3);
+.buyNowButton {
+  margin-top: 1.5rem;
+  padding: 1.4rem 3.5rem;
+  background: linear-gradient(90deg, #ff00de 0%, #7000ff 100%);
+  border: none;
+  border-radius: 12px;
   color: #fff;
-  border-radius: 8px;
-  font-family: 'Montserrat', sans-serif;
-  font-weight: 700;
-  font-size: 0.8rem;
-  letter-spacing: 1.5px;
+  font-family: 'Orbitron', sans-serif;
+  font-weight: 800;
+  font-size: 1rem;
+  letter-spacing: 3px;
   text-transform: uppercase;
   cursor: pointer;
-  transition: all 0.3s ease;
-  margin-top: 1rem;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  box-shadow: 0 15px 35px rgba(255, 0, 222, 0.4);
+  width: fit-content;
+  position: relative;
+  overflow: hidden;
 }
 
-.buyButton:hover {
-  background: linear-gradient(135deg, rgba(200, 60, 100, 0.8), rgba(140, 40, 80, 0.8));
-  border-color: rgba(255, 100, 140, 0.5);
-  box-shadow: 0 0 20px rgba(200, 60, 100, 0.3);
-  transform: translateY(-2px);
+.buyNowButton::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.6s ease;
+}
+
+.buyNowButton:hover {
+  transform: translateY(-5px) scale(1.03);
+  box-shadow: 0 20px 45px rgba(255, 0, 222, 0.6);
+}
+
+.buyNowButton:hover::before {
+  left: 100%;
 }
 
 .disclaimer {
   font-family: 'Montserrat', sans-serif;
-  font-size: 0.65rem;
-  color: rgba(200, 190, 230, 0.25);
-  text-align: center;
-  margin-top: 1rem;
+  font-size: 0.75rem;
+  color: rgba(255, 255, 255, 0.25);
+  margin-top: 1.5rem;
 }
 
-/* ─── Responsive ─── */
-@media (max-width: 1024px) {
-  .merchGrid {
-    grid-template-columns: repeat(2, 1fr);
+/* --- Responsive --- */
+@media (max-width: 1100px) {
+  .featuredLayout {
+    gap: 3.5rem;
+    padding: 3rem;
   }
 }
 
-@media (max-width: 640px) {
-  .merchGrid {
+@media (max-width: 900px) {
+  .featuredSection {
+    padding: 2rem 0 6rem;
+  }
+
+  .featuredLayout {
     grid-template-columns: 1fr;
-    max-width: 400px;
+    text-align: center;
+    padding: 3rem 2rem;
+    gap: 3rem;
+  }
+
+  .sliderContainer {
+    max-width: 500px;
     margin: 0 auto;
+  }
+
+  .infoContent {
+    align-items: center;
+  }
+
+  .productDesc {
+    max-width: 100%;
+  }
+
+  .buyNowButton {
+    width: 100%;
+    max-width: 380px;
   }
 }
 
 @media (max-width: 480px) {
   .heroSection {
-    padding: 6rem 0 3rem;
+    padding: 6.5rem 0 2.5rem;
+  }
+
+  .featuredLayout {
+    padding: 2rem 1.5rem;
+    border-radius: 24px;
+    gap: 2.5rem;
+  }
+
+  .productTagline {
+    font-size: 0.8rem;
+    letter-spacing: 2px;
+  }
+
+  .productDesc {
+    font-size: 1rem;
+    line-height: 1.6;
+  }
+
+  .price {
+    font-size: 2.1rem;
+  }
+
+  .buyNowButton {
+    padding: 1.2rem 2.5rem;
+    font-size: 0.9rem;
   }
 }
 
