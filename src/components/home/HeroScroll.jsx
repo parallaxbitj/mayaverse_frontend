@@ -9,6 +9,7 @@ const HeroScroll = () => {
     const dateTeaserRef = useRef(null); // Sequence 1
     const presentsRef = useRef(null);   // Sequence 2
     const mainContentRef = useRef(null); // Sequence 3
+    const timerRef = useRef(null);
     const [images, setImages] = useState([]);
     const [loading, setLoading] = useState(true);
 
@@ -113,7 +114,15 @@ const HeroScroll = () => {
 
             // 1. Date Teaser (10-30)
             if (dateTeaserRef.current) {
-                dateTeaserRef.current.style.opacity = getSequenceOpacity(frameIndex, 10, 30);
+                const dateOpacity = getSequenceOpacity(frameIndex, 10, 40);
+                dateTeaserRef.current.style.opacity = dateOpacity;
+
+                if (timerRef.current) {
+                    timerRef.current.style.opacity = 1 - dateOpacity;
+                }
+                if (mainContentRef.current) {
+                    mainContentRef.current.style.opacity = 1 - dateOpacity;
+                }
             }
 
             // 2. Presents Teaser (40-60)
@@ -211,7 +220,7 @@ const HeroScroll = () => {
                     </p>
 
                     {/* Timer Only */}
-                    <div style={{ pointerEvents: 'auto' }}>
+                    <div ref={timerRef} style={{ pointerEvents: 'auto' }}>
                         <Timer />
                     </div>
                 </div>

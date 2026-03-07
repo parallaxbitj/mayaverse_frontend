@@ -99,8 +99,8 @@ export const CONTACT_INFO = {
   PHONE: '+91 97733 52111', // Varun Tyagi Sir
   ADDRESS: 'Mayaverse HQ',
   TEAM: [
-    { NAME: 'Varun Tyagi Sir', PHONE: '+91 97733 52111' },
-    { NAME: 'Vansh Sir', PHONE: '+91 81144 82258' }
+    { NAME: 'Varun Tyagi ', PHONE: '+91 97733 52111' },
+    { NAME: 'Vansh Arora', PHONE: '+91 81144 82258' }
   ]
 };
 
