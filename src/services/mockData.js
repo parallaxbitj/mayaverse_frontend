@@ -424,6 +424,9 @@ const otpStore = new Map();
 
 const delay = (ms) => new Promise(resolve => setTimeout(resolve, ms));
 
+import airtable from './airtable';
+import { hashPassword } from '../utils/helpers';
+
 // Helper to generate random 6-digit OTP
 const generateOTP = () => {
   return Math.floor(100000 + Math.random() * 900000).toString();
@@ -519,46 +522,59 @@ export const login = async (email, password, otp = null) => {
     const storedOtp = otpStore.get(email.toLowerCase());
     if (storedOtp !== otp) throw new Error('Invalid OTP');
 
-    const user = mockUsers.find(u => u.email.toLowerCase() === email.toLowerCase());
+    // Fetch user from Airtable instead of mockUsers
+    const user = await airtable.getUserByEmail(email);
     if (user) {
-      const { password: _, ...userWithoutPassword } = user;
+      if (user.payment_status === 'Pending') {
+        throw new Error('Your account is pending payment verification. Please check back later.');
+      }
+      const { passwordHash: _, ...userWithoutPassword } = user;
       return { success: true, user: userWithoutPassword };
     }
     throw new Error('User not found. Please sign up first.');
   }
 
-  // Legacy/Admin password path
-  const user = mockUsers.find(u => u.email === email && u.password === password);
+  // Legacy/Admin password path or BIT manual password
+  const user = await airtable.getUserByEmail(email);
   if (user) {
-    const { password: _, ...userWithoutPassword } = user;
-    return { success: true, user: userWithoutPassword };
+    const hashedInput = await hashPassword(password);
+    if (user.passwordHash === hashedInput) {
+      const { passwordHash: _, ...userWithoutPassword } = user;
+      return { success: true, user: userWithoutPassword };
+    }
   }
   throw new Error('Invalid email or password');
 };
 
 export const googleLogin = async (email) => {
   await delay(1000);
-  // For mock purposes, if it's the BIT domain, we "auto-generate" or find the user
-  const existingUser = mockUsers.find(u => u.email === email);
+  const isBIT = email.toLowerCase().endsWith('@bitmesra.ac.in');
+  const existingUser = await airtable.getUserByEmail(email);
 
   if (existingUser) {
-    const { password: _, ...userWithoutPassword } = existingUser;
+    if (existingUser.payment_status === 'Pending' && !isBIT) {
+      throw new Error('Your account is pending verification.');
+    }
+    const { passwordHash: _, ...userWithoutPassword } = existingUser;
     return { success: true, user: userWithoutPassword };
   } else {
+    // Only auto-create for BIT domain
+    if (!isBIT) {
+      throw new Error('Account not found. Please sign up first.');
+    }
+
     // Create a new user automatically for BIT domain
-    const newUser = {
-      id: generateId(),
-      name: email.split('.')[0].toUpperCase(), // Mock name from email
+    const newUser = await airtable.createUser({
+      name: email.split('.')[0].toUpperCase(),
       email: email,
-      role: USER_ROLES.USER,
-      phone: '',
-      college: 'BIT Mesra',
+      user_type: 'BIT',
+      payment_status: 'Free',
+      passwordHash: 'GOOGLE_AUTH_NO_PASSWORD',
       registeredEvents: [],
-      orders: [],
-      createdAt: new Date().toISOString(),
-    };
-    mockUsers.push(newUser);
-    return { success: true, user: newUser };
+    });
+
+    const { passwordHash: _, ...userWithoutPassword } = newUser;
+    return { success: true, user: userWithoutPassword };
   }
 };
 
@@ -572,23 +588,23 @@ export const signup = async (userData, otp) => {
     if (storedOtp !== otp) throw new Error('Invalid OTP');
   }
 
-  const existingUser = mockUsers.find(u => u.email === userData.email);
+  const existingUser = await airtable.getUserByEmail(userData.email);
 
   if (existingUser) {
     throw new Error('Email already registered');
   } else {
-    const newUser = {
-      id: generateId(),
+    // Prepare Airtable user data
+    const hashedPassword = userData.password ? await hashPassword(userData.password) : 'NO_PASSWORD';
+
+    const newUser = await airtable.createUser({
       ...userData,
-      role: USER_ROLES.USER,
+      user_type: isBIT ? 'BIT' : 'NON_BIT',
+      payment_status: isBIT ? 'Free' : 'Pending',
+      passwordHash: hashedPassword,
       registeredEvents: [],
-      orders: [],
-      createdAt: new Date().toISOString(),
-    };
+    });
 
-    mockUsers.push(newUser);
-
-    const { password: _, ...userWithoutPassword } = newUser;
+    const { passwordHash: _, ...userWithoutPassword } = newUser;
     return { success: true, user: userWithoutPassword };
   }
 };

@@ -12,22 +12,22 @@
  */
 export const formatDate = (date, format = 'MMM DD, YYYY') => {
   if (!date) return '';
-  
+
   const d = new Date(date);
   const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
-  
+
   const day = d.getDate();
   const month = months[d.getMonth()];
   const year = d.getFullYear();
   const hours = d.getHours().toString().padStart(2, '0');
   const minutes = d.getMinutes().toString().padStart(2, '0');
-  
+
   if (format === 'MMM DD, YYYY') {
     return `${month} ${day}, ${year}`;
   } else if (format === 'MMM DD, YYYY HH:mm') {
     return `${month} ${day}, ${year} ${hours}:${minutes}`;
   }
-  
+
   return d.toLocaleDateString();
 };
 
@@ -39,7 +39,7 @@ export const formatDate = (date, format = 'MMM DD, YYYY') => {
  */
 export const formatCurrency = (amount, currency = 'USD') => {
   if (typeof amount !== 'number') return '$0.00';
-  
+
   return new Intl.NumberFormat('en-US', {
     style: 'currency',
     currency: currency,
@@ -75,11 +75,11 @@ export const validatePassword = (password) => {
   if (!password) {
     return { isValid: false, message: 'Password is required' };
   }
-  
+
   if (password.length < 6) {
     return { isValid: false, message: 'Password must be at least 6 characters' };
   }
-  
+
   return { isValid: true, message: 'Password is valid' };
 };
 
@@ -192,9 +192,9 @@ export const sortBy = (array, key, order = 'asc') => {
  */
 export const filterBySearch = (array, searchTerm, keys) => {
   if (!searchTerm) return array;
-  
+
   const lowerSearchTerm = searchTerm.toLowerCase();
-  
+
   return array.filter(item => {
     return keys.some(key => {
       const value = item[key];
@@ -219,7 +219,7 @@ export const storage = {
       return null;
     }
   },
-  
+
   set: (key, value) => {
     try {
       localStorage.setItem(key, JSON.stringify(value));
@@ -229,7 +229,7 @@ export const storage = {
       return false;
     }
   },
-  
+
   remove: (key) => {
     try {
       localStorage.removeItem(key);
@@ -239,7 +239,7 @@ export const storage = {
       return false;
     }
   },
-  
+
   clear: () => {
     try {
       localStorage.clear();
@@ -270,6 +270,19 @@ export const scrollToElement = (elementId) => {
   if (element) {
     element.scrollIntoView({ behavior: 'smooth' });
   }
+};
+
+/**
+ * Securely hash a password using SHA-256
+ * @param {string} password - The plain text password
+ * @returns {Promise<string>} The hex-encoded hash
+ */
+export const hashPassword = async (password) => {
+  const encoder = new TextEncoder();
+  const data = encoder.encode(password);
+  const hashBuffer = await window.crypto.subtle.digest('SHA-256', data);
+  const hashArray = Array.from(new Uint8Array(hashBuffer));
+  return hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
 };
 
 /**
@@ -306,4 +319,5 @@ export default {
   scrollToTop,
   scrollToElement,
   copyToClipboard,
+  hashPassword,
 };

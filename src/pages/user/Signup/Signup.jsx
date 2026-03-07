@@ -1,119 +1,149 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { signup as signupService, googleLogin as googleLoginService, sendOTP as sendOTPService, verifyOTP as verifyOTPService } from '../../../services/mockData';
 import { useAuth } from '../../../hooks/useAuth';
 import { ROUTES, APP_NAME } from '../../../constants/config';
 import { isValidEmail } from '../../../utils/helpers';
+import { registerUser, verifyEmailOTP, createPaymentOrder, openRazorpayCheckout } from '../../../services/api';
+import emailjs from '@emailjs/browser';
 import styles from './Signup.module.css';
 
+/**
+ * MAYAVERSE SIGNUP — wired to Cloudflare Worker backend
+ *
+ * NON-BIT flow:
+ *   1. Fill details (name, email, phone, college, password) → POST /register → OTP sent
+ *   2. Enter OTP → POST /verify-email-otp → {next_step: 'payment'}
+ *   3. POST /create-payment → Razorpay checkout → payment.captured webhook → paid
+ *   4. Navigate to Home
+ *
+ * BIT flow:
+ *   1. Enter @bitmesra.ac.in email + other details → POST /register → OTP sent
+ *   2. Enter OTP → POST /verify-email-otp → JWT returned immediately (free)
+ *   3. Navigate to UserProfile
+ */
+
 const Signup = () => {
+  const [step, setStep] = useState('details'); // 'details' | 'otp' | 'payment'
   const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    otp: '',
-    phone: '',
-    college: '',
+    name: '', email: '', phone: '', college: '', password: '', confirmPassword: '',
   });
-  const [otpSent, setOtpSent] = useState(false);
-  const [isVerified, setIsVerified] = useState(false);
+  const [otp, setOtp] = useState('');
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
+  const [paymentMsg, setPaymentMsg] = useState('');
+
   const { login } = useAuth();
   const navigate = useNavigate();
-
   const isBIT = formData.email.toLowerCase().endsWith('@bitmesra.ac.in');
 
-  const handleGoogleLogin = async () => {
-    if (!isValidEmail(formData.email)) {
-      setError('Please enter a valid email first');
-      return;
-    }
-
-    setLoading(true);
-    setError('');
-
-    try {
-      const response = await googleLoginService(formData.email);
-      login(response.user);
-      if (isBIT) {
-        navigate(ROUTES.USER_PROFILE);
-      } else {
-        navigate('/');
-      }
-    } catch (err) {
-      setError(err.message || 'Google Login failed');
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  const handleSendOTP = async () => {
-    if (!isValidEmail(formData.email)) {
-      setError('Please enter a valid email');
-      return;
-    }
-    setLoading(true);
-    setError('');
-    try {
-      await sendOTPService(formData.email);
-      setOtpSent(true);
-    } catch (err) {
-      setError(err.message || 'Failed to send OTP');
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  const handleVerifyOTP = async () => {
-    setLoading(true);
-    setError('');
-    try {
-      await verifyOTPService(formData.email, formData.otp);
-      setIsVerified(true);
-      setError('');
-    } catch (err) {
-      setError(err.message || 'Invalid OTP code');
-    } finally {
-      setLoading(false);
-    }
-  };
+  useEffect(() => {
+    emailjs.init(import.meta.env.VITE_EMAILJS_PUBLIC_KEY);
+  }, []);
 
   const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
+    setFormData((p) => ({ ...p, [e.target.name]: e.target.value }));
     setError('');
   };
 
-  const handleSubmit = async (e) => {
+  // ─── Step 1: Register → POST /register ────────────────────────────────────
+  const handleRegister = async (e) => {
     e.preventDefault();
     setError('');
-
-    if (!isVerified && !isBIT) {
-      setError('Please verify your email first');
-      return;
-    }
-
-    if (!formData.name) {
-      setError('Full Name is required');
-      return;
-    }
+    if (!formData.name.trim()) return setError('Full name is required.');
+    if (!isValidEmail(formData.email)) return setError('Please enter a valid email address.');
+    if (!formData.phone.trim()) return setError('Phone number is required.');
+    if (!formData.college.trim()) return setError('College name is required.');
+    if (formData.password.length < 6) return setError('Password must be at least 6 characters.');
+    if (formData.password !== formData.confirmPassword) return setError('Passwords do not match.');
 
     setLoading(true);
-
     try {
-      const response = await signupService(formData, formData.otp);
-      login(response.user);
-      if (isBIT) {
-        navigate(ROUTES.USER_PROFILE);
-      } else {
-        navigate('/');
-      }
+      const res = await registerUser({
+        name: formData.name.trim(),
+        email: formData.email.trim(),
+        phone: formData.phone.trim(),
+        college: formData.college.trim(),
+        password: formData.password,
+      });
+
+      console.log('Backend Register Response:', res); // Debugging OTP
+
+
+      // ─── Send OTP via EmailJS ───
+      const templateParams = {
+        to_email: formData.email.trim(),
+        to_name: formData.name.trim(),
+        otp_code: res.otp, // OTP from backend
+        app_name: APP_NAME,
+      };
+
+      await emailjs.send(
+        import.meta.env.VITE_EMAILJS_SERVICE_ID,
+        import.meta.env.VITE_EMAILJS_TEMPLATE_ID,
+        templateParams,
+        import.meta.env.VITE_EMAILJS_PUBLIC_KEY
+      );
+
+      setStep('otp');
     } catch (err) {
-      setError(err.message || 'Failed to create account');
+      setError(err.message || 'Registration failed. Please try again.');
     } finally {
       setLoading(false);
     }
   };
 
+  // ─── Step 2: Verify OTP → POST /verify-email-otp ──────────────────────────
+  const handleVerifyOTP = async () => {
+    if (!otp.trim()) return setError('Please enter the OTP.');
+    setError('');
+    setLoading(true);
+    try {
+      const res = await verifyEmailOTP(formData.email, otp.trim());
+
+      if (res.access_granted) {
+        // BIT student: JWT returned, log them in
+        login(res.user, res.token);
+        navigate(ROUTES.USER_PROFILE);
+      } else {
+        // Non-BIT: go to payment step
+        setStep('payment');
+      }
+    } catch (err) {
+      setError(err.message || 'OTP verification failed.');
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  // ─── Step 3: Payment → POST /create-payment → Razorpay ───────────────────
+  const handlePayment = async () => {
+    setError('');
+    setPaymentMsg('');
+    setLoading(true);
+    try {
+      const orderData = await createPaymentOrder(formData.email);
+      setLoading(false);
+
+      openRazorpayCheckout(
+        orderData,
+        // onSuccess — payment captured; webhook will update backend
+        (paymentData) => {
+          setPaymentMsg('✓ Payment successful! Your account is being activated…');
+          // Small delay for webhook to process, then navigate
+          setTimeout(() => navigate(ROUTES.HOME), 2500);
+        },
+        // onFailure
+        (err) => {
+          setError(err.message || 'Payment failed. Please try again.');
+        }
+      );
+    } catch (err) {
+      setLoading(false);
+      setError(err.message || 'Could not initiate payment. Please try again.');
+    }
+  };
+
+  // ─── Render ────────────────────────────────────────────────────────────────
   return (
     <div className={styles.signupPage}>
       <div className={styles.signupContainer}>
@@ -122,124 +152,82 @@ const Signup = () => {
           <p className={styles.subtitle}>Join {APP_NAME} Experience</p>
 
           {error && <div className={styles.error}>{error}</div>}
+          {paymentMsg && <div className={styles.successBadge}>{paymentMsg}</div>}
 
-          <form onSubmit={handleSubmit} className={styles.form}>
-            <div className={styles.formGroup}>
-              <label htmlFor="email">Email Address *</label>
-              <input
-                type="email"
-                id="email"
-                name="email"
-                value={formData.email}
-                onChange={handleChange}
-                placeholder="Ex: user@domain.com"
-                className={styles.input}
-                required
-                disabled={otpSent}
-              />
-            </div>
-
-            {isBIT ? (
-              <div className={styles.googleAuthSection}>
-                <div className={styles.infoBox}>
-                  <p>BIT Mesra ID detected. Please use Google Login for automatic registration.</p>
-                </div>
-                <button
-                  type="button"
-                  className={styles.googleButton}
-                  onClick={handleGoogleLogin}
-                  disabled={loading}
-                >
-                  <img src="https://www.gstatic.com/images/branding/product/1x/gsa_512dp.png" alt="Google" className={styles.googleIcon} />
-                  {loading ? 'Authenticating...' : 'Sign in with Google'}
-                </button>
+          {/* ── STEP 1: Full details form ── */}
+          {step === 'details' && (
+            <form onSubmit={handleRegister} className={styles.form}>
+              <div className={styles.formGroup}>
+                <label htmlFor="name">Full Name *</label>
+                <input type="text" id="name" name="name" value={formData.name} onChange={handleChange} placeholder="Enter your full name" className={styles.input} autoFocus />
               </div>
-            ) : !isVerified ? (
-              <>
-                {otpSent && (
-                  <div className={styles.formGroup}>
-                    <label htmlFor="otp">Enter 6-Digit OTP</label>
-                    <input
-                      type="text"
-                      id="otp"
-                      name="otp"
-                      value={formData.otp}
-                      onChange={handleChange}
-                      placeholder="123456"
-                      maxLength="6"
-                      className={styles.input}
-                      required
-                    />
-                  </div>
-                )}
-                {!otpSent ? (
-                  <button type="button" className={styles.submitButton} onClick={handleSendOTP} disabled={loading}>
-                    {loading ? 'Sending...' : 'Send Verification OTP'}
-                  </button>
-                ) : (
-                  <button type="button" className={styles.submitButton} onClick={handleVerifyOTP}>
-                    Verify Email
-                  </button>
-                )}
-              </>
-            ) : (
-              <>
-                <div className={styles.successBadge}>✓ Email Verified</div>
+              <div className={styles.formGroup}>
+                <label htmlFor="email">Email Address *</label>
+                <input type="email" id="email" name="email" value={formData.email} onChange={handleChange} placeholder="user@domain.com" className={styles.input} />
+                {isBIT && <p className={styles.inputHelper}>BIT Mesra email detected — free access!</p>}
+              </div>
+              <div className={styles.formGroup}>
+                <label htmlFor="phone">Phone Number *</label>
+                <input type="tel" id="phone" name="phone" value={formData.phone} onChange={handleChange} placeholder="+91 98765 43210" className={styles.input} />
+              </div>
+              <div className={styles.formGroup}>
+                <label htmlFor="college">College / University *</label>
+                <input type="text" id="college" name="college" value={formData.college} onChange={handleChange} placeholder="Enter your college name" className={styles.input} />
+              </div>
+              <div className={styles.formGroup}>
+                <label htmlFor="password">Password *</label>
+                <input type="password" id="password" name="password" value={formData.password} onChange={handleChange} placeholder="Min 6 characters" className={styles.input} />
+              </div>
+              <div className={styles.formGroup}>
+                <label htmlFor="confirmPassword">Confirm Password *</label>
+                <input type="password" id="confirmPassword" name="confirmPassword" value={formData.confirmPassword} onChange={handleChange} placeholder="Repeat your password" className={styles.input} />
+              </div>
 
-                <div className={styles.formGroup}>
-                  <label htmlFor="name">Full Name *</label>
-                  <input
-                    type="text"
-                    id="name"
-                    name="name"
-                    value={formData.name}
-                    onChange={handleChange}
-                    placeholder="Enter your full name"
-                    className={styles.input}
-                    required
-                  />
-                </div>
+              <button type="submit" className={styles.submitButton} disabled={loading}>
+                {loading ? 'Sending OTP…' : isBIT ? 'Register with BIT Email' : 'Register & Pay'}
+              </button>
+            </form>
+          )}
 
-                <div className={styles.formGroup}>
-                  <label htmlFor="phone">Phone Number</label>
-                  <input
-                    type="tel"
-                    id="phone"
-                    name="phone"
-                    value={formData.phone}
-                    onChange={handleChange}
-                    placeholder="Enter your phone number"
-                    className={styles.input}
-                  />
-                </div>
+          {/* ── STEP 2: OTP verification ── */}
+          {step === 'otp' && (
+            <div className={styles.form}>
+              <div className={styles.successBadge}>OTP sent to {formData.email}</div>
+              <div className={styles.formGroup}>
+                <label htmlFor="otp">Enter OTP *</label>
+                <input
+                  type="text" id="otp" name="otp"
+                  value={otp} onChange={(e) => { setOtp(e.target.value); setError(''); }}
+                  placeholder="6-digit code" maxLength="6" className={styles.input} autoFocus
+                />
+                <p className={styles.inputHelper}>Check your inbox. Check spam if not received in 1 minute.</p>
+              </div>
+              <button type="button" className={styles.submitButton} onClick={handleVerifyOTP} disabled={loading}>
+                {loading ? 'Verifying…' : 'Verify OTP'}
+              </button>
+              <button type="button" style={{ marginTop: '0.5rem', background: 'none', border: 'none', cursor: 'pointer', color: 'var(--color-primary, #7C3AED)', textDecoration: 'underline' }}
+                onClick={() => { setStep('details'); setError(''); }}>
+                ← Change details
+              </button>
+            </div>
+          )}
 
-                <div className={styles.formGroup}>
-                  <label htmlFor="college">College/University</label>
-                  <input
-                    type="text"
-                    id="college"
-                    name="college"
-                    value={formData.college}
-                    onChange={handleChange}
-                    placeholder="Enter your college name"
-                    className={styles.input}
-                  />
-                </div>
-
-                <button type="submit" className={styles.submitButton} disabled={loading}>
-                  {loading ? 'Creating Account...' : 'Complete Registration'}
-                </button>
-              </>
-            )}
-          </form>
+          {/* ── STEP 3: Payment (non-BIT only) ── */}
+          {step === 'payment' && (
+            <div className={styles.form}>
+              <div className={styles.successBadge}>✓ Email Verified</div>
+              <div className={styles.infoBox || {}}>
+                <p>Complete payment to activate your Mayaverse account.</p>
+                <p style={{ fontSize: '0.85rem', color: '#aaa', marginTop: '0.25rem' }}>₹200 one-time registration fee</p>
+              </div>
+              <button type="button" className={styles.submitButton} onClick={handlePayment} disabled={loading}>
+                {loading ? 'Loading…' : 'Pay ₹200 with Razorpay'}
+              </button>
+            </div>
+          )}
 
           <div className={styles.links}>
-            <p>
-              Already have an account?{' '}
-              <Link to={ROUTES.LOGIN} className={styles.link}>
-                Login
-              </Link>
-            </p>
+            <p>Already have an account?{' '}<Link to={ROUTES.LOGIN} className={styles.link}>Login</Link></p>
           </div>
         </div>
       </div>
