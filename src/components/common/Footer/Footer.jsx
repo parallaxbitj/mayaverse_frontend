@@ -42,13 +42,13 @@ const Footer = () => {
         <div className={styles.footerCol}>
           <div className={styles.navHeader}>SUMMON US</div>
 
-          {CONTACT_INFO.TEAM.map((contact, index) => (
+          {/* {CONTACT_INFO.TEAM.map((contact, index) => (
             <div className={styles.contactItem} key={index}>
               <a href={`tel:${contact.PHONE.replace(/\s+/g, '')}`} className={styles.contactNumber}>
                 <i className="fas fa-phone-alt"></i> {contact.PHONE}
               </a>
             </div>
-          ))}
+          ))} */}
 
           <div className={styles.contactItem}>
             <Link to={ROUTES.TEAM} className={styles.teamLink}>
