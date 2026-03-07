@@ -226,3 +226,26 @@
   color: rgba(180, 180, 200, 0.3);
   font-size: 0.8rem;
 }
+.teamLink {
+  color: var(--color-primary);
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  transition: all 0.3s ease;
+  margin-top: 10px;
+  text-decoration: none;
+}
+
+.teamLink:hover {
+  color: #fff;
+  text-shadow: 0 0 10px var(--color-primary);
+  transform: translateX(5px);
+}
+
+.teamLink i {
+  font-size: 0.9rem;
+}

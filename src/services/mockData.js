@@ -362,24 +362,60 @@ export const mockEvents = [
 export const mockSponsors = [
   {
     id: '1',
-    name: 'GFG',
-    logo: '/assets/images/sponsors/gfg.png',
+    name: 'Bank of Baroda',
+    logo: 'https://upload.wikimedia.org/wikipedia/commons/b/b2/Bank_of_Baroda_logo.svg',
+    tier: 'Premium',
+    website: 'https://www.bankofbaroda.in/',
+    subtitle: 'Title Sponsor'
+  },
+  {
+    id: '2',
+    name: 'GeeksForGeeks',
+    logo: 'https://upload.wikimedia.org/wikipedia/commons/4/43/GeeksforGeeks.svg',
     tier: 'Ally',
     website: 'https://geeksforgeeks.org',
   },
   {
-    id: '2',
+    id: '3',
     name: 'Unstop',
-    logo: '/assets/images/sponsors/unstop.png',
+    logo: 'https://d8it4huxumps7.cloudfront.net/uploads/images/unstop/svg/unstop-logo.svg',
     tier: 'Ally',
     website: 'https://unstop.com',
   },
   {
-    id: '3',
+    id: '4',
     name: 'StockGro',
-    logo: '/assets/images/sponsors/stockgro.png',
+    logo: 'https://play-lh.googleusercontent.com/D2DLHQVF0aUUWCfgxiV27uMt9Fy5H9GbRlSm9oPHkwT2-qHcnPiw7pqQfKl9rGWv3oo=w240-h480-rw',
     tier: 'Ally',
     website: 'https://stockgro.com',
+  },
+  {
+    id: '5',
+    name: 'Devnovate',
+    logo: 'https://devnovate.co/wp-content/uploads/2023/04/Devnovate-Logo.png',
+    tier: 'Ally',
+    website: 'https://devnovate.co',
+  },
+  {
+    id: '6',
+    name: 'Bake Away',
+    logo: 'https://images.deliveryhero.io/image/fd-pk/LH/vpt5-hero.jpg',
+    tier: 'Supporter',
+    website: '#',
+  },
+  {
+    id: '7',
+    name: 'Belgian Waffle Co.',
+    logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/1/1b/The_Belgian_Waffle_Co._Logo.png/320px-The_Belgian_Waffle_Co._Logo.png',
+    tier: 'Supporter',
+    website: '#',
+  },
+  {
+    id: '8',
+    name: 'Chai Zindagi',
+    logo: 'https://chaizindagi.com/wp-content/uploads/2022/01/chai-zindagi-logo.png',
+    tier: 'Supporter',
+    website: 'https://chaizindagi.com/',
   },
 ];
 

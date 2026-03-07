@@ -1,16 +1,23 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { useLocation } from 'react-router-dom';
 import styles from './ScrollToTop.module.css';
 
 /**
  * MAYAVERSE - ScrollToTop Component
  * 
- * A premium, animated button that appears when the user scrolls down.
- * Clicking it smoothly scrolls the page back to the top.
+ * 1. Automatically scrolls to top on every route change.
+ * 2. Displays a premium, animated button for manual scrolls.
  */
 
 const ScrollToTop = () => {
+  const { pathname } = useLocation();
   const [isVisible, setIsVisible] = useState(false);
+
+  // Auto-scroll to top on route change
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
 
   // Show button when page is scrolled up to 300px
   const toggleVisibility = () => {
@@ -43,7 +50,7 @@ const ScrollToTop = () => {
           initial={{ opacity: 0, scale: 0.5, y: 20 }}
           animate={{ opacity: 1, scale: 1, y: 0 }}
           exit={{ opacity: 0, scale: 0.5, y: 20 }}
-          whileHover={{ 
+          whileHover={{
             scale: 1.1,
             boxShadow: '0 0 20px var(--color-primary), 0 0 40px var(--color-accent)'
           }}

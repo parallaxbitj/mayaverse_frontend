@@ -7,57 +7,64 @@ const teamData = [
     {
         id: 'management',
         title: 'Management',
+        domainImage: '/team-domains/management.png',
         members: [
-            { name: 'Aditya Agarwal', role: 'Management Head', image: 'https://ui-avatars.com/api/?name=Aditya+Agarwal&background=0D8ABC&color=fff' }
+            { name: 'Aditya Aggarwal', role: 'Management Head', image: '/Team/Aditya Aggarwal.png' }
         ]
     },
     {
         id: 'technical',
         title: 'Technical Team',
+        domainImage: '/team-domains/technical.png',
         members: [
-            { name: 'Vansh Arora', role: 'Technical Head', image: 'https://ui-avatars.com/api/?name=Vansh+Arora&background=8A2BE2&color=fff' },
-            { name: 'Vansh Sardana', role: 'Technical Lead', image: 'https://ui-avatars.com/api/?name=Vansh+Sardana&background=8A2BE2&color=fff' }
+            { name: 'Vansh Arora', role: 'Technical Head', image: '/Team/Vansh Arora.png' },
+            { name: 'Vansh Sardana', role: 'Technical Lead', image: '/Team/Vansh Sardana.png' }
         ]
     },
     {
         id: 'creative-graphics',
         title: 'Graphics & Creative',
+        domainImage: '/team-domains/graphics.png',
         members: [
-            { name: 'Manika Singh', role: 'Graphics Head', image: 'https://ui-avatars.com/api/?name=Manika+Singh&background=FF1493&color=fff' },
-            { name: 'Abhishek', role: 'Graphics Designer', image: 'https://ui-avatars.com/api/?name=Abhishek&background=FF1493&color=fff' }
+            { name: 'Manika Singh', role: 'Graphics Head', image: '/Team/Manika Singh.png' },
+            { name: 'Abhishek Pareek', role: 'Graphics Designer', image: '/Team/Abhishek Pareek.png' }
         ]
     },
     {
         id: 'social-content',
         title: 'Socials & Content',
+        domainImage: '/team-domains/socials.png',
         members: [
-            { name: 'Charu Jethwani', role: 'Socials Head', image: 'https://ui-avatars.com/api/?name=Charu+Jethwani&background=4682B4&color=fff' },
-            { name: 'Navya Khandelwal', role: 'Content Head', image: 'https://ui-avatars.com/api/?name=Navya+Khandelwal&background=4682B4&color=fff' }
+            { name: 'Charu Jethwani', role: 'Socials Head', image: '/Team/Charu Jethwani.png' },
+            { name: 'Navya Khandelwal', role: 'Content Head', image: '/Team/Navya Khandelwal.png' }
         ]
     },
     {
         id: 'promotions-pr',
         title: 'Promotions & PR',
+        domainImage: '/team-domains/promotions.png',
         members: [
-            { name: 'Vansh Jain', role: 'Promotions Head', image: 'https://ui-avatars.com/api/?name=Vansh+Jain&background=FF8C00&color=fff' }
+            { name: 'Vansh Jain', role: 'Promotions Head', image: '/Team/Vansh Jain.png' }
         ]
     },
     {
         id: 'sponsorship-finance',
         title: 'Sponsorship & Finance',
+        domainImage: '/team-domains/sponsorship.png',
         members: [
-            { name: 'Jai Mishra', role: 'Sponsorship Head', image: 'https://ui-avatars.com/api/?name=Jai+Mishra&background=2E8B57&color=fff' },
-            { name: 'Mouli Sharma', role: 'Finance Head', image: 'https://ui-avatars.com/api/?name=Mouli+Sharma&background=2E8B57&color=fff' }
+            { name: 'Jai Mishra', role: 'Sponsorship Head', image: '/Team/Jai Mishra.png' },
+            { name: 'Mouli Sharma', role: 'Finance Head', image: '/Team/Mouli Sharma.png' }
         ]
     },
     {
         id: 'operations-logistics',
         title: 'Operations & Production',
+        domainImage: '/team-domains/operations.png',
         members: [
-            { name: 'Meahul Gupta', role: 'Operations Head', image: 'https://ui-avatars.com/api/?name=Meahul+Gupta&background=DC143C&color=fff' },
-            { name: 'Kabeer', role: 'Productions Head', image: 'https://ui-avatars.com/api/?name=Kabeer&background=DC143C&color=fff' },
-            { name: 'Varun Tyagi', role: 'Documentation Lead', image: 'https://ui-avatars.com/api/?name=Varun+Tyagi&background=DC143C&color=fff' },
-            { name: 'Pratibha Soni', role: 'Decoration Head', image: 'https://ui-avatars.com/api/?name=Pratibha+Soni&background=DC143C&color=fff' }
+            { name: 'Meahul Gupta', role: 'Operations Head', image: '/Team/Meahul Gupta.png' },
+            { name: 'Kabeer Kaushik', role: 'Productions Head', image: '/Team/Kabeer Kaushik.png' },
+            { name: 'Varun Tyagi', role: 'Documentation Lead', image: '/Team/Varun Tyagi.png' },
+            { name: 'Pratibha Soni', role: 'Decoration Head', image: '/Team/Pratibha Soni.png' }
         ]
     }
 ];
@@ -148,8 +155,14 @@ const Team = () => {
                                 whileInView={{ opacity: 1, x: 0 }}
                                 viewport={{ once: true }}
                             >
-                                <h2 className={styles.categoryTitle}>{category.title}</h2>
-                                <div className={styles.line}></div>
+                                <div className={styles.domainImageWrapper}>
+                                    <img src={category.domainImage} alt={category.title} className={styles.domainImage} />
+                                    <div className={styles.domainOverlay}></div>
+                                </div>
+                                <div className={styles.categoryTitleWrap}>
+                                    <h2 className={styles.categoryTitle}>{category.title}</h2>
+                                    <div className={styles.line}></div>
+                                </div>
                             </motion.div>
 
                             <motion.div

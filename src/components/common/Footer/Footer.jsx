@@ -35,8 +35,6 @@ const Footer = () => {
             <li><Link to={ROUTES.EVENTS}>Events</Link></li>
             <li><Link to={ROUTES.GALLERY || '/'}>Gallery</Link></li>
             <li><Link to={ROUTES.SPONSORS || '/'}>Sponsors</Link></li>
-            <li><Link to={ROUTES.MERCHANDISE || '/'}>Merchandise</Link></li>
-            <li><Link to={ROUTES.TEAM || '/'}>The Architects</Link></li>
           </ul>
         </div>
 
@@ -46,12 +44,17 @@ const Footer = () => {
 
           {CONTACT_INFO.TEAM.map((contact, index) => (
             <div className={styles.contactItem} key={index}>
-              <span className={styles.contactName}>{contact.NAME}</span>
               <a href={`tel:${contact.PHONE.replace(/\s+/g, '')}`} className={styles.contactNumber}>
                 <i className="fas fa-phone-alt"></i> {contact.PHONE}
               </a>
             </div>
           ))}
+
+          <div className={styles.contactItem}>
+            <Link to={ROUTES.TEAM} className={styles.teamLink}>
+              <i className="fas fa-users"></i> Meet The Architects
+            </Link>
+          </div>
 
           <div className={styles.socialRow}>
             <a href={SOCIAL_LINKS.INSTAGRAM} target="_blank" rel="noopener noreferrer" className={styles.socialBtn} aria-label="Instagram">

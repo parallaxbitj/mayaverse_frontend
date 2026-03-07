@@ -72,20 +72,49 @@
     margin: 0;
     z-index: 2;
     text-transform: uppercase;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
+    position: relative;
+    pointer-events: none;
+}
+
+.cardImage {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 0;
+    transition: transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.imageOverlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(10, 10, 20, 0.2) 0%, rgba(10, 10, 20, 0.8) 100%);
+    z-index: 1;
+    transition: opacity 0.3s ease;
+}
+
+.card:hover .cardImage {
+    transform: scale(1.1);
+}
+
+.card:hover .imageOverlay {
+    background: linear-gradient(180deg, rgba(10, 10, 20, 0.1) 0%, rgba(10, 10, 20, 0.6) 100%);
 }
 
 .cardGlow {
     position: absolute;
     top: 50%;
     left: 50%;
-    width: 150px;
-    height: 150px;
-    background: radial-gradient(circle, rgba(168, 85, 247, 0.4) 0%, transparent 70%);
+    width: 200px;
+    height: 200px;
+    background: radial-gradient(circle, rgba(77, 166, 255, 0.3) 0%, transparent 70%);
     transform: translate(-50%, -50%);
     opacity: 0;
     transition: opacity 0.3s ease;
     pointer-events: none;
-    z-index: 1;
+    z-index: 3;
 }
 
 .card:hover .cardGlow {
@@ -96,7 +125,6 @@
 .festhead {
     grid-column: span 4;
     grid-row: span 1;
-    background: radial-gradient(circle at top left, rgba(168, 85, 247, 0.4) 0%, rgba(255, 255, 255, 0.02) 70%);
 }
 
 .techCouncil {
