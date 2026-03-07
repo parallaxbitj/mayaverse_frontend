@@ -9,7 +9,7 @@ const Navbar = () => {
   const [isVisible, setIsVisible] = useState(true);
   const [isOpen, setIsOpen] = useState(false);
   const [isProfileOpen, setIsProfileOpen] = useState(false);
-  const [lastScrollY, setLastScrollY] = useState(0);
+  const [lastScrollY, setLastScrollY] = useState(window.scrollY);
   const location = useLocation();
   const { user, logout, isAuthenticated } = useAuth();
   const isHomePage = location.pathname === '/' || location.pathname === '/home';
@@ -18,20 +18,28 @@ const Navbar = () => {
   useEffect(() => {
     const controlNavbar = () => {
       const currentScrollY = window.scrollY;
+
       if (isHomePage) {
-        // Always show within first 80px; hide only after scrolling 10px+ downward
+        // Always show within first 80px
         if (currentScrollY < 80) {
           setIsVisible(true);
         } else if (currentScrollY > lastScrollY + 10) {
+          // Hide only after scrolling 10px+ downward
           setIsVisible(false);
-        } else if (currentScrollY < lastScrollY) {
+        } else if (currentScrollY < lastScrollY - 10) {
+          // Show only after scrolling 10px+ upward
           setIsVisible(true);
         }
       } else {
+        // Force visible on subpages
         setIsVisible(true);
       }
+
       setLastScrollY(currentScrollY);
     };
+
+    // Run once on mount to handle refreshed state
+    controlNavbar();
 
     window.addEventListener('scroll', controlNavbar, { passive: true });
     return () => window.removeEventListener('scroll', controlNavbar);

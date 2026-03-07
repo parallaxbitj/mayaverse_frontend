@@ -47,7 +47,7 @@ export const mockEvents = [
     organizer: 'Tech Committee',
     prizes: ['Certificates', 'Goodies'],
     rules: ['Team based event', 'Solve puzzles to progress'],
-    googleFormUrl: 'https://forms.gle/Rum61AswAjc58qzy8',
+    googleFormUrl: 'https://forms.gle/qw26poiykwrxfE2Q6',
   },
   {
     id: '2',
@@ -65,7 +65,7 @@ export const mockEvents = [
     organizer: 'Electronics Club',
     prizes: ['Certificates', 'Goodies'],
     rules: ['Individual participation', 'Identify faults in circuits'],
-    googleFormUrl: 'https://forms.gle/Rum61AswAjc58qzy8',
+    googleFormUrl: 'https://forms.gle/1WnbG3QovHhF2Dib6',
   },
   {
     id: '3',
@@ -83,7 +83,7 @@ export const mockEvents = [
     organizer: 'Computing Society',
     prizes: ['Certificates', 'Goodies'],
     rules: ['Solo event', 'Highest WPM wins'],
-    googleFormUrl: 'https://forms.gle/Rum61AswAjc58qzy8',
+    googleFormUrl: 'https://forms.gle/82Pn6RUcG6fwFYNX6',
   },
   {
     id: '4',
@@ -101,11 +101,11 @@ export const mockEvents = [
     organizer: 'Robotics Club',
     prizes: ['Certificates', 'Goodies'],
     rules: ['1 vs 1 format', 'Manual control only'],
-    googleFormUrl: 'https://forms.gle/Rum61AswAjc58qzy8',
+    googleFormUrl: 'https://docs.google.com/forms/d/e/1FAIpQLSfbUhCQ3taDQcrbjEZooQ-B6tYKoIObtceUBaBH_CfoVLENdA/viewform?usp=sharing&ouid=101011667818086373125',
   },
   {
     id: '5',
-    title: 'Brand Wars',
+    title: 'Brand Wars: Dominate or Disappear',
     description: 'Brand Wars is a dynamic marketing competition where teams create and promote a brand in real time. Participants must use creativity, strategy, and communication skills to present a strong brand identity.',
     category: EVENT_CATEGORIES.COMPETITION,
     status: EVENT_STATUS.UPCOMING,
@@ -119,7 +119,7 @@ export const mockEvents = [
     organizer: 'Marketing Club',
     prizes: ['Certificates', 'Goodies'],
     rules: ['Team event', 'Pitch and defend your brand'],
-    googleFormUrl: 'https://forms.gle/Rum61AswAjc58qzy8',
+    googleFormUrl: 'https://forms.gle/8WFqi2xmhrDbnBmSA',
   },
   {
     id: '7',
@@ -137,7 +137,7 @@ export const mockEvents = [
     organizer: 'Quiz Club',
     prizes: ['Certificates', 'Goodies'],
     rules: ['Real-time leaderboard', 'Fastest finger first'],
-    googleFormUrl: 'https://forms.gle/Rum61AswAjc58qzy8',
+    googleFormUrl: 'https://unstop.com/o/Qobd8Xf?lb=2AzaQr3i&utm_medium=Share&utm_source=quizzes&utm_campaign=Technbit31755',
   },
   {
     id: '8',
@@ -155,7 +155,7 @@ export const mockEvents = [
     organizer: 'Creative Society',
     prizes: ['Certificates', 'Goodies'],
     rules: ['Team event', 'Original concepts only'],
-    googleFormUrl: 'https://forms.gle/Rum61AswAjc58qzy8',
+    googleFormUrl: 'https://forms.gle/WyhraJMUv3BDv7yK9',
   },
   {
     id: '9',
@@ -173,7 +173,7 @@ export const mockEvents = [
     organizer: 'Movie Club',
     prizes: ['Certificates', 'Goodies'],
     rules: ['Theme based', 'Minimum 3 minutes long'],
-    googleFormUrl: 'https://forms.gle/Rum61AswAjc58qzy8',
+    googleFormUrl: 'https://forms.gle/AQfxa8Y2qgwnUHsW9',
   },
   {
     id: '11',
@@ -191,7 +191,7 @@ export const mockEvents = [
     organizer: 'Tech Committee',
     prizes: ['Grand Prize', 'Certificates'],
     rules: ['Team event', '24 hours sprint'],
-    googleFormUrl: 'https://forms.gle/Rum61AswAjc58qzy8',
+    googleFormUrl: 'https://devnovate.co/event/kurukshetra-mahabharat-of-codes',
   },
   {
     id: '12',
@@ -209,7 +209,7 @@ export const mockEvents = [
     organizer: 'Computing Society',
     prizes: ['Certificates', 'Goodies'],
     rules: ['Problem solving', 'Logical thinking'],
-    googleFormUrl: 'https://forms.gle/Rum61AswAjc58qzy8',
+    googleFormUrl: 'https://forms.gle/oAHd8zviGS2RuWg49',
   },
   {
     id: '13',
@@ -227,7 +227,7 @@ export const mockEvents = [
     organizer: 'AI Club',
     prizes: ['Certificates', 'Goodies'],
     rules: ['Single prompt challenge', 'MVP generation'],
-    googleFormUrl: 'https://forms.gle/Rum61AswAjc58qzy8',
+    googleFormUrl: 'https://forms.gle/cfgtLF5vPZFPxSnZA',
   },
   {
     id: '14',
@@ -245,7 +245,7 @@ export const mockEvents = [
     organizer: 'Finance Club',
     prizes: ['Certificates', 'Goodies'],
     rules: ['Virtual trading', 'Market news response'],
-    googleFormUrl: 'https://forms.gle/Rum61AswAjc58qzy8',
+    googleFormUrl: 'https://forms.gle/GUX6j4MeDQWc6PPD8',
   },
   {
     id: '15',
@@ -263,7 +263,7 @@ export const mockEvents = [
     organizer: 'Sports Committee',
     prizes: ['Certificates', 'Goodies'],
     rules: ['Budget management', 'Squad rating evaluation'],
-    googleFormUrl: 'https://forms.gle/Rum61AswAjc58qzy8',
+    googleFormUrl: 'https://forms.gle/YUe4po2fdfehD6jo9',
   },
   {
     id: '16',
@@ -281,7 +281,7 @@ export const mockEvents = [
     organizer: 'Debate Society',
     prizes: ['Certificates', 'Goodies'],
     rules: ['Parliamentary format', 'Structured debates'],
-    googleFormUrl: 'https://forms.gle/Rum61AswAjc58qzy8',
+    googleFormUrl: 'https://forms.gle/e15ySGw6ndCcSY9s7',
   },
   {
     id: '17',
@@ -299,7 +299,7 @@ export const mockEvents = [
     organizer: 'Entertainment Club',
     prizes: ['Certificates', 'Goodies'],
     rules: ['Team based', 'Decode clues'],
-    googleFormUrl: 'https://forms.gle/Rum61AswAjc58qzy8',
+    googleFormUrl: 'https://docs.google.com/forms/d/e/1FAIpQLSdLzMnBYGaMI0JDdMDK7UtDNOzauh882XKXTuPOHd5GcOOZxg/viewform?usp=sharing&ouid=101011667818086373125',
   },
   {
     id: '19',
@@ -317,11 +317,11 @@ export const mockEvents = [
     organizer: 'Cyber Security Club',
     prizes: ['Certificates', 'Goodies'],
     rules: ['Investigation skills', 'Evidence analysis'],
-    googleFormUrl: 'https://forms.gle/Rum61AswAjc58qzy8',
+    googleFormUrl: 'https://forms.gle/JUS92pdBSXXiLLpU8',
   },
   {
     id: '20',
-    title: 'GAMING ARENA',
+    title: 'Gaming Event',
     description: 'Gaming Arena is a competitive e-sports event where players compete in popular titles such as Valorant, BGMI, and FIFA through a structured tournament format.',
     category: EVENT_CATEGORIES.GAMING,
     status: EVENT_STATUS.UPCOMING,
@@ -335,7 +335,7 @@ export const mockEvents = [
     organizer: 'Gaming Club',
     prizes: ['Cash Prizes', 'Certificates'],
     rules: ['Tournament format', 'Fair play rules'],
-    googleFormUrl: 'https://forms.gle/Rum61AswAjc58qzy8',
+    googleFormUrl: 'https://forms.gle/qHbGBMq2jiqT2C1K7',
   },
   {
     id: '21',
@@ -355,7 +355,7 @@ export const mockEvents = [
     rules: ['Open for all students', 'Q&A session at the end'],
     googleFormUrl: 'https://forms.gle/Rum61AswAjc58qzy8',
   },
-];
+ ];
 
 
 // Mock Sponsors
