@@ -142,7 +142,7 @@ const Merchandise = () => {
                 <div className={styles.priceRow}>
                   <div className={styles.priceContainer}>
                     <span className={styles.priceLabel}>PRICE</span>
-                    <span className={styles.price}>{formatCurrency(featuredItem?.price || 599, 'INR')}</span>
+                    <span className={styles.price}>{formatCurrency(featuredItem?.price || 850, 'INR')}</span>
                   </div>
                 </div>
 
