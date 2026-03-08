@@ -141,8 +141,8 @@ export const mockEvents = [
   },
   {
     id: '8',
-    title: 'Marketing Mania (Ad Making)',
-    description: 'Ad Making is a creative competition where teams design innovative advertisements for a given brand or product. Participants must use storytelling, creativity, and marketing ideas.',
+    title: 'Marketing Mania',
+    description: 'Marketing Mania is a creative competition where teams design innovative advertisements for a given brand or product. Participants must use storytelling, creativity, and marketing ideas.',
     category: EVENT_CATEGORIES.CULTURAL,
     status: EVENT_STATUS.UPCOMING,
     date: '2026-03-11',
