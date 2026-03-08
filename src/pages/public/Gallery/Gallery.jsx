@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import styles from './Gallery.module.css';
 
@@ -37,9 +37,14 @@ const GALLERY_IMAGES = [
 
 const Gallery = () => {
     const [selectedImage, setSelectedImage] = useState(null);
+    const [loadedImages, setLoadedImages] = useState(new Set());
 
     useEffect(() => {
         window.scrollTo(0, 0);
+    }, []);
+
+    const handleImageLoad = useCallback((id) => {
+        setLoadedImages(prev => new Set(prev).add(id));
     }, []);
 
     return (
@@ -61,10 +66,7 @@ const Gallery = () => {
 
             {/* Gallery Grid */}
             <main className={styles.container}>
-                <motion.div
-                    layout
-                    className={styles.galleryGrid}
-                >
+                <div className={styles.galleryGrid}>
                     {GALLERY_IMAGES.map((image, index) => (
                         <motion.div
                             key={image.id}
@@ -76,12 +78,15 @@ const Gallery = () => {
                             className={`${styles.galleryItem} ${styles[image.size]}`}
                             onClick={() => setSelectedImage(image)}
                         >
-                            <div className={styles.imageWrapper}>
+                            <div className={`${styles.imageWrapper} ${loadedImages.has(image.id) ? styles.loaded : styles.skeleton}`}>
                                 <img
                                     src={image.url}
                                     alt={image.title}
-                                    className={styles.image}
-                                    loading="lazy"
+                                    className={`${styles.image} ${loadedImages.has(image.id) ? styles.imageVisible : styles.imageHidden}`}
+                                    loading={index < 8 ? 'eager' : 'lazy'}
+                                    decoding="async"
+                                    fetchpriority={index < 4 ? 'high' : 'low'}
+                                    onLoad={() => handleImageLoad(image.id)}
                                 />
                                 <div className={styles.overlay}>
                                     <h3 className={styles.imageTitle}>{image.title}</h3>
@@ -90,7 +95,7 @@ const Gallery = () => {
                             </div>
                         </motion.div>
                     ))}
-                </motion.div>
+                </div>
             </main>
 
             {/* Lightbox Modal */}

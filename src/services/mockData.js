@@ -427,7 +427,7 @@ export const mockMerchandise = [
     tagline: 'Official PARALLAX Limited Edition',
     description: 'Official PARALLAX tech-fest tee. Limited edition design, premium quality 100% cotton.',
     category: MERCH_CATEGORIES.CLOTHING,
-    price: 599,
+    price: 850,
     stock: 150,
     image: 'https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&q=80&w=800',
   },
@@ -459,7 +459,7 @@ export const mockOrders = [
     id: '1',
     userId: '2',
     items: [
-      { productId: '1', name: 'MAYAVERSE T-Shirt', quantity: 2, price: 599, size: 'L', color: 'Black' },
+      { productId: '1', name: 'MAYAVERSE T-Shirt', quantity: 2, price: 850, size: 'L', color: 'Black' },
       { productId: '3', name: 'MAYAVERSE Cap', quantity: 1, price: 399, size: 'One Size', color: 'Black' },
     ],
     total: 1597,
