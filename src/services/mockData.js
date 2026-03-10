@@ -581,6 +581,13 @@ export const mockSponsors = [
     tier: 'Supporter',
     website: '#',
   },
+  {
+    id: '11',
+    name: 'Shawarma Times',
+    logo: new URL('../assets/images/sponsors/Shawarma times.jpeg', import.meta.url).href,
+    tier: 'Supporter',
+    website: '#',
+  },
 ];
 
 // Mock Merchandise — only the T-Shirt for now

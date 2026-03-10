@@ -24,6 +24,7 @@ const SUPPORTER_LOGOS = [
     { name: 'Chai Zindagi', slug: 'tea' },
     { name: 'Haunted House', slug: 'hauntedhouse' },
     { name: 'JBV', slug: 'jbv' },
+    { name: 'Shawarma Times', slug: 'shawarmatimes' },
 ];
 
 const ICON_CDN = (slug) => `https://cdn.simpleicons.org/${slug}/ffffff`;
