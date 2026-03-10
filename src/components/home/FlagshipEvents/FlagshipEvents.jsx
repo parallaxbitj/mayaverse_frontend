@@ -217,7 +217,7 @@ const FlagshipEvents = () => {
             >
               Register Now
             </button>
-            <p className="mt-3 text-center text-[0.72rem] leading-relaxed text-white/75">
+            <p className="mt-3 text-center text-[0.88rem] leading-relaxed text-white/75">
               {EXTERNAL_STUDENT_WHATSAPP.MESSAGE}{' '}
               <a
                 href={EXTERNAL_STUDENT_WHATSAPP.URL}
