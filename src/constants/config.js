@@ -88,9 +88,16 @@ export const ALLOWED_IMAGE_TYPES = ['image/jpeg', 'image/png', 'image/webp', 'im
 export const SOCIAL_LINKS = {
   FACEBOOK: '#',
   TWITTER: '#',
-  INSTAGRAM: 'https://www.instagram.com/techvibesbit?igsh=dDhudDY2Mmc3NW9k',
+  INSTAGRAM: 'https://www.instagram.com/parallax.bitj/',
   LINKEDIN: 'https://www.linkedin.com/company/techvibesbit/',
   YOUTUBE: '#',
+};
+
+// WhatsApp group details for external participants
+export const EXTERNAL_STUDENT_WHATSAPP = {
+  MESSAGE: 'For students outside BIT (organising college), join the group for more information and stay tuned with us.',
+  CTA: 'Follow this link to join my WhatsApp group',
+  URL: 'https://chat.whatsapp.com/LDXCo7uIUIC0oRWNz6E8fB?mode=gi_t',
 };
 
 // Contact Info (customize these)
@@ -145,5 +152,6 @@ export default {
   ROUTES,
   EVENT_CATEGORIES,
   SOCIAL_LINKS,
+  EXTERNAL_STUDENT_WHATSAPP,
   CONTACT_INFO,
 };

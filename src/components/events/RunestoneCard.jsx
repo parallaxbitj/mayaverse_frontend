@@ -2,7 +2,7 @@ import React, { useState, useRef, useCallback, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styles from './RunestoneCard.module.css';
 import { useAuth } from '../../hooks/useAuth';
-import { ROUTES } from '../../constants/config';
+import { ROUTES, EXTERNAL_STUDENT_WHATSAPP } from '../../constants/config';
 
 /**
  * RunestoneCard — Video-driven event card with absolute frame synchronization.
@@ -323,6 +323,17 @@ const RunestoneCard = ({ event, onRegister }) => {
                     <button className={styles.registerBtn} onClick={handleRegisterClick}>
                         Register Now
                     </button>
+                    <p className={styles.whatsappNote}>
+                        {EXTERNAL_STUDENT_WHATSAPP.MESSAGE}{' '}
+                        <a
+                            className={styles.whatsappLink}
+                            href={EXTERNAL_STUDENT_WHATSAPP.URL}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                        >
+                            {EXTERNAL_STUDENT_WHATSAPP.CTA}
+                        </a>
+                    </p>
                 </div>
             </div>
 

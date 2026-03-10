@@ -246,6 +246,26 @@
   filter: brightness(1.1);
 }
 
+.whatsappNote {
+  margin-top: 0.75rem;
+  text-align: center;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.72rem;
+  line-height: 1.5;
+  color: rgba(255, 255, 255, 0.75);
+}
+
+.whatsappLink {
+  color: #74f6bc;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  transition: color 0.25s ease;
+}
+
+.whatsappLink:hover {
+  color: #a1f9d2;
+}
+
 .closeButton {
   position: absolute;
   top: 1.5rem;

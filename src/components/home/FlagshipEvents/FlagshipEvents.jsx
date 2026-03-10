@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { EvervaultCard } from '../../ui/evervault-card';
 import { mockEvents } from '../../../services/mockData';
+import { EXTERNAL_STUDENT_WHATSAPP } from '../../../constants/config';
 import styles from './FlagshipEvents.module.css';
 import eventStyles from '../../../pages/public/Events/Events.module.css';
 
@@ -216,6 +217,17 @@ const FlagshipEvents = () => {
             >
               Register Now
             </button>
+            <p className="mt-3 text-center text-[0.72rem] leading-relaxed text-white/75">
+              {EXTERNAL_STUDENT_WHATSAPP.MESSAGE}{' '}
+              <a
+                href={EXTERNAL_STUDENT_WHATSAPP.URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-[#74f6bc] underline underline-offset-2 transition-colors hover:text-[#a1f9d2]"
+              >
+                {EXTERNAL_STUDENT_WHATSAPP.CTA}
+              </a>
+            </p>
           </div>
         </div>
       )}

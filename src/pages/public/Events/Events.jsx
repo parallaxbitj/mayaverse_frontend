@@ -3,7 +3,7 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import { getEvents, registerForEvent } from '../../../services/mockData';
 import { useAuth } from '../../../hooks/useAuth';
 import { EvervaultCard } from '../../../components/ui/evervault-card';
-import { ROUTES } from '../../../constants/config';
+import { ROUTES, EXTERNAL_STUDENT_WHATSAPP } from '../../../constants/config';
 import styles from './Events.module.css';
 
 /**
@@ -164,6 +164,17 @@ const Events = () => {
                 >
                   Initiate Registration
                 </button>
+                <p className={styles.whatsappNote}>
+                  {EXTERNAL_STUDENT_WHATSAPP.MESSAGE}{' '}
+                  <a
+                    className={styles.whatsappLink}
+                    href={EXTERNAL_STUDENT_WHATSAPP.URL}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    {EXTERNAL_STUDENT_WHATSAPP.CTA}
+                  </a>
+                </p>
               </div>
             </div>
           </div>

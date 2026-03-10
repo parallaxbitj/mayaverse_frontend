@@ -318,6 +318,27 @@
     }
 }
 
+.whatsappNote {
+    width: 85%;
+    margin-top: 0.8rem;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.64rem;
+    line-height: 1.45;
+    color: rgba(185, 195, 235, 0.75);
+    text-align: center;
+}
+
+.whatsappLink {
+    color: rgba(115, 245, 182, 0.95);
+    text-decoration: underline;
+    text-underline-offset: 2px;
+    transition: color 0.25s ease;
+}
+
+.whatsappLink:hover {
+    color: rgba(160, 255, 210, 1);
+}
+
 /* ---------- GOOGLE FORM MODAL ---------- */
 .formBackdrop {
     position: fixed;
