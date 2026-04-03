@@ -74,6 +74,9 @@ const Footer = () => {
         <div className={styles.copyrightText}>
           &copy; {currentYear} Technical Committee. All rights reserved.
         </div>
+        <div className={styles.codedBy}>
+          Coded by <span className={styles.codedByName}>Techops Bitj</span> (Tech Team Lead- Vansh Arora)
+        </div>
       </div>
     </footer>
   );

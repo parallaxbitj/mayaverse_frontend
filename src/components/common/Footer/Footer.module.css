@@ -226,6 +226,17 @@
   color: rgba(180, 180, 200, 0.3);
   font-size: 0.8rem;
 }
+.codedBy {
+  margin-top: 0.75rem;
+  font-size: 0.75rem;
+  color: rgba(180, 180, 200, 0.25);
+  letter-spacing: 1px;
+}
+
+.codedByName {
+  color: rgba(138, 124, 255, 0.5);
+  font-weight: 600;
+}
 .teamLink {
   color: var(--color-primary);
   font-size: 0.85rem;

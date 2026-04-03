@@ -1,5 +1,4 @@
 import React, { useRef, useEffect, useState } from 'react';
-import Timer from './Timer';
 
 import styles from './HeroScroll.module.css';
 
@@ -9,7 +8,7 @@ const HeroScroll = () => {
     const dateTeaserRef = useRef(null); // Sequence 1
     const presentsRef = useRef(null);   // Sequence 2
     const mainContentRef = useRef(null); // Sequence 3
-    const timerRef = useRef(null);
+
     const [images, setImages] = useState([]);
     const [loading, setLoading] = useState(true);
 
@@ -117,9 +116,7 @@ const HeroScroll = () => {
                 const dateOpacity = getSequenceOpacity(frameIndex, 10, 40);
                 dateTeaserRef.current.style.opacity = dateOpacity;
 
-                if (timerRef.current) {
-                    timerRef.current.style.opacity = 1 - dateOpacity;
-                }
+
                 if (mainContentRef.current) {
                     mainContentRef.current.style.opacity = 1 - dateOpacity;
                 }
@@ -219,10 +216,7 @@ const HeroScroll = () => {
                         Decoding Reality – Where Code Meets Illusion
                     </p>
 
-                    {/* Timer Only */}
-                    <div ref={timerRef} style={{ pointerEvents: 'auto' }}>
-                        <Timer />
-                    </div>
+
                 </div>
 
                 {loading && (
